@@ -4,6 +4,8 @@
 activity from authorized packet captures. Built for the IIITDM Kancheepuram
 cybersecurity hackathon, 31 October–1 November 2026.
 
+▶ **[Watch the 2-minute captioned demo](docs/demo.mp4)** *(recorded walkthrough using synthetic offline scenario captures)*
+
 ## Implemented now
 
 - Next.js investigation frontend supplied by AGY, with explicitly labeled preview

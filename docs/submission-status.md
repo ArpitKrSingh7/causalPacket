@@ -23,33 +23,26 @@ Internal target: **19:00 IST**. Only the team leader submits the organizer's for
   check artifacts, bounded worker/input budgets, and lifecycle cleanup tests.
 - One-command setup/run/check helpers and serverless demo verification script.
 - A 3:45 demo storyboard with exact expected actions, facts, and timings.
-- Demonstration video artifacts generated and verified:
-  - `.artifacts/demo-rehearsal/causalpacket-demo-rehearsal.webm` (126.96s, raw capture)
-  - `.artifacts/demo-rehearsal/causalpacket-demo-presentation.mp4` (126.96s, H.264 with burned-in captions)
-  - `.artifacts/demo-rehearsal/causalpacket-demo-subtitles.srt` (standalone subtitles)
+- **Demonstration video included in repository**:
+  - `docs/demo.mp4`: Captioned H.264 presentation (6.35 MB, 126.96s, SHA256 `7095b722bb147cfe697e3d7a9d75a354fcb541f10d0585ae7c54855faac00f99`), linked directly from README.md.
+  - Demonstrates real synthetic captures, evidence inspection, gateway Alibi transition, remaining problems, and export.
 - Latest verification results:
   - `./run.sh check`: 111 backend tests passed; contract checks passed; TypeScript passed; Next.js 16.4.3 production build (Turbopack and direct Webpack) passed.
   - `./run.sh verify-demo`: All 9 sample scenarios, immutable gateway transitions, exports, and malformed input recovery passed.
-  - Playwright browser suite: All 10 verification categories (A–J) passed with zero console errors, including fresh load, healthy baseline, service failure, mixed scan/fault, gateway alibi flow, truncated capture, preview safeguards, session expiry (410), export race conditions, and 375×667 mobile layout.
+  - Playwright browser suite: All 10 verification categories (A–J) passed with zero console errors.
   - Dedicated export race suite passed: delayed export with gateway approval/reset (identical analysis ID) and delayed export with Live/Preview switching.
   - All test servers cleanly stopped; ports 8000 and 3000 confirmed free.
 
 ## Remaining before submission
 
-1. **Upload & publish video**:
-   - Upload `.artifacts/demo-rehearsal/causalpacket-demo-presentation.mp4` (or host `.webm` with `.srt`) to a publicly accessible platform (e.g., YouTube/Vimeo/Drive with public permissions).
-   - Test anonymous playback without signing in.
-   - Paste the verified URL near the top of README.md.
-2. **Push Git repository**:
-   - Create remote repository on GitHub (user-approved destination).
-   - Push `.artifacts/submission-checkout` to the remote `main` branch.
+1. **Push Git repository**:
+   - Provide or confirm the public GitHub repository destination.
+   - Push `.artifacts/submission-checkout` (including `docs/demo.mp4`) to the remote `main` branch.
    - Verify clone, setup, and checks from a clean directory.
-   - Add repository URL to README.md.
-3. **Organizer form submission**:
+2. **Organizer form submission**:
    - Confirm official submission URL from organizer announcement.
-   - Team leader submits team details, GitHub URL, and video URL before **1 November 2026, 21:00 IST**.
+   - Team leader submits team details and public GitHub URL before **1 November 2026, 21:00 IST**.
    - Preserve submission receipt/confirmation.
 
-The video URL, repository URL, team details, and form submission remain real
-external-state inputs/actions. No dummy links or fabricated submission status
-should be added.
+The repository URL, team details, and form submission remain real external-state
+inputs/actions. No dummy links or fabricated submission status should be added.

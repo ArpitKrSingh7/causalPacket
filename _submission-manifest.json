@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 15143,
-      "sha256": "b2bbd2d0ae841f3702394c4ba681cf075f1db3b842b5be2211faacf4b951b3ab"
+      "bytes": 15270,
+      "sha256": "f5b05bdc666d638280df5ed24e5195b948ead91d2898788e1ad30b216ce0438b"
     },
     {
       "path": "backend/__init__.py",
@@ -167,6 +167,11 @@
       "sha256": "0205c2c921c9ca9436688d0a9b4a39e6431b8add1bbed7a1514ddfe4d7ad4486"
     },
     {
+      "path": "docs/demo.mp4",
+      "bytes": 6358950,
+      "sha256": "7095b722bb147cfe697e3d7a9d75a354fcb541f10d0585ae7c54855faac00f99"
+    },
+    {
       "path": "docs/dependencies.md",
       "bytes": 2460,
       "sha256": "df532b4c12ac2d18791d87373f5825010a5d2e49d0cdbcca1d469d7f42193e30"
@@ -233,8 +238,8 @@
     },
     {
       "path": "docs/submission-status.md",
-      "bytes": 3741,
-      "sha256": "e06b6ed36a1f28b7ee6f742ecd001e6f21e43d025356499b25b21580991818d7"
+      "bytes": 3186,
+      "sha256": "92a7ff0f0653daa9c6ccc9aed80c9f62a57b7418dd0326170eda1c9662693b07"
     },
     {
       "path": "docs/workload-evaluation.json",
