@@ -1,0 +1,105 @@
+{
+  "synthetic": true,
+  "generator_version": "2",
+  "seed": 42,
+  "description": "Fictional lab captures written offline. No packets were sent.",
+  "scenarios": {
+    "01_healthy.pcap": {
+      "expected": [],
+      "forbidden": [
+        "SCAN_PATTERN",
+        "TCP_CONNECTION_REFUSED"
+      ]
+    },
+    "02_service_failure.pcap": {
+      "expected": [
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "forbidden": [
+        "SCAN_PATTERN"
+      ],
+      "refused_attempts": 12
+    },
+    "03_possible_scan.pcap": {
+      "expected": [
+        "SCAN_PATTERN"
+      ],
+      "forbidden": [
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "ports": 20,
+      "suggested_context": {
+        "authorized_scanner_ips": [
+          "192.0.2.115"
+        ]
+      },
+      "context_applied_automatically": false
+    },
+    "05_mixed_scan_and_fault.pcap": {
+      "expected": [
+        "SCAN_PATTERN",
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "independent_incidents": 2
+    },
+    "07_truncated.pcap": {
+      "coverage": "partial",
+      "expected": [],
+      "forbidden": [
+        "SCAN_PATTERN"
+      ]
+    },
+    "04_gateway_transition.pcap": {
+      "expected": [
+        "ARP_IDENTITY_CHANGE",
+        "DNS_RESPONSE_ERROR",
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "forbidden": [
+        "SCAN_PATTERN"
+      ],
+      "incidents": 1,
+      "association_edges": 2,
+      "context_applied_automatically": false,
+      "suggested_context": {
+        "gateway_ip": "192.0.2.1",
+        "approved_gateway_macs": [
+          "02:00:00:00:00:01"
+        ],
+        "authorized_scanner_ips": []
+      },
+      "alibi_context": {
+        "gateway_ip": "192.0.2.1",
+        "approved_gateway_macs": [
+          "02:00:00:00:00:01",
+          "02:00:00:00:00:02"
+        ],
+        "authorized_scanner_ips": []
+      }
+    },
+    "06_dns_faults.pcap": {
+      "expected": [
+        "DNS_RESPONSE_ERROR"
+      ],
+      "forbidden": [
+        "DNS_UNANSWERED",
+        "SCAN_PATTERN"
+      ],
+      "servfail": 3,
+      "refused": 3
+    },
+    "08_arp_healthy.pcap": {
+      "expected": [],
+      "forbidden": [
+        "ARP_IDENTITY_CHANGE"
+      ]
+    },
+    "09_dns_healthy.pcap": {
+      "expected": [],
+      "forbidden": [
+        "DNS_RESPONSE_ERROR",
+        "DNS_UNANSWERED"
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+[project]
+name = "causalpacket"
+version = "0.4.0"
+description = "Evidence-first diagnosis of network faults and suspicious activity"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,8 @@
+{
+  "gateway_ip": "192.0.2.1",
+  "approved_gateway_macs": [
+    "02:00:00:00:00:01",
+    "02:00:00:00:00:02"
+  ],
+  "authorized_scanner_ips": []
+}

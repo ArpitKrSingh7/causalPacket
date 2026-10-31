@@ -1,0 +1,1041 @@
+{
+  "$defs": {
+    "CaptureCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "complete",
+            "partial",
+            "limited"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "pcap",
+            "pcapng"
+          ],
+          "title": "Format",
+          "type": "string"
+        },
+        "packets_seen": {
+          "minimum": 0,
+          "title": "Packets Seen",
+          "type": "integer"
+        },
+        "packets_decoded": {
+          "minimum": 0,
+          "title": "Packets Decoded",
+          "type": "integer"
+        },
+        "packets_skipped": {
+          "minimum": 0,
+          "title": "Packets Skipped",
+          "type": "integer"
+        },
+        "duration_seconds": {
+          "minimum": 0,
+          "title": "Duration Seconds",
+          "type": "number"
+        },
+        "protocols": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Protocols",
+          "type": "array"
+        },
+        "link_types": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Link Types",
+          "type": "array"
+        },
+        "limits_reached": {
+          "default": [],
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Limits Reached",
+          "type": "array"
+        },
+        "visibility_notes": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Visibility Notes",
+          "type": "array"
+        },
+        "unsupported_checks": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Unsupported Checks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "status",
+        "format",
+        "packets_seen",
+        "packets_decoded",
+        "packets_skipped",
+        "duration_seconds",
+        "protocols",
+        "link_types"
+      ],
+      "title": "CaptureCoverage",
+      "type": "object"
+    },
+    "Comparison": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "available",
+            "unavailable"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "basis": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Basis",
+          "type": "string"
+        },
+        "baseline_label": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Baseline Label",
+          "type": "string"
+        },
+        "current_label": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Current Label",
+          "type": "string"
+        },
+        "baseline_metrics": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Metric"
+          },
+          "maxItems": 32,
+          "title": "Baseline Metrics",
+          "type": "array"
+        },
+        "current_metrics": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Metric"
+          },
+          "maxItems": 32,
+          "title": "Current Metrics",
+          "type": "array"
+        },
+        "evidence_frames": {
+          "default": [],
+          "items": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "maxItems": 128,
+          "title": "Evidence Frames",
+          "type": "array"
+        },
+        "limitations": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Limitations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "status",
+        "basis",
+        "baseline_label",
+        "current_label"
+      ],
+      "title": "Comparison",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "client",
+            "server",
+            "resolver",
+            "gateway",
+            "mac",
+            "service"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "value"
+      ],
+      "title": "Entity",
+      "type": "object"
+    },
+    "EvidenceEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "source_observation_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Source Observation Id",
+          "type": "string"
+        },
+        "target_observation_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Target Observation Id",
+          "type": "string"
+        },
+        "relation": {
+          "enum": [
+            "precedes_on_shared_client",
+            "shares_affected_client",
+            "same_probe_pattern"
+          ],
+          "title": "Relation",
+          "type": "string"
+        },
+        "rule_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "reason": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        },
+        "evidence_frames": {
+          "items": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "title": "Evidence Frames",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "source_observation_id",
+        "target_observation_id",
+        "relation",
+        "rule_id",
+        "reason",
+        "evidence_frames"
+      ],
+      "title": "EvidenceEdge",
+      "type": "object"
+    },
+    "HeaderField": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "title": "HeaderField",
+      "type": "object"
+    },
+    "Hypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "explanation": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "evidence_level": {
+          "enum": [
+            "supported",
+            "plausible",
+            "insufficient"
+          ],
+          "title": "Evidence Level",
+          "type": "string"
+        },
+        "supporting_observation_ids": {
+          "default": [],
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "title": "Supporting Observation Ids",
+          "type": "array"
+        },
+        "challenging_observation_ids": {
+          "default": [],
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "title": "Challenging Observation Ids",
+          "type": "array"
+        },
+        "supporting_reasons": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Supporting Reasons",
+          "type": "array"
+        },
+        "challenging_reasons": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Challenging Reasons",
+          "type": "array"
+        },
+        "missing_evidence": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Missing Evidence",
+          "type": "array"
+        },
+        "suggested_checks": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Suggested Checks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "explanation",
+        "evidence_level"
+      ],
+      "title": "Hypothesis",
+      "type": "object"
+    },
+    "Incident": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "summary": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        },
+        "assessment": {
+          "enum": [
+            "likely_fault",
+            "suspected_attack",
+            "unresolved"
+          ],
+          "title": "Assessment",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "info",
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "observation_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "title": "Observation Ids",
+          "type": "array"
+        },
+        "hypotheses": {
+          "items": {
+            "$ref": "#/$defs/Hypothesis"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Hypotheses",
+          "type": "array"
+        },
+        "comparisons": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Comparison"
+          },
+          "maxItems": 8,
+          "title": "Comparisons",
+          "type": "array"
+        },
+        "next_steps": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Next Steps",
+          "type": "array"
+        },
+        "limitations": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Limitations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "summary",
+        "assessment",
+        "severity",
+        "observation_ids",
+        "hypotheses",
+        "next_steps"
+      ],
+      "title": "Incident",
+      "type": "object"
+    },
+    "InterpretationChange": {
+      "additionalProperties": false,
+      "properties": {
+        "incident_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Incident Id",
+          "type": "string"
+        },
+        "previous_assessment": {
+          "enum": [
+            "likely_fault",
+            "suspected_attack",
+            "unresolved"
+          ],
+          "title": "Previous Assessment",
+          "type": "string"
+        },
+        "current_assessment": {
+          "enum": [
+            "likely_fault",
+            "suspected_attack",
+            "unresolved"
+          ],
+          "title": "Current Assessment",
+          "type": "string"
+        },
+        "reason_changed": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Reason Changed",
+          "type": "string"
+        },
+        "evidence_retained": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Evidence Retained",
+          "type": "string"
+        },
+        "remaining_problem": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Remaining Problem",
+          "type": "string"
+        }
+      },
+      "required": [
+        "incident_id",
+        "previous_assessment",
+        "current_assessment",
+        "reason_changed",
+        "evidence_retained",
+        "remaining_problem"
+      ],
+      "title": "InterpretationChange",
+      "type": "object"
+    },
+    "Metric": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Key",
+          "type": "string"
+        },
+        "label": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        }
+      },
+      "required": [
+        "key",
+        "label",
+        "value"
+      ],
+      "title": "Metric",
+      "type": "object"
+    },
+    "NetworkContext": {
+      "additionalProperties": false,
+      "properties": {
+        "gateway_ip": {
+          "anyOf": [
+            {
+              "format": "ipv4",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gateway Ip"
+        },
+        "approved_gateway_macs": {
+          "default": [],
+          "items": {
+            "pattern": "^(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Approved Gateway Macs",
+          "type": "array"
+        },
+        "authorized_scanner_ips": {
+          "default": [],
+          "items": {
+            "format": "ipv4",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Authorized Scanner Ips",
+          "type": "array"
+        }
+      },
+      "title": "NetworkContext",
+      "type": "object"
+    },
+    "Observation": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "TCP_CONNECTION_REFUSED",
+            "TCP_SYN_RETRY",
+            "TCP_UNANSWERED",
+            "TCP_HANDSHAKE_DELAY",
+            "SCAN_PATTERN",
+            "ARP_IDENTITY_CHANGE",
+            "DNS_RESPONSE_ERROR",
+            "DNS_UNANSWERED",
+            "DNS_DELAY"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "scope_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Scope Id",
+          "type": "string"
+        },
+        "first_seen_seconds": {
+          "minimum": 0,
+          "title": "First Seen Seconds",
+          "type": "number"
+        },
+        "last_seen_seconds": {
+          "minimum": 0,
+          "title": "Last Seen Seconds",
+          "type": "number"
+        },
+        "entities": {
+          "items": {
+            "$ref": "#/$defs/Entity"
+          },
+          "maxItems": 32,
+          "title": "Entities",
+          "type": "array"
+        },
+        "evidence_frames": {
+          "items": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "title": "Evidence Frames",
+          "type": "array"
+        },
+        "total_evidence_count": {
+          "minimum": 0,
+          "title": "Total Evidence Count",
+          "type": "integer"
+        },
+        "metrics": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Metric"
+          },
+          "maxItems": 32,
+          "title": "Metrics",
+          "type": "array"
+        },
+        "caveats": {
+          "default": [],
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Caveats",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "description",
+        "scope_id",
+        "first_seen_seconds",
+        "last_seen_seconds",
+        "entities",
+        "evidence_frames",
+        "total_evidence_count"
+      ],
+      "title": "Observation",
+      "type": "object"
+    },
+    "PacketEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_number": {
+          "minimum": 1,
+          "title": "Frame Number",
+          "type": "integer"
+        },
+        "time_offset_seconds": {
+          "minimum": 0,
+          "title": "Time Offset Seconds",
+          "type": "number"
+        },
+        "scope_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Scope Id",
+          "type": "string"
+        },
+        "protocol": {
+          "enum": [
+            "ARP",
+            "TCP",
+            "UDP",
+            "DNS",
+            "ICMP",
+            "IPv4",
+            "OTHER"
+          ],
+          "title": "Protocol",
+          "type": "string"
+        },
+        "source_ip": {
+          "anyOf": [
+            {
+              "format": "ipv4",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Ip"
+        },
+        "destination_ip": {
+          "anyOf": [
+            {
+              "format": "ipv4",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination Ip"
+        },
+        "source_mac": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Mac"
+        },
+        "destination_mac": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination Mac"
+        },
+        "source_port": {
+          "anyOf": [
+            {
+              "maximum": 65535,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Port"
+        },
+        "destination_port": {
+          "anyOf": [
+            {
+              "maximum": 65535,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination Port"
+        },
+        "captured_length": {
+          "minimum": 0,
+          "title": "Captured Length",
+          "type": "integer"
+        },
+        "summary": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        },
+        "headers": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/HeaderField"
+          },
+          "maxItems": 32,
+          "title": "Headers",
+          "type": "array"
+        }
+      },
+      "required": [
+        "frame_number",
+        "time_offset_seconds",
+        "scope_id",
+        "protocol",
+        "captured_length",
+        "summary"
+      ],
+      "title": "PacketEvidence",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "analysis_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Analysis Id",
+      "type": "string"
+    },
+    "data_origin": {
+      "enum": [
+        "capture",
+        "development_fixture"
+      ],
+      "title": "Data Origin",
+      "type": "string"
+    },
+    "source_name": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Source Name",
+      "type": "string"
+    },
+    "sample_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sample Id"
+    },
+    "coverage": {
+      "$ref": "#/$defs/CaptureCoverage"
+    },
+    "context": {
+      "$ref": "#/$defs/NetworkContext"
+    },
+    "observations": {
+      "items": {
+        "$ref": "#/$defs/Observation"
+      },
+      "maxItems": 1000,
+      "title": "Observations",
+      "type": "array"
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/EvidenceEdge"
+      },
+      "maxItems": 2000,
+      "title": "Edges",
+      "type": "array"
+    },
+    "incidents": {
+      "items": {
+        "$ref": "#/$defs/Incident"
+      },
+      "maxItems": 200,
+      "title": "Incidents",
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/PacketEvidence"
+      },
+      "maxItems": 4000,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "interpretation_changes": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/InterpretationChange"
+      },
+      "maxItems": 200,
+      "title": "Interpretation Changes",
+      "type": "array"
+    },
+    "warnings": {
+      "default": [],
+      "items": {
+        "maxLength": 2000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 32,
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "analysis_id",
+    "data_origin",
+    "source_name",
+    "coverage",
+    "context",
+    "observations",
+    "edges",
+    "incidents",
+    "evidence"
+  ],
+  "title": "AnalysisReport",
+  "type": "object"
+}

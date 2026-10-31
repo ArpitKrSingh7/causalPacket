@@ -1,0 +1,119 @@
+{
+  "checked_at_utc": "2026-10-31T19:22:39.055694+00:00",
+  "python": "3.12.16",
+  "transport": "ASGI with real isolated workers; no browser or HTTP socket test implied",
+  "synthetic_only": true,
+  "scenarios": [
+    {
+      "sample_id": "healthy",
+      "capture": "01_healthy.pcap",
+      "packets": 60,
+      "coverage": "complete",
+      "findings": [],
+      "incidents": 0,
+      "association_edges": 0,
+      "api_and_worker_ms": 184.44
+    },
+    {
+      "sample_id": "service-failure",
+      "capture": "02_service_failure.pcap",
+      "packets": 27,
+      "coverage": "complete",
+      "findings": [
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "incidents": 1,
+      "association_edges": 0,
+      "api_and_worker_ms": 185.7
+    },
+    {
+      "sample_id": "possible-scan",
+      "capture": "03_possible_scan.pcap",
+      "packets": 40,
+      "coverage": "complete",
+      "findings": [
+        "SCAN_PATTERN"
+      ],
+      "incidents": 1,
+      "association_edges": 0,
+      "api_and_worker_ms": 186.0
+    },
+    {
+      "sample_id": "gateway-transition",
+      "capture": "04_gateway_transition.pcap",
+      "packets": 19,
+      "coverage": "complete",
+      "findings": [
+        "ARP_IDENTITY_CHANGE",
+        "DNS_RESPONSE_ERROR",
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "incidents": 1,
+      "association_edges": 2,
+      "api_and_worker_ms": 210.62,
+      "alibi_assessments": [
+        "unresolved",
+        "suspected_attack",
+        "unresolved",
+        "unresolved"
+      ],
+      "evidence_preserved": true
+    },
+    {
+      "sample_id": "mixed-scan-and-fault",
+      "capture": "05_mixed_scan_and_fault.pcap",
+      "packets": 67,
+      "coverage": "complete",
+      "findings": [
+        "SCAN_PATTERN",
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "incidents": 2,
+      "association_edges": 0,
+      "api_and_worker_ms": 209.6
+    },
+    {
+      "sample_id": "truncated",
+      "capture": "07_truncated.pcap",
+      "packets": 60,
+      "coverage": "partial",
+      "findings": [],
+      "incidents": 0,
+      "association_edges": 0,
+      "api_and_worker_ms": 204.45
+    },
+    {
+      "sample_id": "dns-faults",
+      "capture": "06_dns_faults.pcap",
+      "packets": 17,
+      "coverage": "complete",
+      "findings": [
+        "DNS_RESPONSE_ERROR"
+      ],
+      "incidents": 1,
+      "association_edges": 0,
+      "api_and_worker_ms": 207.0
+    },
+    {
+      "sample_id": "arp-healthy",
+      "capture": "08_arp_healthy.pcap",
+      "packets": 3,
+      "coverage": "complete",
+      "findings": [],
+      "incidents": 0,
+      "association_edges": 0,
+      "api_and_worker_ms": 184.63
+    },
+    {
+      "sample_id": "dns-healthy",
+      "capture": "09_dns_healthy.pcap",
+      "packets": 6,
+      "coverage": "complete",
+      "findings": [],
+      "incidents": 0,
+      "association_edges": 0,
+      "api_and_worker_ms": 184.48
+    }
+  ],
+  "malformed_upload_and_recovery": true
+}

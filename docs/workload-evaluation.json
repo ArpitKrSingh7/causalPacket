@@ -1,0 +1,78 @@
+{
+  "checked_at_utc": "2026-10-31T19:20:14.477531+00:00",
+  "synthetic_only": true,
+  "method": "Deterministic packet construction independent of demonstration filenames; real isolated analysis workers; no browser/web server.",
+  "limits": "Finite generated controls, not production accuracy. Child RSS is the cumulative maximum observed so far, not per-capture allocation. Timings exclude generation.",
+  "cases": [
+    {
+      "case": "healthy-1000",
+      "packets_generated": 3000,
+      "packets_examined": 3000,
+      "file_bytes": 210024,
+      "status": "pass",
+      "coverage": "complete",
+      "observation_types": [],
+      "raw_observations": 0,
+      "incidents": 0,
+      "generation_ms": 628.06,
+      "worker_wall_ms": 466.18,
+      "worker_cpu_ms": 445.65,
+      "child_peak_rss_so_far_kib": 63108,
+      "retained_evidence_frames": 0
+    },
+    {
+      "case": "mixed-1000",
+      "packets_generated": 3536,
+      "packets_examined": 3536,
+      "file_bytes": 247544,
+      "status": "pass",
+      "coverage": "complete",
+      "observation_types": [
+        "SCAN_PATTERN",
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "raw_observations": 33,
+      "incidents": 2,
+      "generation_ms": 748.35,
+      "worker_wall_ms": 511.87,
+      "worker_cpu_ms": 489.53,
+      "child_peak_rss_so_far_kib": 67800,
+      "retained_evidence_frames": 536
+    },
+    {
+      "case": "healthy-5000",
+      "packets_generated": 15000,
+      "packets_examined": 15000,
+      "file_bytes": 1050024,
+      "status": "pass",
+      "coverage": "complete",
+      "observation_types": [],
+      "raw_observations": 0,
+      "incidents": 0,
+      "generation_ms": 3022.02,
+      "worker_wall_ms": 1674.93,
+      "worker_cpu_ms": 1658.23,
+      "child_peak_rss_so_far_kib": 109308,
+      "retained_evidence_frames": 0
+    },
+    {
+      "case": "mixed-5000",
+      "packets_generated": 15536,
+      "packets_examined": 15536,
+      "file_bytes": 1087544,
+      "status": "pass",
+      "coverage": "complete",
+      "observation_types": [
+        "SCAN_PATTERN",
+        "TCP_CONNECTION_REFUSED"
+      ],
+      "raw_observations": 33,
+      "incidents": 2,
+      "generation_ms": 3131.91,
+      "worker_wall_ms": 1765.01,
+      "worker_cpu_ms": 1750.42,
+      "child_peak_rss_so_far_kib": 113156,
+      "retained_evidence_frames": 536
+    }
+  ]
+}
