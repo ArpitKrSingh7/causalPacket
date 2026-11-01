@@ -11,7 +11,7 @@ facts, competing causes, exact packet references and practical next checks.
 
 Built for the **IIITDM Kancheepuram Cybersecurity Hackathon · Network Track · 2026**.
 
-**[▶ Watch the 3:48 demo](docs/demo.mp4)** ·
+**[▶ Watch the narrated demo](docs/demo.mp4)** ·
 [Live app](https://causal-packet.vercel.app/) ·
 [Voice-over script & new-UI recorder](docs/demo-script.md) ·
 [Example investigation](docs/example-investigation.md) ·

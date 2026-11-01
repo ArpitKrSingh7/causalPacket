@@ -25,13 +25,21 @@
   },
   "live_browser": "Not verified for the new layout: this execution environment denies local HTTP binding and Chromium launch.",
   "video": {
-    "duration_seconds": 228.36,
-    "bytes": 7586017,
-    "sha256": "a0d3df04b5a1aeeba5a0e28c63725e7e765c1a49e1457935d1a4a383329bb3c4",
-    "audio": "silent; narration-ready",
-    "method": "Actual redesigned UI recorded outside the restricted tool runtime, using real local API responses and synthetic captures; explicit deployment end card. Recording status and server log reviewed, representative frames visually checked.",
-    "timings": "docs/demo-timings.json",
-    "captions": "docs/demo.srt"
+    "duration_seconds": 205.571,
+    "bytes": 8485764,
+    "sha256": "7e253f91862174dec089df75ba7deefbd174fe6ed61a32bc1a86617fdbad5aae",
+    "audio": "audio stream present in team voiced export",
+    "method": "Team voiced export of the redesigned-interface recording. Both workspace and prepared Git-checkout files match.",
+    "original_source_recording": {
+      "duration_seconds": 228.36,
+      "bytes": 7586017,
+      "sha256": "a0d3df04b5a1aeeba5a0e28c63725e7e765c1a49e1457935d1a4a383329bb3c4",
+      "audio": "silent; narration-ready",
+      "method": "Actual redesigned UI recorded outside the restricted tool runtime, using real local API responses and synthetic captures; explicit deployment end card. Recording status and server log reviewed, representative frames visually checked.",
+      "timings": "docs/demo-timings.json",
+      "captions": "docs/demo.srt"
+    },
+    "captions_note": "Existing demo.srt/demo-timings.json describe the original 228.36-second source recording and are not verified aligned to the shorter voiced edit."
   },
   "hosting_configuration": {
     "backend_tests_passed": 156,

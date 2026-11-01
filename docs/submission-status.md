@@ -13,11 +13,11 @@ the organizer form. This file records actual state; it is not a submission recei
 - Nine deterministic sample captures and thirty controlled experimental variants.
 - Bounded input/worker/state budgets, metadata handling and cleanup.
 - Concise README, dependency disclosure, local launcher and verification scripts.
-- **Included demo:** `docs/demo.mp4`, 228.36 seconds (3:48), H.264, 7,586,017 bytes. SHA256: `a0d3df04b5a1aeeba5a0e28c63725e7e765c1a49e1457935d1a4a383329bb3c4`.
-  Actual redesigned interface with real local API responses and synthetic captures;
-  deployment URLs appear on an explicit end card. The silent recording is complete.
-  The team adds voice-over using `docs/demo-script.md`; captions and measured scene
-  times are in `docs/demo.srt` and `docs/demo-timings.json`.
+- **Included voiced demo:** `docs/demo.mp4`, 205.571 seconds (about 3:26), 8,485,764 bytes, with an audio stream. SHA256: `7e253f91862174dec089df75ba7deefbd174fe6ed61a32bc1a86617fdbad5aae`.
+  Both workspace and prepared Git-checkout copies match. The application actions
+  were already recorded; narration is now included. Original 3:48 scene timings
+  and subtitles remain reference material and must not be attached unchanged to
+  this shorter voiced export.
 - Website test-pack download includes all nine original synthetic captures and
   expected outcomes. The README explains one-click samples and upload testing.
 - Hosted first-visit notice explains Render wake-up and provides bounded automatic

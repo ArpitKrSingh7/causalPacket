@@ -23,8 +23,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 11233,
-      "sha256": "9ce128068f27924dfd795d6e2048cec0205dbb142a29a65e2d8966a2671281c8"
+      "bytes": 11237,
+      "sha256": "57a08e4e4151e9cfe5d37b2809f1e00893ce0d361906672790bd36daa02610ec"
     },
     {
       "path": "backend/__init__.py",
@@ -173,8 +173,8 @@
     },
     {
       "path": "docs/demo-script.md",
-      "bytes": 6797,
-      "sha256": "020b641ced0fbd5c624df227ff493d32901c0611aa968f2f36eba97105191212"
+      "bytes": 6566,
+      "sha256": "612783297ca1f9016962c6c904d010568bec33ee480e20b5e6767a6ccf33114a"
     },
     {
       "path": "docs/demo-timings.json",
@@ -188,8 +188,8 @@
     },
     {
       "path": "docs/demo.mp4",
-      "bytes": 7586017,
-      "sha256": "a0d3df04b5a1aeeba5a0e28c63725e7e765c1a49e1457935d1a4a383329bb3c4"
+      "bytes": 8485764,
+      "sha256": "7e253f91862174dec089df75ba7deefbd174fe6ed61a32bc1a86617fdbad5aae"
     },
     {
       "path": "docs/demo.srt",
@@ -238,8 +238,8 @@
     },
     {
       "path": "docs/hackathon-review.md",
-      "bytes": 8293,
-      "sha256": "6ffc9ffaae08c6b737a4e98ee40ab3cc7f0e9b9f50dfeefd63d5a1df4bbb0b77"
+      "bytes": 8393,
+      "sha256": "c0a79dc8bcf48cc8a48bd2d6701e45bc48bb4e090cc60ca39f560b74e69740cc"
     },
     {
       "path": "docs/novelty.md",
@@ -248,8 +248,8 @@
     },
     {
       "path": "docs/release-verification.json",
-      "bytes": 3929,
-      "sha256": "8c59d553f05c1c936dfe547e85b580ae493d8e70bbcfffc5ed5cd2c11dc18c51"
+      "bytes": 4479,
+      "sha256": "b9552c10c4d7f99c9e5697f37aabc4ab55916a25e795fd51cdf3b9bf303898e9"
     },
     {
       "path": "docs/report.schema.json",
@@ -263,8 +263,8 @@
     },
     {
       "path": "docs/submission-status.md",
-      "bytes": 4284,
-      "sha256": "4ed2f470b7ea2ccc23b7c5ce839b815e7178eee077d0fffe9cbc7d174083ecb1"
+      "bytes": 4271,
+      "sha256": "20bacd9d53f3818a7a2ce368079d3bcd9017392f7fe0e40ef831b66363b5ae0c"
     },
     {
       "path": "docs/ui-verification.json",

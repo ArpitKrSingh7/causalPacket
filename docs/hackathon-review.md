@@ -16,11 +16,11 @@ prediction of the final ranking.
 - Inspected the existing desktop/mobile screenshots, source handlers, original
   browser recording and captioned video. This review does not claim a new live
   Playwright run; the earlier browser/race checks are AGY's reported results.
-- The included H.264 video is 228.36 seconds (3:48), 1440 × 900, with no audio
-  track yet. It is the actual redesigned interface recorded against the real local
+- The included H.264 video is 205.571 seconds (about 3:26), with an audio stream
+  in the team voiced export. It is the actual redesigned interface recorded against the real local
   API using synthetic captures. The deployment end card is clearly labeled.
   Measured scene timings and revised voice-over captions accompany the recording;
-  representative frames and server responses were reviewed. The team adds narration.
+  representative frames and server responses were reviewed. Narration is present; original source-timing subtitles require realignment before use with this shorter edit.
 
 ## Requirements and actual coverage
 
@@ -41,7 +41,7 @@ prediction of the final ranking.
 | Safe testing | Inspected repository uses synthetic controls | No live capture/probing path found in the engine or sample generator. External team conduct cannot be verified from source alone. |
 | README/setup | Present and exercised | Linux/WSL, Python 3.12+, Node and pnpm prerequisites; launch/check instructions; earlier clean extracted-source tests reported by AGY. |
 | Public GitHub repository | Exists; latest source publication remains with the team | https://github.com/ArpitKrSingh7/causalPacket. The prepared checkout has the configured remote; the team pushes the latest release. |
-| Video 2–5 minutes | 3:48 redesigned walkthrough passes duration | Real local API/sample flows and deployment end card; captions and measured timings supplied. Team voice-over and latest public video push remain. |
+| Video 2–5 minutes | Voiced 3:26 walkthrough passes duration | Real local API/sample flows and deployment end card; captions and measured timings supplied. Voice-over is present; verify the latest public video push. |
 | Built during event | Local commit dates within supplied window | Both inspected release commits are dated early 1 November IST. That alone cannot prove the entire development history or team eligibility. |
 | Team size / membership | Requires team confirmation | Source cannot verify the 1–3 member rule or membership in only one team. |
 | Deadline and form | Pending team-leader action | Submit strictly before 1 November 2026, 21:00 IST; only the team leader submits. Preserve real confirmation. |
@@ -60,7 +60,7 @@ explicit uncertainty.
 | Technical implementation, 30% | Stateful matching, original correlation, bounded worker, reproducible controls | Present one real investigation clearly; avoid adding unverified detector families. |
 | Security, 20% | Bounded local ingestion, metadata handling, cleanup and no external inference service | Preserve the local privacy story. Public hosting requires explicit origin configuration and additional deployment review. |
 | Feasibility, 10% | Documented local launcher, pinned packages, included samples | Finish public repository verification. Live hosting is optional in the supplied rules. |
-| Video, 20% | Completed 3:48 genuine redesigned-interface recording | Add narration using the actual scene timings, then review and publish. |
+| Video, 20% | Completed narrated redesigned-interface recording | Review the final voiced export and public playback before submission. |
 
 The final interface addresses the earlier hierarchy problem: ingestion collapses
 after loading, the investigation brief and first next check appear prominently,

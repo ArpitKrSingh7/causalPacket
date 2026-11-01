@@ -1,10 +1,10 @@
-# Voice-over for the recorded 3:48 demo
+# Demo narration reference
 
-**Verified video:** `docs/demo.mp4` · 3 minutes 48.36 seconds · 1440 × 900 · H.264 · silent. The real redesigned interface, sample analyses, frame drawer, scanner approval, gateway Alibi, evidence lab, damaged capture, report download and deployment end card are already recorded. **You only need to add your voice-over; do not repeat the app actions.**
+**The final voiced video is already in `docs/demo.mp4`: 3 minutes 25.57 seconds, with audio.** Both workspace and prepared Git-checkout copies match. You do not need to record the application actions again.
 
-Use the scene times below. Read naturally, pause where needed, and align “I approve it” with the visible gateway approval. The last few seconds are intentionally the closing card. Captions: [demo.srt](demo.srt). Exact measured boundaries: [demo-timings.json](demo-timings.json).
+The narration and scene boundaries below describe the original **3:48 silent source recording**. The voiced export has a different duration, so the original `demo.srt` and `demo-timings.json` are reference material, not verified synchronized captions for the edited export. Do not attach that subtitle track unchanged to the final video.
 
-The app walkthrough was recorded locally against the real API using synthetic captures. The closing card identifies the separately deployed Vercel frontend and Render API; the recording does not claim that localhost footage was captured on those public domains.
+The walkthrough uses the real local API and synthetic captures. Its end card identifies the separately deployed Vercel frontend and Render API.
 
 ## Ready-to-read narration
 
@@ -70,7 +70,7 @@ The app walkthrough was recorded locally against the real API using synthetic ca
 
 ## Export and submit
 
-1. Import `docs/demo.mp4` into your editor, record your voice over the existing scenes, and keep the final duration between **2 and 5 minutes**.
+1. Voice-over is complete. Review the narrated `docs/demo.mp4` once; its current 3:25.57 duration satisfies the **2–5 minute** requirement.
 2. Export H.264 MP4 with audio; keep the file below **100 MB**. Review the Alibi scene and the last deployment card once.
 3. Replace the public repository checkout’s `docs/demo.mp4` with your voiced export. In this workstation the Git checkout is `.artifacts/submission-checkout`; update its demo file, commit and push. The included captions describe this recording; adjust their timing only if you trim or rearrange it.
 4. Check public playback and submit the organizer form before **1 November 2026, 21:00 IST**.
