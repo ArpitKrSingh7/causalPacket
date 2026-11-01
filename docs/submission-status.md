@@ -1,48 +1,55 @@
 # Submission readiness
 
-This records actual completion and remaining work. It is not a claim that the
-project has been submitted. Official deadline: **1 November 2026, 21:00 IST**.
-Internal target: **19:00 IST**. Only the team leader submits the organizer's form.
+Official deadline: **1 November 2026, 21:00 IST**. Only the team leader submits
+the organizer form. This file records actual state; it is not a submission receipt.
 
-## Completed and verified
+## Local release
 
 - Four original detector families: TCP, scanning, ARP and UDP DNS.
-- Competing explanations, exact header evidence, observed comparisons, and
-  packet-backed gateway grouping with context re-evaluation.
-- Nine reproducible synthetic captures, including harmless controls and damage.
-- Next.js live workflow starting in Live mode with an honest no-report workspace
-  and prominent sample catalog / upload choices.
-- Fictional scenario previews retained as an explicit secondary option with
-  strict provenance labels and export safeguards.
-- In-flight export cancellation and revision guards preventing stale downloads
-  across sample switching, gateway context reinterpretation/reset (same analysis ID),
-  and Live/Preview mode toggling.
-- Markdown and JSON report download controls wired to the live API with
-  sanitized filename validation and structured HTTP 410 error recovery.
-- Hardened Python environment, complete pinned dependency inventory, known-advisory
-  check artifacts, bounded worker/input budgets, and lifecycle cleanup tests.
-- One-command setup/run/check helpers and serverless demo verification script.
-- A 3:45 demo storyboard with exact expected actions, facts, and timings.
-- **Demonstration video included in repository**:
-  - `docs/demo.mp4`: Captioned H.264 presentation (6.35 MB, 126.96s, SHA256 `7095b722bb147cfe697e3d7a9d75a354fcb541f10d0585ae7c54855faac00f99`), linked directly from README.md.
-  - Demonstrates real synthetic captures, evidence inspection, gateway Alibi transition, remaining problems, and export.
-- Latest verification results:
-  - `./run.sh check`: 111 backend tests passed; contract checks passed; TypeScript passed; Next.js 16.4.3 production build (Turbopack and direct Webpack) passed.
-  - `./run.sh verify-demo`: All 9 sample scenarios, immutable gateway transitions, exports, and malformed input recovery passed.
-  - Playwright browser suite: All 10 verification categories (A–J) passed with zero console errors.
-  - Dedicated export race suite passed: delayed export with gateway approval/reset (identical analysis ID) and delayed export with Live/Preview switching.
-  - All test servers cleanly stopped; ports 8000 and 3000 confirmed free.
+- Competing explanations, exact frame evidence, comparisons and packet links.
+- Gateway/scanner Alibi reinterpretation preserving facts and residual faults.
+- Next.js compact brief, evidence map, timeline, coverage and Markdown/JSON export.
+- Interactive synthetic evidence lab with separate state and source-frame mapping.
+- Nine deterministic sample captures and thirty controlled experimental variants.
+- Bounded input/worker/state budgets, metadata handling and cleanup.
+- Concise README, dependency disclosure, local launcher and verification scripts.
+- **Included demo:** `docs/demo.mp4`, 162.96 seconds (2:43), H.264, 5,648,435
+  bytes. SHA256: `ebb8325272bd8cbf0313113f24438a2aa6019b0c153aaf624260911f10e05629`.
+  Genuine recorded UI footage is followed by clearly labeled slides from measured
+  synthetic worker results. The footage shows the earlier interface layout;
+  the added slides are not represented as a fresh browser recording. Captions
+  are supplied in `docs/demo.srt`. Full decode and representative frames checked.
+- Old work orders/planning notes are archived under ignored local artifacts.
+  The assistant handles the remaining work directly; no external-agent handoff.
 
-## Remaining before submission
+## Verification
 
-1. **Push Git repository**:
-   - Provide or confirm the public GitHub repository destination.
-   - Push `.artifacts/submission-checkout` (including `docs/demo.mp4`) to the remote `main` branch.
-   - Verify clone, setup, and checks from a clean directory.
-2. **Organizer form submission**:
-   - Confirm official submission URL from organizer announcement.
-   - Team leader submits team details and public GitHub URL before **1 November 2026, 21:00 IST**.
-   - Preserve submission receipt/confirmation.
+- **136 backend tests pass**, including original-capture preservation, lab bounds,
+  worker cancellation, visibility controls and malformed-input behavior.
+- Three fixture/reference/schema checks and all nine real synthetic demo flows pass.
+- Strict TypeScript, including unused import/parameter checks, passes.
+- Direct Node/Webpack production build passes.
+- Nine React Test Renderer interaction scenarios pass using actual API/worker
+  outputs as HTTP stubs. These cover provenance, lab/main separation, mapped
+  frames, errors, stale source/context/mode responses and stale export cancellation.
+- Earlier live-browser checks cover the previous layout. A new live-browser pass
+  is **not claimed**: the current environment denies local HTTP binding and
+  Chromium startup. No alternate connected browser session is available.
+- No test/development server is intentionally left running.
+- A clean extraction of the release archive also passed all 136 backend tests,
+  contracts, nine demo scenarios, production build and nine component interaction
+  scenarios, reusing the existing pinned dependencies. See
+  [release-verification.json](release-verification.json).
 
-The repository URL, team details, and form submission remain real external-state
-inputs/actions. No dummy links or fabricated submission status should be added.
+## External completion
+
+1. **Public repository:** the prepared Git checkout is
+   `.artifacts/submission-checkout`. The team will create the public
+   `causalpacket` repository and push the release. Publication is not yet claimed.
+2. **Organizer form:** the supplied rules did not contain the actual form URL.
+   The team leader submits the public repository/video location and team details
+   before the deadline and preserves the confirmation.
+
+Live hosting is optional in the supplied rules. The local application, included
+video and reproducible samples remain the baseline deliverables. Keep the
+remaining detector/feature scope fixed.

@@ -6,6 +6,7 @@ import type {
   NetworkContext,
   SamplesResponse,
 } from "./types";
+import type { ExperimentReport } from "./lab";
 
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
@@ -332,5 +333,25 @@ export async function exportReport(
     return { blob, filename };
   } catch (err) {
     catchNetworkError(err);
+  }
+}
+
+/** Separate synthetic experiment; never a normal capture/session replacement. */
+export async function runEvidenceExperiment(seed: number, signal?: AbortSignal): Promise<ExperimentReport> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/lab/evidence`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ seed }),
+      signal,
+    });
+    const result = await handleResponse<ExperimentReport>(response);
+    if (result.data_origin !== "synthetic_experiment" || result.schema_version !== "1.0" ||
+        !Array.isArray(result.cases) || result.cases.length > 32 || !Number.isInteger(result.seed)) {
+      throw new ApiError("The experiment returned an unsupported response.", "invalid_response_format");
+    }
+    return result;
+  } catch (error) {
+    catchNetworkError(error);
   }
 }

@@ -1,63 +1,48 @@
-# CausalPacket: 3 minute 45 second demonstration
+# Demonstration guide
 
-Record the actual live application using the generated captures. Keep a rehearsal
-recording before polishing. Final video must be 2–5 minutes and publicly
-accessible from the README. The target here is about 3:45, leaving editing room.
+The included `docs/demo.mp4` combines an actual recorded interface walkthrough
+with clearly labeled slides derived from recorded synthetic experiment results.
+The walkthrough shows the earlier interface; the compact brief/map/lab interface
+is newer. Do not describe the slides as a live browser recording or claim a new
+browser verification that did not occur.
 
-## Before recording
+## Optional fresh recording: about three minutes
 
-1. Finish AGY-004's frontend dependency migration and regression pass.
-2. Run `./run.sh doctor` and `./run.sh verify-demo`. Save the latter's output with
-   `--output .artifacts/demo-verification.json` if useful. These do not start servers.
-3. Use one server pair: `./run.sh dev`. Close unrelated tabs and extra project
-   tasks. When finished recording, Ctrl+C shuts down this launcher's services.
-4. Enter Live mode. Keep fixture previews visibly separate; do not record them as
-   analyzed traffic. Browser zoom should make incident text and frame metadata readable.
-5. Use the default generated samples without changing timing/thresholds mid-demo.
-   New sample selections start with empty context; the gateway inventory is applied
-   explicitly during the demonstration.
-6. Keep the readable report download ready after AGY-005, or use the already
-   working CLI Markdown export as an explicitly labeled fallback.
+Run `./run.sh doctor` and `./run.sh verify-demo`, then start one server pair with
+`./run.sh dev`. Use synthetic samples in Live mode and readable browser zoom.
 
-## Storyboard and narration
-
-| Time | Screen action | Suggested narration |
+| Time | Action | Explanation |
 | --- | --- | --- |
-| 0:00–0:20 | Live workspace, briefly show sample choices | “When a lab or small office loses connectivity, a routine service failure and suspicious activity can look similar. CausalPacket compares explanations, shows the packets behind them, and recommends what to check next.” |
-| 0:20–0:50 | Select Service failure; open its observed facts and earlier-success comparison | “Here, twelve connection attempts to one service were explicitly refused. An earlier connection completed. We explain the service or filtering problem and suggest checking the listener and policy. These retries alone do not establish an attack.” |
-| 0:50–1:15 | Select Scan and independent fault | “This capture contains both a source probing twenty rejected ports and a separate failed service. Both investigations remain visible. We measure distinct destinations and observed outcomes instead of treating every missing response as malicious.” |
-| 1:15–1:50 | Select Gateway identity investigation. Show one incident, three observations, two associations; open ARP frame #7 and TCP frame #14 | “Now two MAC addresses claim one IP, followed by DNS errors and TCP refusals. These client frames address the new claimant MAC, which gives us packet evidence for the association. The tool preserves failover, configuration conflict, and impersonation as competing explanations.” |
-| 1:50–2:15 | Show the declared synthetic inventory; click Apply sample inventory | “With no trusted inventory supplied, this case is unresolved. I explicitly apply the sample's declared gateway inventory. The second claimant falls outside that policy, so impersonation becomes a suspected explanation. It is still not a proven attack.” |
-| 2:15–2:45 | Explicitly approve MAC 02:00:00:00:00:02. Show interpretation changes and remaining DNS/TCP facts | “For this synthetic scenario, I mark the second device as an authorized backup router. The unauthorized-device explanation weakens. The packet facts, measured counts, and links stay fixed. The DNS and TCP problems remain, with service and failover logs as the next checks.” |
-| 2:45–3:05 | Download/open the Markdown report; show evidence and next checks | “The investigation can be exported with its explanations, operator context, exact frame references, and limitations. Only retained header metadata is included; raw application payloads are excluded.” |
-| 3:05–3:25 | Select Damaged capture; open coverage notes, then Healthy exchanges | “A truncated record produces partial analysis of the valid prefix. The limitation is visible, and a valid capture still works afterward. An empty finding list covers the supported checks; it does not certify the entire network is safe.” |
-| 3:25–3:45 | Briefly show verify-demo/test output and repository setup | “The protocol trackers, grouping, and diagnosis rules are our own. Scapy supplies decoding and sample construction. Analysis runs locally with bounded input and worker resources. The repository includes reproducible captures, positive and negative controls, and a one-command launcher.” |
+| 0:00–0:15 | Show empty live workspace and sample choices | Small networks need to distinguish faults from suspicious activity and understand the evidence. |
+| 0:15–0:40 | Service failure; brief, frame drawer and detailed hypotheses | Twelve refusals and an earlier completed exchange support checking the service/policy. Retries alone do not prove an attack. |
+| 0:40–1:00 | Scan and independent fault | Separate investigations remain visible; source authorization changes the scan interpretation while the service fault survives. |
+| 1:00–1:30 | Gateway investigation; clickable observations and packet links | Show the three observations, two actual associations, and frames #7/#14. Explain that association does not prove cause. |
+| 1:30–1:55 | Open Alibi; apply sample inventory, then approve second MAC | Unresolved becomes suspected, then unresolved. The packet facts stay fixed and DNS/TCP problems remain. |
+| 1:55–2:30 | Open evidence lab; explicitly run, select 20 versus 0 replies | The real worker analyzes modified synthetic views. Missing evidence weakens the interpretation; the active capture remains unchanged. |
+| 2:30–2:45 | Show background and gateway-link controls | Removing the earlier healthy comparison preserves independent findings; close timing without required MAC linkage creates no association. |
+| 2:45–3:00 | Damaged capture and report download | Show partial coverage, metadata-only export and reproducible local setup. |
 
-The default gateway sample has 19 packets, three observations and two links.
-Frame #7 is the second ARP claimant; frame #14 is a subsequent client SYN addressed
-to that MAC. If the generator is changed, recheck those numbers before recording.
-Association expresses chronology and packet linkage, not a proved causal effect.
+Default gateway data: 19 packets, three observations, two links. Gateway address
+`192.0.2.1`; approved baseline MAC `02:00:00:00:00:01`; second claimant
+`02:00:00:00:00:02`. Verify these if the generator changes.
 
-## Fallback if a demonstration step fails
+## Rebuilding the measured-results video
 
-- Preserve the last valid report with its correct provenance. Do not switch to an
-  unlabeled fixture to make a live failure appear successful.
-- A recording can show a working CLI report while accurately identifying it as
-  the same backend engine. For example:
+`scripts/build_demo.py` accepts original **raw** walkthrough footage and measured
+experiment JSON. It refuses an existing output path, validates the expected
+controls, renders labeled result slides and checks the final 2–5 minute duration
+and complete decode. FFmpeg/ffprobe and the original recording are editing tools;
+they are not required to run the application.
 
 ```bash
-./run.sh cli samples/04_gateway_transition.pcap --context samples/gateway-baseline.json --markdown
+.venv-hardened/bin/python -m scripts.build_demo --walkthrough /path/to/original-raw-recording.webm
 ```
 
-- If UI export is still incomplete, show this working report rather than a dead
-  download control. The API export also works independently of the UI.
-- Keep the final result within 2–5 minutes; remove waiting and repetitive setup
-  steps, while preserving the actual evidence/context transitions.
+Review the output before replacing the included demo. Keep explanatory captions
+synchronized with the displayed scenes. The measured slides describe evidence
+sensitivity, not production accuracy or physical causal effects.
 
-## After recording
-
-Stop the server pair. Upload the final video to a publicly accessible destination,
-open it without signing in, and add the real URL to the top of README.md. Never
-leave a placeholder URL in the final submission. The team leader submits the
-repository and video using the organizer's actual form before 21:00 IST;
-the internal target is 19:00 IST.
+Stop the server pair after recording. The video may be included directly in the
+public repository; separate video hosting is optional. The team leader submits
+the actual public repository/video location through the official organizer form
+strictly before 1 November 2026, 21:00 IST and retains the confirmation.

@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
-  HelpCircle,
   RotateCcw,
   CheckCircle2,
   AlertTriangle,
   ArrowRight,
   Shield,
-  Layers,
   Info,
   Loader2,
-  Lock,
   PlusCircle,
   Database,
   Radio,
@@ -38,7 +35,6 @@ interface AlibiTestProps {
 export function AlibiTest({
   initialContext,
   interpretationChanges,
-  isLiveMode,
   dataOrigin,
   previewKey,
   sampleId = null,
@@ -131,7 +127,7 @@ export function AlibiTest({
     }
   };
 
-  // AGY-003: Check if active real sample has a declared non-empty baseline
+  // Check if active real sample has a declared non-empty baseline
   const hasSampleBaseline =
     !isFixture &&
     sampleId !== null &&
@@ -140,7 +136,7 @@ export function AlibiTest({
       suggestedContext.approved_gateway_macs.length > 0 ||
       suggestedContext.authorized_scanner_ips.length > 0);
 
-  // AGY-003: Extract ARP observation identity claims
+  // Extract ARP observation identity claims
   const arpObs = observations.find((o) => o.type === "ARP_IDENTITY_CHANGE");
   const arpClaimedIp = arpObs?.entities.find(
     (e) => e.kind === "server" || e.kind === "gateway"
@@ -193,7 +189,7 @@ export function AlibiTest({
         </div>
       ) : (
         <>
-          {/* AGY-003: Sample Declared Baseline Callout (explicit Apply button) */}
+          {/* Sample Declared Baseline Callout (explicit Apply button) */}
           {hasSampleBaseline && suggestedContext && (
             <div className="p-3.5 rounded-lg bg-navy-850 border border-teal-500/30 space-y-2.5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -241,7 +237,7 @@ export function AlibiTest({
             </div>
           )}
 
-          {/* AGY-003: Observed Identity Claims & Alibi Flow for ARP */}
+          {/* Observed Identity Claims & Alibi Flow for ARP */}
           {arpObs && arpClaimedIp && arpObservedMacs.length > 0 && (
             <div className="p-3.5 rounded-lg bg-navy-950/70 border border-slate-800 space-y-2.5">
               <div className="flex items-center justify-between">

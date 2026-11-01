@@ -1,5 +1,4 @@
-import React from "react";
-import { Info, HelpCircle, CheckCircle, ExternalLink } from "lucide-react";
+import { Info, CheckCircle } from "lucide-react";
 import { PREVIEW_FIXTURES } from "@/lib/fixtures";
 
 interface PreviewBannerProps {
@@ -18,7 +17,6 @@ export function PreviewBanner({
   isLiveMode,
   dataOrigin,
   sourceName,
-  onSwitchToLive,
   onReturnToPreview,
 }: PreviewBannerProps) {
   const isFixture = dataOrigin === "development_fixture";

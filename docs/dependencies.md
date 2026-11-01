@@ -36,8 +36,11 @@ Frontend dependencies and their actual versions are recorded in
 `frontend/package.json` and `frontend/pnpm-lock.yaml`: Next.js, React, React DOM,
 TypeScript, Node/React type packages, Tailwind CSS, PostCSS, Autoprefixer, and
 Lucide React. The installed versions Next 16.4.3 and React/React DOM 19.3.1 were checked
-locally. AGY-004 reports a frozen-lock install, build/typecheck, package audit,
-and browser regression pass. The development server pair was stopped afterward.
+locally. Earlier verification reported a frozen-lock install, build/typecheck,
+package audit and browser pass for the previous interface. The current interface
+passes strict TypeScript, direct production build and component interaction checks.
+Optional verification tools are React Test Renderer 19.3.1 and Playwright 1.63.0;
+they are installed separately and are not application runtime dependencies.
 
 SHA256/source metadata for the verified Linux CPython 3.12 wheels is retained
 in [dependency-lock.json](dependency-lock.json). The wheelhouse and standalone

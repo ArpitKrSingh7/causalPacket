@@ -22,16 +22,14 @@ the source/date qualification, not as a guarantee of safety.
 - [Starlette release history](https://github.com/Kludex/starlette/releases)
   documents the maintained framework versions used for the update.
 
-The existing `.venv` is preserved to avoid changing packages under AGY's running
-server. It is the earlier environment and is not the final run target. Stop the
-old server and use `./run.sh api`, which selects `.venv-hardened`.
+Use `./run.sh api`, which selects the verified `.venv-hardened` environment.
 
-## Frontend remediation completed in AGY-004
+## Frontend remediation
 
 The earlier Next.js 14.2.35 matched known advisories. Next.js 16.4.3 and
 React/React DOM 19.3.1 are now installed; their package metadata was checked
 locally. Those exact versions returned no OSV matches in the recorded query.
-AGY-004 reports frozen-lock installation, typecheck/build, `pnpm audit` with no
+The earlier frontend verification reported frozen-lock installation, typecheck/build, `pnpm audit` with no
 known findings, and the live browser regression passed. Both verification
 servers were stopped. These results remain a known-advisory check rather than
 an assurance that the software is free from vulnerabilities.
@@ -47,14 +45,15 @@ dependency set avoids relying on that assumption.
 - Clean installation from SHA256-verified PyPI wheels into an isolated Python
   3.12.16 virtual environment succeeded.
 - The initial 86 backend tests passed there; the expanded hardened project suite
-  now has **105 passing tests**, including 80 deterministic mutated captures,
+  now has **136 passing tests**, including 80 deterministic mutated captures,
   malformed multipart recovery, request cancellation/reaping, and launcher
   process-group cleanup.
 - `./run.sh doctor`, contract checks, and the gateway CLI passed.
 - The tool's restricted network namespace denies ordinary Python socket creation.
   The attempted real HTTP launcher probe stopped before starting a server. API
-  integration is verified through ASGI tests; AGY performs the browser/HTTP pass
-  outside that restriction. Do not claim that probe succeeded.
+  integration is verified through ASGI tests. Earlier live browser checks covered
+  the previous interface outside that restriction. The current component tests
+  do not constitute a fresh browser/HTTP pass.
 
 Audit data can become stale; repeat the package-version check before submission
 if dependencies change. No capture payload, device inventory, API key, or other

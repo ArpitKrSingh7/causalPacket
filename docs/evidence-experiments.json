@@ -1,0 +1,970 @@
+{
+  "checked_at_utc": "2026-11-01T08:20:30.829081+00:00",
+  "method": "Controlled synthetic variants, reanalyzed by real isolated workers; no web servers or live traffic.",
+  "scope": "30 deliberately constructed synthetic views, not production accuracy or a physical network causal experiment.",
+  "experiments": [
+    {
+      "seed": 42,
+      "expected_controls_passed": true,
+      "cases": [
+        {
+          "id": "scan-20",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 20 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 40,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-15",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 15 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 35,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 15,
+              "responsive": 0,
+              "unknown": 5,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-10",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 10 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 30,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 10,
+              "responsive": 0,
+              "unknown": 10,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-5",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 5 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 25,
+          "assessments": [
+            "unresolved"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 5,
+              "responsive": 0,
+              "unknown": 15,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-0",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 0 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 20,
+          "assessments": [
+            "unresolved"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 0,
+              "responsive": 0,
+              "unknown": 20,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "healthy-diversity",
+          "family": "healthy_control",
+          "description": "Twenty successfully contacted ports: destination diversity alone must not establish a scan.",
+          "packets": 60,
+          "assessments": [],
+          "observation_types": [],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": []
+        },
+        {
+          "id": "mixed-original",
+          "family": "irrelevant_control",
+          "description": "Scan and independent service fault with the earlier successful handshake retained.",
+          "packets": 67,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "mixed-no-baseline",
+          "family": "irrelevant_control",
+          "description": "Remove only the three earlier healthy-handshake packets. The success comparator disappears, but scan and service-refusal findings must survive.",
+          "packets": 64,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            1,
+            2,
+            3
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "gateway-linked",
+          "family": "gateway_link",
+          "description": "ARP change and later client symptoms have actual next-hop MAC linkage.",
+          "packets": 19,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "ARP_IDENTITY_CHANGE",
+            "DNS_RESPONSE_ERROR",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 2,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": []
+        },
+        {
+          "id": "gateway-unlinked",
+          "family": "gateway_link",
+          "description": "Keep the same timestamps, IP traffic and ARP claims, but address later client IP frames to the old gateway MAC. Timing alone must not create association edges.",
+          "packets": 19,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack",
+            "likely_fault"
+          ],
+          "observation_types": [
+            "ARP_IDENTITY_CHANGE",
+            "DNS_RESPONSE_ERROR",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [
+            8,
+            10,
+            12,
+            14,
+            16,
+            18
+          ],
+          "scan_metrics": []
+        }
+      ]
+    },
+    {
+      "seed": 73,
+      "expected_controls_passed": true,
+      "cases": [
+        {
+          "id": "scan-20",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 20 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 40,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-15",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 15 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 35,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 15,
+              "responsive": 0,
+              "unknown": 5,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-10",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 10 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 30,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 10,
+              "responsive": 0,
+              "unknown": 10,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-5",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 5 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 25,
+          "assessments": [
+            "unresolved"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 5,
+              "responsive": 0,
+              "unknown": 15,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-0",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 0 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 20,
+          "assessments": [
+            "unresolved"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 0,
+              "responsive": 0,
+              "unknown": 20,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "healthy-diversity",
+          "family": "healthy_control",
+          "description": "Twenty successfully contacted ports: destination diversity alone must not establish a scan.",
+          "packets": 60,
+          "assessments": [],
+          "observation_types": [],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": []
+        },
+        {
+          "id": "mixed-original",
+          "family": "irrelevant_control",
+          "description": "Scan and independent service fault with the earlier successful handshake retained.",
+          "packets": 67,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "mixed-no-baseline",
+          "family": "irrelevant_control",
+          "description": "Remove only the three earlier healthy-handshake packets. The success comparator disappears, but scan and service-refusal findings must survive.",
+          "packets": 64,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            1,
+            2,
+            3
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "gateway-linked",
+          "family": "gateway_link",
+          "description": "ARP change and later client symptoms have actual next-hop MAC linkage.",
+          "packets": 19,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "ARP_IDENTITY_CHANGE",
+            "DNS_RESPONSE_ERROR",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 2,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": []
+        },
+        {
+          "id": "gateway-unlinked",
+          "family": "gateway_link",
+          "description": "Keep the same timestamps, IP traffic and ARP claims, but address later client IP frames to the old gateway MAC. Timing alone must not create association edges.",
+          "packets": 19,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack",
+            "likely_fault"
+          ],
+          "observation_types": [
+            "ARP_IDENTITY_CHANGE",
+            "DNS_RESPONSE_ERROR",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [
+            8,
+            10,
+            12,
+            14,
+            16,
+            18
+          ],
+          "scan_metrics": []
+        }
+      ]
+    },
+    {
+      "seed": 99,
+      "expected_controls_passed": true,
+      "cases": [
+        {
+          "id": "scan-20",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 20 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 40,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-15",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 15 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 35,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 15,
+              "responsive": 0,
+              "unknown": 5,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-10",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 10 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 30,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 10,
+              "responsive": 0,
+              "unknown": 10,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-5",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 5 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 25,
+          "assessments": [
+            "unresolved"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 5,
+              "responsive": 0,
+              "unknown": 15,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "scan-0",
+          "family": "scan_visibility",
+          "description": "Retain all 20 probes and 0 of 20 reset replies. The detector must distinguish known rejected outcomes from missing evidence.",
+          "packets": 20,
+          "assessments": [
+            "unresolved"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 0,
+              "responsive": 0,
+              "unknown": 20,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "healthy-diversity",
+          "family": "healthy_control",
+          "description": "Twenty successfully contacted ports: destination diversity alone must not establish a scan.",
+          "packets": 60,
+          "assessments": [],
+          "observation_types": [],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": []
+        },
+        {
+          "id": "mixed-original",
+          "family": "irrelevant_control",
+          "description": "Scan and independent service fault with the earlier successful handshake retained.",
+          "packets": 67,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "mixed-no-baseline",
+          "family": "irrelevant_control",
+          "description": "Remove only the three earlier healthy-handshake packets. The success comparator disappears, but scan and service-refusal findings must survive.",
+          "packets": 64,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "SCAN_PATTERN",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [
+            1,
+            2,
+            3
+          ],
+          "edited_source_frames": [],
+          "scan_metrics": [
+            {
+              "attempts": 20,
+              "diversity": 20,
+              "rejected": 20,
+              "responsive": 0,
+              "unknown": 0,
+              "window_seconds": 10,
+              "diversity_threshold": 12,
+              "known_outcome_threshold": 10,
+              "rejected_threshold": 0.8
+            }
+          ]
+        },
+        {
+          "id": "gateway-linked",
+          "family": "gateway_link",
+          "description": "ARP change and later client symptoms have actual next-hop MAC linkage.",
+          "packets": 19,
+          "assessments": [
+            "suspected_attack"
+          ],
+          "observation_types": [
+            "ARP_IDENTITY_CHANGE",
+            "DNS_RESPONSE_ERROR",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 2,
+          "removed_source_frames": [],
+          "edited_source_frames": [],
+          "scan_metrics": []
+        },
+        {
+          "id": "gateway-unlinked",
+          "family": "gateway_link",
+          "description": "Keep the same timestamps, IP traffic and ARP claims, but address later client IP frames to the old gateway MAC. Timing alone must not create association edges.",
+          "packets": 19,
+          "assessments": [
+            "likely_fault",
+            "suspected_attack",
+            "likely_fault"
+          ],
+          "observation_types": [
+            "ARP_IDENTITY_CHANGE",
+            "DNS_RESPONSE_ERROR",
+            "TCP_CONNECTION_REFUSED"
+          ],
+          "association_edges": 0,
+          "removed_source_frames": [],
+          "edited_source_frames": [
+            8,
+            10,
+            12,
+            14,
+            16,
+            18
+          ],
+          "scan_metrics": []
+        }
+      ]
+    }
+  ]
+}

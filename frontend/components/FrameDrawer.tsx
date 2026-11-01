@@ -1,13 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import { X, Clock, Layers, ArrowRight, ShieldCheck, Terminal } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { X, Clock, Terminal } from "lucide-react";
 import type { PacketEvidence } from "@/lib/types";
 
 interface FrameDrawerProps {
   frame: PacketEvidence | null;
   onClose: () => void;
+  contextLabel?: string;
+  sourceFrameNumber?: number;
 }
 
-export function FrameDrawer({ frame, onClose }: FrameDrawerProps) {
+export function FrameDrawer({ frame, onClose, contextLabel, sourceFrameNumber }: FrameDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
 
   // Close on Escape key & focus drawer on open
@@ -62,6 +64,7 @@ export function FrameDrawer({ frame, onClose }: FrameDrawerProps) {
           {/* Drawer Header */}
           <div className="flex items-start justify-between border-b border-slate-800 pb-3">
             <div>
+              {contextLabel && <p className="text-xs text-indigo-200 mb-2">{contextLabel} · derived frame #{frame.frame_number}{sourceFrameNumber !== undefined ? ` · source #${sourceFrameNumber}` : ""}</p>}
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono px-2 py-0.5 rounded bg-teal-500/20 text-teal-300 border border-teal-500/40">
                   Frame #{frame.frame_number}
@@ -105,9 +108,9 @@ export function FrameDrawer({ frame, onClose }: FrameDrawerProps) {
               </span>
             </div>
 
-            <div className="flex items-center justify-between pt-2 border-t border-slate-800/60 text-slate-500 font-mono text-[11px]">
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/60 text-slate-500 font-mono text-[11px]">
               <span>Captured length: {frame.captured_length} bytes</span>
-              <span>Scope: {frame.scope_id}</span>
+              <span className="break-all">Scope: {frame.scope_id}</span>
             </div>
           </div>
 

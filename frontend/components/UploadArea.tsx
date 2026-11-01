@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Upload, FileUp, AlertCircle, FileText, CheckCircle2, Loader2, Database, Shield } from "lucide-react";
+import { Upload, FileUp, AlertCircle, Loader2, Database } from "lucide-react";
 import type { SampleInfo } from "@/lib/types";
 
 interface UploadAreaProps {
@@ -16,7 +16,6 @@ interface UploadAreaProps {
 const MAX_FILE_SIZE_BYTES = 25 * 1024 * 1024; // 25 MiB
 
 export function UploadArea({
-  isLiveMode,
   onUploadFile,
   onSelectSample,
   samples,

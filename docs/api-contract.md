@@ -48,6 +48,12 @@ address. Development origins allowed: `http://localhost:3000` and
 | `GET /api/analyses/{analysis_id}/evidence` | Query `frame_numbers=1,5,7`, `offset=0`, `limit=100` | `EvidencePage` | Implemented |
 | `DELETE /api/analyses/{analysis_id}` | None | 204, no body | Implemented; idempotent session release |
 | `GET /api/analyses/{analysis_id}/export` | Query `format=markdown` or `format=json` | Attachment bytes, not a download-URL envelope | Implemented |
+| `POST /api/lab/evidence` | JSON `{ "seed": 42 }`, or `{}` | Separate `ExperimentReport` | Implemented; synthetic experiments only |
+
+The lab is an additive endpoint with models in `backend/core/experiments.py`.
+It does not alter `AnalysisReport` or normal sessions. Nested lab report IDs are
+not session IDs for lookup/reinterpret/export. See [novelty.md](novelty.md) for
+the exact scope, frame mapping, response structure and experiment limitations.
 
 Do not set multipart `Content-Type` yourself; the browser must supply the boundary.
 The frontend size check is a convenience. The backend counts the request body

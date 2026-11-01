@@ -1,5 +1,4 @@
-import React from "react";
-import { ShieldAlert, ShieldCheck, AlertTriangle, HelpCircle, ChevronRight, CheckCircle2 } from "lucide-react";
+import { ShieldAlert, AlertTriangle, HelpCircle, ChevronRight, CheckCircle2 } from "lucide-react";
 import type { Incident, Assessment, Severity } from "@/lib/types";
 
 interface IncidentListProps {

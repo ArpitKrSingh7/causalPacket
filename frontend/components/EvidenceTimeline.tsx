@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from "react";
-import { Clock, Filter, Layers, X, Search, ChevronRight, ArrowRight, ExternalLink } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Clock, Filter, Layers, X, Search, ArrowRight, ExternalLink } from "lucide-react";
 import type { PacketEvidence } from "@/lib/types";
 
 interface EvidenceTimelineProps {

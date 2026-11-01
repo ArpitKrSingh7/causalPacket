@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { FileSearch } from "lucide-react";
 import { Header } from "@/components/Header";
 import { PreviewBanner } from "@/components/PreviewBanner";
@@ -13,6 +13,9 @@ import { FrameDrawer } from "@/components/FrameDrawer";
 import { AlibiTest } from "@/components/AlibiTest";
 import { ReportExport } from "@/components/ReportExport";
 import { StatusAlerts } from "@/components/StatusAlerts";
+import { InvestigationSummary } from "@/components/InvestigationSummary";
+import { EvidenceMap } from "@/components/EvidenceMap";
+import { EvidenceLab } from "@/components/EvidenceLab";
 import { PREVIEW_FIXTURES, DEFAULT_PREVIEW_KEY } from "@/lib/fixtures";
 import * as api from "@/lib/api";
 import type {
@@ -36,6 +39,14 @@ export default function InvestigationWorkspace() {
 
   // Active Report: Starts null in live mode (honest empty state)
   const [report, setReport] = useState<AnalysisReport | null>(null);
+  const [ingestExpanded, setIngestExpanded] = useState(true);
+  const [viewRevision, setViewRevision] = useState(0);
+  const alibiRef = useRef<HTMLDetailsElement | null>(null);
+
+  useEffect(() => {
+    if (report) setIngestExpanded(false);
+    if (alibiRef.current) alibiRef.current.open = false;
+  }, [report?.analysis_id]);
 
   // Selected Incident & Active Filters
   const [selectedIncidentId, setSelectedIncidentId] = useState<string | null>(null);
@@ -64,6 +75,8 @@ export default function InvestigationWorkspace() {
   const requestIdRef = useRef<number>(0);
 
   const abortPendingRequests = useCallback(() => {
+    requestIdRef.current += 1;
+    setViewRevision((value) => value + 1);
     if (activeAbortControllerRef.current) {
       activeAbortControllerRef.current.abort();
       activeAbortControllerRef.current = null;
@@ -106,6 +119,7 @@ export default function InvestigationWorkspace() {
     loadSamples();
 
     return () => {
+      requestIdRef.current += 1;
       if (activeAbortControllerRef.current) {
         activeAbortControllerRef.current.abort();
       }
@@ -402,6 +416,13 @@ export default function InvestigationWorkspace() {
       null
     : null;
 
+  const openAlibi = () => {
+    if (!alibiRef.current) return;
+    alibiRef.current.open = true;
+    alibiRef.current.querySelector("summary")?.focus();
+    alibiRef.current.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-navy-950 text-slate-100 selection:bg-teal-500/20 selection:text-teal-200">
       {/* 1. Header & Live/Preview Mode Switcher */}
@@ -437,7 +458,12 @@ export default function InvestigationWorkspace() {
           isLiveMode={isLiveMode}
         />
 
-        {/* 3. Upload & Sample Catalog Area */}
+        {report && <div className="rounded-lg border border-slate-800 bg-navy-900 px-4 py-3 flex flex-wrap gap-2 items-center justify-between text-xs">
+          <span className="min-w-0 break-all text-slate-300">Capture: <strong className="font-mono text-teal-200">{report.source_name}</strong></span>
+          <button type="button" aria-expanded={ingestExpanded} aria-controls="capture-ingestion" onClick={() => setIngestExpanded(!ingestExpanded)} className="rounded border border-slate-600 px-3 py-1.5 text-slate-200 hover:border-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-300">{ingestExpanded ? "Hide capture choices" : "Change capture"}</button>
+        </div>}
+        {isAnalyzing && report && <p className="text-xs text-teal-200" role="status">Analyzing a new capture. The previous report remains visible until it completes.</p>}
+        {(!report || ingestExpanded) && <div id="capture-ingestion">
         <UploadArea
           isLiveMode={isLiveMode}
           onUploadFile={handleUploadFile}
@@ -448,37 +474,35 @@ export default function InvestigationWorkspace() {
           currentSourceName={report?.source_name}
           isEngineReady={healthData?.engine_ready}
         />
+        </div>}
 
         {report ? (
           <>
-            {/* 3.5. Report Export Control (AGY-005 / Final) */}
-            <ReportExport
-              report={report}
-              isLiveMode={isLiveMode}
-              isReinterpreting={isReinterpreting}
-              onExportError={(err) => setApiError(err)}
-            />
-
-            {/* 4. Compact Coverage & Protocol Summary */}
-            <CoverageSummary
-              coverage={report.coverage}
-              incidentsCount={report.incidents.length}
-            />
-
-            {/* 5 & 7. Core Investigation Area: Incidents & Alibi Test */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-              {/* Incident Selector (Left Column - 4 cols on lg) */}
-              <div className="lg:col-span-4 space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+              <aside className="lg:col-span-3">
                 <IncidentList
                   incidents={report.incidents}
                   selectedIncidentId={selectedIncidentId}
-                  onSelectIncident={(id) => setSelectedIncidentId(id)}
+                  onSelectIncident={(id) => {
+                    setSelectedIncidentId(id);
+                    setSelectedFrame(null);
+                    setFilteredObservationId(null);
+                    setFilteredFrames(null);
+                  }}
                 />
-              </div>
-
-              {/* Incident Detail + Alibi Test (Right Column - 8 cols on lg) */}
-              <div className="lg:col-span-8 space-y-6">
-                {selectedIncident ? (
+              </aside>
+              <div className="lg:col-span-9 space-y-5 min-w-0">
+                <InvestigationSummary report={report} incident={selectedIncident} onTestAlternative={openAlibi} />
+                {selectedIncident && <EvidenceMap
+                  key={selectedIncident.id}
+                  incident={selectedIncident}
+                  observations={report.observations}
+                  edges={report.edges}
+                  onOpenFrame={handleOpenFrame}
+                  onFilter={handleFilterObservationFrames}
+                />}
+                {selectedIncident && <details className="rounded-xl border border-slate-800 bg-navy-900">
+                  <summary className="cursor-pointer p-4 text-sm font-medium text-slate-200">Full observations, competing explanations and next checks</summary>
                   <IncidentDetail
                     incident={selectedIncident}
                     observations={report.observations}
@@ -487,52 +511,43 @@ export default function InvestigationWorkspace() {
                     onFilterObservationFrames={handleFilterObservationFrames}
                     activeFilteredObservationId={filteredObservationId}
                   />
-                ) : (
-                  <div className="bg-navy-900 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
-                    <p className="text-sm font-medium text-slate-300">
-                      No incident selected
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Select an incident from the list or review the evidence timeline below.
-                    </p>
-                  </div>
-                )}
-
-                {/* 7. Alibi Test ("Could this be something else?") */}
-                <AlibiTest
-                  initialContext={report.context}
-                  interpretationChanges={report.interpretation_changes}
-                  isLiveMode={isLiveMode}
-                  dataOrigin={report.data_origin}
-                  previewKey={previewKey}
-                  sampleId={report.sample_id}
-                  suggestedContext={
-                    samples.find((s) => s.id === report.sample_id)?.suggested_context || null
-                  }
-                  observations={report.observations}
-                  onApplyContext={handleApplyContext}
-                  onResetContext={handleResetContext}
-                  isReinterpreting={isReinterpreting}
-                />
+                </details>}
+                <details ref={alibiRef} className="rounded-xl border border-teal-500/25 bg-navy-900 scroll-mt-24">
+                  <summary className="cursor-pointer p-4 text-sm font-medium text-teal-200">The Alibi Test — could this be something else?</summary>
+                  <AlibiTest
+                    initialContext={report.context}
+                    interpretationChanges={report.interpretation_changes}
+                    isLiveMode={isLiveMode}
+                    dataOrigin={report.data_origin}
+                    previewKey={previewKey}
+                    sampleId={report.sample_id}
+                    suggestedContext={samples.find((sample) => sample.id === report.sample_id)?.suggested_context || null}
+                    observations={report.observations}
+                    onApplyContext={handleApplyContext}
+                    onResetContext={handleResetContext}
+                    isReinterpreting={isReinterpreting}
+                  />
+                </details>
               </div>
             </div>
-
-            {/* 6. Chronological Evidence Timeline */}
+            <details className="rounded-xl border border-slate-800 bg-navy-900">
+              <summary className="cursor-pointer p-4 text-sm text-slate-300">Capture coverage: {report.coverage.status} · {report.coverage.packets_decoded} decoded packets · scope and visibility notes</summary>
+              <CoverageSummary coverage={report.coverage} incidentsCount={report.incidents.length} />
+            </details>
+            <ReportExport
+              key={viewRevision}
+              report={report}
+              isLiveMode={isLiveMode}
+              isReinterpreting={isReinterpreting}
+              onExportError={(error) => setApiError(error)}
+            />
+            <EvidenceLab viewRevision={viewRevision} isLiveMode={isLiveMode} isBusy={isAnalyzing || isReinterpreting} engineReady={healthData?.engine_ready === true} />
             <EvidenceTimeline
               evidence={report.evidence}
               onOpenFrame={handleOpenFrame}
               filteredFrameNumbers={filteredFrames}
-              onClearFilter={() => {
-                setFilteredObservationId(null);
-                setFilteredFrames(null);
-              }}
-              activeFilterLabel={
-                filteredObservationId
-                  ? filteredObservationId.startsWith("edge-")
-                    ? `Filtered to edge frames (${filteredFrames?.length || 0})`
-                    : `Filtered to observation frames (${filteredFrames?.length || 0})`
-                  : undefined
-              }
+              onClearFilter={() => { setFilteredObservationId(null); setFilteredFrames(null); }}
+              activeFilterLabel={filteredObservationId ? `Filtered to ${filteredObservationId.startsWith("edge-") ? "association" : "observation"} frames (${filteredFrames?.length || 0})` : undefined}
             />
           </>
         ) : (

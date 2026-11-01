@@ -1,5 +1,4 @@
-import React from "react";
-import { Server, Wifi, WifiOff, Eye, RefreshCw, AlertTriangle } from "lucide-react";
+import { Server, Wifi, WifiOff, Eye, RefreshCw } from "lucide-react";
 import type { HealthResponse } from "@/lib/types";
 
 interface HeaderProps {
@@ -67,12 +66,16 @@ export function Header({
                   : "text-amber-400/90"
               }`}
               title={
-                isEngineReady
+                healthLoading
+                  ? "Checking backend availability"
+                  : !isOnline
+                  ? "Backend could not be reached; start it or check its connection"
+                  : isEngineReady
                   ? "Engine ready for capture analysis"
-                  : "Engine under development (501 engine_not_ready)"
+                  : "Backend responded, but analysis is currently unavailable"
               }
             >
-              {isEngineReady ? "Engine Ready" : "Engine Pending (501)"}
+              {healthLoading ? "Checking Engine" : !isOnline ? "Engine Unavailable" : isEngineReady ? "Engine Ready" : "Analysis Unavailable"}
             </span>
             <button
               onClick={onRefreshHealth}

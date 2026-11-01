@@ -1,0 +1,14 @@
+{
+  "method": "React Test Renderer interactions; HTTP stubbed using actual ASGI/worker outputs. No browser/CSS/real HTTP claim.",
+  "passed": [
+    "Fresh live workspace has no fabricated report",
+    "Real service-failure report renders; ingestion collapses",
+    "Lab uses actual worker output, preserves active report and maps derived frames",
+    "Lab API error preserves active report",
+    "Delayed lab response cannot overwrite new capture",
+    "Same-ID Alibi change invalidates pending lab; packet observations stay fixed",
+    "Context change prevents a stale export download",
+    "Mode switch discards delayed lab and keeps fictional provenance/export guards",
+    "Partial capture and independent mixed incidents still render"
+  ]
+}

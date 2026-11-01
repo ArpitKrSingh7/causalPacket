@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Activity, Clock, ShieldAlert, CheckCircle, AlertTriangle, AlertOctagon, ChevronDown, ChevronUp, Layers, Info } from "lucide-react";
 import type { CaptureCoverage } from "@/lib/types";
 

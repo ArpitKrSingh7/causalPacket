@@ -1,28 +1,18 @@
-import React from "react";
 import {
   FileSearch,
-  HelpCircle,
   AlertCircle,
-  CheckCircle,
   ArrowRight,
   Filter,
   ExternalLink,
-  Layers,
   Sparkles,
-  Search,
   Compass,
-  AlertTriangle,
   Link2,
-  Clock,
 } from "lucide-react";
 import type {
   Incident,
   Observation,
   Hypothesis,
-  Comparison,
   EvidenceEdge,
-  Assessment,
-  Severity,
 } from "@/lib/types";
 
 interface IncidentDetailProps {
@@ -244,7 +234,7 @@ export function IncidentDetail({
         </div>
       </div>
 
-      {/* SECTION 1.5: Why these findings are linked (AGY-003: Render report.edges) */}
+      {/* SECTION 1.5: Why these findings are linked (Render report.edges) */}
       {incidentEdges.length > 0 && (
         <div className="space-y-3 pt-2">
           <div className="flex items-center justify-between">

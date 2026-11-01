@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Download, FileText, Code2, Loader2, Check } from "lucide-react";
 import type { AnalysisReport } from "@/lib/types";
 import * as api from "@/lib/api";

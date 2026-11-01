@@ -2,10 +2,15 @@
 
 Status: development evaluation of a synthetic test suite, not production accuracy.
 
+The final cleaned release was verified again from an extracted source archive:
+136 backend tests, contracts, nine demo scenarios, production build and nine
+component interaction scenarios passed using the existing pinned dependencies.
+See [release-verification.json](release-verification.json) for scope and limits.
+
 ## Verification actually run
 
 - Hardened clean environment: Python 3.12.16, Linux x86_64, pytest 9.2.0.
-- `.venv-hardened/bin/python -m pytest -q`: **111 passed in 5.48 seconds** on the latest recheck.
+- `.venv-hardened/bin/python -m pytest -q`: **136 passed in 13.77 seconds** on the final cleanup recheck.
 - `.venv-hardened/bin/python -m scripts.check_contract`: all three fictional UI fixtures,
   cross-reference integrity, before/after invariants, schema and context checks pass.
 - CLI and HTTPX ASGI upload/sample flows use real generated capture bytes and the
@@ -201,3 +206,36 @@ reinterpretation. Scan reports now record their minimum known-outcome count,
 ratio and time-window settings; those recorded settings govern interpretation
 and grouping. Tests cover empty-context idempotence, source authorization/reset,
 custom windows, distant episodes and independent sources/faults.
+
+## Controlled evidence-sensitivity experiments
+
+The synthetic lab runs ten modified/control captures for each seed, through
+actual isolated workers. Thirty cases across seeds 42, 73 and 99 matched the
+documented expected controls: reduced scan replies can make outcomes unresolved,
+removing the earlier healthy baseline preserves scan/refusal findings, and
+temporal coincidence without the required next-hop MAC yields no association.
+Twenty successful service connections remain a no-scan control.
+
+The additional tests cover these outcomes across varied addresses, correct
+source-to-derived frame mapping, strict request bounds, real lab API behavior,
+preservation of the original report session, concurrent-analysis rejection,
+health responsiveness and deadline cancellation/gate recovery. The entire
+suite now passes 136 tests. Existing nine-sample demo and schema checks pass.
+See [novelty.md](novelty.md) for scope and [the measured summary](evidence-experiments.json).
+The dedicated lab frontend is implemented alongside a compact investigation
+brief, clickable packet-link map and visible Alibi change summary. Nine React
+Test Renderer scenarios passed using actual API/worker outputs as HTTP stubs.
+They cover honest initial state, collapsed ingestion, lab/main-report isolation,
+derived/source frame mapping, API errors, sample/mode/context races, export
+cancellation, partial captures and independent incidents. No unexpected React
+errors were reported. The optional verification tool was React Test Renderer
+19.3.1; it is not a runtime dependency.
+
+TypeScript and direct Webpack production compilation pass. This is **not** a
+new real-browser pass: the tool environment rejected Uvicorn's HTTP bind and
+Chromium launch (`Operation not permitted`). CSS geometry, browser downloads
+and the final desktop/mobile visual review remain to be checked with
+`scripts/verify_browser.cjs` in an environment that permits them. Earlier AGY
+browser passes describe the previous layout. No servers were left running by
+this verification. The lab remains a synthetic sensitivity demonstration,
+not production accuracy or causal inference.

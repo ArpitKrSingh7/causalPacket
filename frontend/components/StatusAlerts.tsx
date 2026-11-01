@@ -1,5 +1,4 @@
-import React from "react";
-import { AlertCircle, AlertTriangle, Info, X, WifiOff, Wrench } from "lucide-react";
+import { AlertCircle, Info, X, Wrench } from "lucide-react";
 
 interface StatusAlertsProps {
   apiError: { message: string; code?: string; status?: number } | null;
@@ -27,10 +26,10 @@ export function StatusAlerts({
             <Wrench className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
             <div>
               <div className="font-semibold text-slate-200">
-                Backend Packet Engine Pending (HTTP 501)
+                Backend connection required
               </div>
               <p className="text-slate-400 mt-0.5 text-[11px] leading-relaxed">
-                The local FastAPI server is online, but capture analysis and reinterpretation routes currently return HTTP 501 (<code className="font-mono text-amber-300">engine_not_ready</code>) while Codex completes the packet detection slice. Switch to Preview Mode to explore author-validated scenario fixtures.
+                Checking analysis availability. If the backend is unavailable, start the API or check its connection. Preview Mode contains clearly labeled fictional examples.
               </p>
             </div>
           </div>

@@ -1,0 +1,69 @@
+1
+00:00:01,000 --> 00:00:13,000
+CausalPacket: Fault or Foe?
+Investigate network faults and suspicious activity using packet evidence.
+
+2
+00:00:14,000 --> 00:00:24,000
+Synthetic service failure: 12 explicitly refused connection attempts.
+The capture supports a service problem; these retries do not prove an attack.
+
+3
+00:00:25,000 --> 00:00:33,000
+Inspect exact frames, competing explanations and practical next checks.
+Recorded facts are separated from suspected causes.
+
+4
+00:00:34,000 --> 00:00:44,000
+A scan pattern and an independent service fault form two investigations.
+Grouping findings does not hide the unrelated outage.
+
+5
+00:00:45,000 --> 00:00:54,000
+The operator declares an authorized scanner in the Alibi Test.
+Its interpretation changes; the independent service fault remains.
+
+6
+00:00:55,000 --> 00:01:04,000
+Gateway investigation: ARP identity change, DNS errors and TCP refusals.
+Empty policy leaves the assessment unresolved; association is not causation.
+
+7
+00:01:05,000 --> 00:01:13,000
+Evidence includes frame numbers and retained protocol headers.
+Raw application payloads are omitted; IP/MAC metadata is still retained.
+
+8
+00:01:14,000 --> 00:01:34,000
+Gateway policy and device approvals are supplied explicitly in the Alibi Test.
+Approvals change interpretation while the recorded packet facts stay fixed.
+
+9
+00:01:35,000 --> 00:01:44,000
+The approved gateway interpretation remains unresolved, with service symptoms.
+Markdown and JSON exports preserve evidence, context and remaining problems.
+
+10
+00:01:45,000 --> 00:01:56,000
+Damaged input produces partial analysis of the valid prefix.
+Coverage limits are visible instead of a false success claim.
+
+11
+00:01:57,000 --> 00:02:06,500
+Healthy synthetic exchanges produce no findings in the supported checks.
+CausalPacket runs locally; an empty finding list does not certify safety.
+
+12
+00:02:07,000 --> 00:02:20,500
+Recorded synthetic experiment results: the same 20 probes, with fewer replies.
+When too few outcomes are known, the assessment becomes unresolved.
+
+13
+00:02:21,000 --> 00:02:36,500
+Thirty controlled variants check healthy services, independent faults and gateway links.
+These are measured sensitivity controls, not production accuracy claims.
+
+14
+00:02:37,000 --> 00:02:42,500
+Follow the evidence. Compare explanations.
+Run the included synthetic captures locally with the documented setup.

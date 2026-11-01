@@ -1,4 +1,4 @@
-"""Local API for bounded, offline TCP/scan analysis."""
+"""Local API for bounded, evidence-first packet investigation."""
 import asyncio
 import json
 import re
@@ -18,6 +18,7 @@ from starlette.exceptions import HTTPException
 from backend.core.analyzer import reinterpret_report
 from backend.core.config import DEFAULT_CONFIG
 from backend.core.errors import AnalysisError
+from backend.core.experiments import ExperimentReport, ExperimentRequest, run_experiment
 from backend.core.ingestion import BoundedBodyMiddleware
 from backend.core.models import AnalysisReport, ErrorDetail, ErrorResponse, EvidencePage, HealthResponse, NetworkContext, SamplesResponse
 from backend.core.sessions import ReportStore
@@ -113,6 +114,22 @@ async def health():
 @app.get("/api/samples", response_model=SamplesResponse)
 async def samples():
     return SamplesResponse(samples=sample_catalog())
+
+
+@app.post('/api/lab/evidence', response_model=ExperimentReport)
+async def evidence_experiment(settings: ExperimentRequest):
+    """Explicitly run synthetic controls; do not replace or retain user analyses."""
+    if analysis_gate.locked():
+        raise AnalysisError('analysis_busy', 'An analysis is already running. Try again shortly.', 429)
+    async with analysis_gate:
+        try:
+            async with asyncio.timeout(20):
+                result = await run_experiment(settings.seed)
+        except TimeoutError:
+            raise AnalysisError('analysis_timeout', 'The synthetic experiment exceeded its time budget.', 504) from None
+        if len(result.model_dump_json().encode()) > DEFAULT_CONFIG.max_output_bytes:
+            raise AnalysisError('analysis_limit', 'The experiment reached its output budget.')
+        return result
 
 
 @app.post("/api/analyze", response_model=AnalysisReport)

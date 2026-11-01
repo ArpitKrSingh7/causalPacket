@@ -1,7 +1,7 @@
 """Write fictional UI examples, validated against the canonical report schema.
 
 These files are hand-authored layout examples, never packet-analysis results.
-Run from the repository root: .venv/bin/python -m scripts.create_preview_fixtures
+Run from the repository root: .venv-hardened/bin/python -m scripts.create_preview_fixtures
 """
 
 import copy
