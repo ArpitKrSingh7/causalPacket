@@ -1,88 +1,80 @@
-# Arpit’s demo script · about 3 minutes 45 seconds
+# Voice-over for the recorded 3:48 demo
 
-Read the quoted paragraphs in your own voice. Pause between scenes. The recorder produces a separate silent recording, actual scene timings, and a subtitle track; it never simulates analysis responses. All captures shown are synthetic.
+**Verified video:** `docs/demo.mp4` · 3 minutes 48.36 seconds · 1440 × 900 · H.264 · silent. The real redesigned interface, sample analyses, frame drawer, scanner approval, gateway Alibi, evidence lab, damaged capture, report download and deployment end card are already recorded. **You only need to add your voice-over; do not repeat the app actions.**
 
-## Record the redesigned interface
+Use the scene times below. Read naturally, pause where needed, and align “I approve it” with the visible gateway approval. The last few seconds are intentionally the closing card. Captions: [demo.srt](demo.srt). Exact measured boundaries: [demo-timings.json](demo-timings.json).
 
-Run from the source checkout you intend to publish. The optional recorder starts one local API/frontend pair when needed, records the actual redesigned app, and stops only servers it started. It refuses to overwrite a recording.
+The app walkthrough was recorded locally against the real API using synthetic captures. The closing card identifies the separately deployed Vercel frontend and Render API; the recording does not claim that localhost footage was captured on those public domains.
 
-```bash
-npm install --prefix .artifacts/recorder --no-audit --no-fund playwright@1.63.0
-node .artifacts/recorder/node_modules/playwright/cli.js install chromium
-./run.sh record-demo
-```
+## Ready-to-read narration
 
-Requires normal browser/process permissions, FFmpeg/ffprobe, and completed `./run.sh setup`. If another complete server pair is running, it is reused and left running. If Chromium is unavailable or blocked, the command reports that failure; no recording is fabricated. Optional existing Playwright installation: set `CAUSALPACKET_PLAYWRIGHT_MODULE` to its package path.
+### 0:01–0:15 · Meet CausalPacket
 
-Outputs: `.artifacts/demo-new-ui/causalpacket-new-ui.mp4`, `voiceover.srt`, `scene-timings.json`, plus the raw browser recording. Use **actual** timings from that file if the machine or backend takes longer than the target pacing.
-
-Import the MP4 into your video editor, record a voice-over using the script below, and align each paragraph to its scene. Review legibility, captions and total duration, then replace `docs/demo.mp4` with the reviewed final video. Update `docs/demo.srt` to the aligned final captions and update the duration/layout note in the README. The existing included video is the earlier interface and remains labeled as such.
-
-## Narration and screen actions
-
-### 0:00–0:14 · Meet CausalPacket
-
-**Screen:** Fresh redesigned workspace, logo and artwork.
+**Already on screen:** Fresh redesigned workspace, logo and artwork.
 
 > Hi, I’m Arpit Kumar Singh, and this is CausalPacket, built for the IIITDM Kancheepuram Cybersecurity Hackathon. Our question is simple: when a network breaks, is it a fault, or something suspicious?
 
-### 0:14–0:32 · Why this matters
+### 0:15–0:33 · Why this matters
 
-**Screen:** Keep the opening workspace visible, then scroll to the sample captures.
+**Already on screen:** Keep the opening workspace visible, then scroll to the sample captures.
 
 > Small offices and student labs often have no network specialist. A packet capture contains the clues, but reading it takes expertise. And a service outage can look surprisingly similar to an attack. We turn that capture into an understandable investigation.
 
-### 0:32–0:50 · Our approach
+### 0:33–0:51 · Our approach
 
-**Screen:** Show the three-step explanation below the capture picker.
+**Already on screen:** Show the three-step explanation below the capture picker.
 
 > We built our own stateful TCP, DNS, ARP and scan detectors. Scapy decodes packets; our Python code tracks conversations, groups related observations, and compares explanations. The Next.js interface shows what was observed, what remains uncertain, and what to check next.
 
-### 0:50–1:17 · A fault is not automatically an attack
+### 0:51–1:18 · A fault is not automatically an attack
 
-**Screen:** Analyze Service failure. Show the brief, open a supporting frame, then show the earlier-success comparison in full observations.
+**Already on screen:** Analyze Service failure. Show the brief, open a supporting frame, then show the earlier-success comparison in full observations.
 
-> Let’s run a real analysis of an included synthetic capture. Here, twelve connection attempts were explicitly refused. An earlier completed exchange gives us a useful comparison. The report recommends checking the service and its access policy. Clicking a frame opens the actual retained protocol headers. Repeated failure alone is not treated as proof of an attack.
+> This synthetic capture contains twelve refused connection attempts. The report suggests checking the service and its access policy. Opening a supporting frame shows the actual protocol headers behind the finding. The detailed explanation compares these failures with an earlier completed exchange. This supports investigating a service fault; repeated failure alone does not prove an attack.
 
-### 1:17–1:39 · Keep independent problems visible
+### 1:18–1:40 · Keep independent problems visible
 
-**Screen:** Analyze Scan and independent fault. Keep both finding cards visible.
+**Already on screen:** Analyze Scan and independent fault. Keep both finding cards visible.
 
 > This next capture contains two problems: possible scanning across many ports, and a separate unavailable service. CausalPacket keeps them as independent investigations. Authorizing a known scanner changes its interpretation, while the service failure remains. Grouping findings should never hide an unrelated problem.
 
-### 1:39–2:04 · Follow packet-backed links
+### 1:40–2:05 · Follow packet-backed links
 
-**Screen:** Analyze Gateway identity investigation. Show its unresolved brief and dark evidence board. Open a connecting frame.
+**Already on screen:** Analyze Gateway identity investigation. Show its unresolved brief and dark evidence board. Open a connecting frame.
 
 > Now, two MAC addresses claim the same IP, alongside DNS errors and TCP refusals. The evidence board links observations only when the configured rules find the required packet relationships. Close timing by itself is not enough. With no gateway inventory supplied, the assessment stays unresolved. We do not claim that these links prove causation.
 
-### 2:04–2:44 · Challenge the explanation
+### 2:05–2:45 · Challenge the explanation
 
-**Screen:** Open Alibi Test. Explicitly apply sample inventory; pause on suspected attack. Approve the second gateway MAC; pause on unresolved and Evidence retained.
+**Already on screen:** Open Alibi Test. Explicitly apply sample inventory; pause on suspected attack. Approve the second gateway MAC; pause on unresolved and Evidence retained.
 
-> Here is our Alibi Test. First, I explicitly apply the synthetic sample’s declared gateway inventory. A second, unapproved device claiming the known gateway raises suspicion. Now suppose the operator verifies that this is an authorized backup router. I approve its MAC address. The assessment changes back to unresolved. The packet observations, frame references, and links remain unchanged, and the DNS and TCP failures still need investigation. Context changes the interpretation; it does not rewrite the evidence.
+> Here’s the Alibi Test. Applying the sample’s declared gateway inventory raises suspicion about the second MAC. After verifying it as an approved backup router, I approve it. The assessment returns to unresolved. The original observations, frame references and links remain unchanged. The DNS and TCP failures still need investigation. Trusted context changes the interpretation, while the packet facts stay fixed.
 
-### 2:44–3:10 · Test the limits of the diagnosis
+### 2:45–3:11 · Test the limits of the diagnosis
 
-**Screen:** Run the real Evidence Lab. Show the scan reply variants, then select zero replies and its unresolved result.
+**Already on screen:** Run the real Evidence Lab. Show the scan reply variants, then select zero replies and its unresolved result.
 
 > We also test how the diagnosis reacts when evidence disappears. This lab actually reanalyzes modified synthetic captures. Compare twenty observed replies with no replies: reduced visibility should weaken the conclusion, rather than produce a confident attack label. These are controlled sensitivity experiments, not a claim of production accuracy. The active investigation stays separate.
 
-### 3:10–3:28 · Be honest about incomplete input
+### 3:11–3:29 · Be honest about incomplete input
 
-**Screen:** Analyze Damaged capture. Show partial coverage. Start a real Markdown report download.
+**Already on screen:** Analyze Damaged capture. Show partial coverage. Start a real Markdown report download.
 
 > A damaged capture produces partial coverage and a clear warning. Reports include the supporting frames, possible causes, and next checks, while omitting raw application payloads. Parsing runs with bounded file, packet, time and memory limits. These limits are documented, along with unsupported checks.
 
-### 3:28–3:43 · Try it and reproduce it
+### 3:29–3:48 · Try it and reproduce it
 
-**Screen:** Show the clearly labeled closing card with deployment and repository URLs.
+**Already on screen:** Show the clearly labeled closing card with deployment and repository URLs.
 
 > The frontend is deployed on Vercel, with FastAPI on Render. Judges can also run everything locally and reproduce the included samples and tests. CausalPacket helps users move from unusual packets to evidence they can investigate. Thank you.
 
-## Before submission
+## Export and submit
 
-- After publishing the redesign, open the Vercel link and try the gateway flow once. Keep the connection to the real Render API.
-- Keep the demo between **2 and 5 minutes**. A clear voice-over is preferable to background music.
-- Check the public GitHub video in a signed-out window. The README can link to the included MP4; separate hosting is optional.
-- Submit the public repository and video through the organizer form before **1 November 2026, 21:00 IST**.
+1. Import `docs/demo.mp4` into your editor, record your voice over the existing scenes, and keep the final duration between **2 and 5 minutes**.
+2. Export H.264 MP4 with audio; keep the file below **100 MB**. Review the Alibi scene and the last deployment card once.
+3. Replace the public repository checkout’s `docs/demo.mp4` with your voiced export. In this workstation the Git checkout is `.artifacts/submission-checkout`; update its demo file, commit and push. The included captions describe this recording; adjust their timing only if you trim or rearrange it.
+4. Check public playback and submit the organizer form before **1 November 2026, 21:00 IST**.
+
+## Optional: record again later
+
+The completed recording is already available. To record again, first move the previous `.artifacts/demo-new-ui/` output aside. With setup and the optional Playwright/Chromium/FFmpeg tools available, run `./run.sh record-demo` from a normal terminal. It uses the real interface/API and stops only servers it starts.

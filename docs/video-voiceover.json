@@ -32,7 +32,7 @@
       "title": "A fault is not automatically an attack",
       "seconds": 27,
       "screen": "Analyze Service failure. Show the brief, open a supporting frame, then show the earlier-success comparison in full observations.",
-      "say": "Let’s run a real analysis of an included synthetic capture. Here, twelve connection attempts were explicitly refused. An earlier completed exchange gives us a useful comparison. The report recommends checking the service and its access policy. Clicking a frame opens the actual retained protocol headers. Repeated failure alone is not treated as proof of an attack."
+      "say": "This synthetic capture contains twelve refused connection attempts. The report suggests checking the service and its access policy. Opening a supporting frame shows the actual protocol headers behind the finding. The detailed explanation compares these failures with an earlier completed exchange. This supports investigating a service fault; repeated failure alone does not prove an attack."
     },
     {
       "id": "mixed",
@@ -53,7 +53,7 @@
       "title": "Challenge the explanation",
       "seconds": 40,
       "screen": "Open Alibi Test. Explicitly apply sample inventory; pause on suspected attack. Approve the second gateway MAC; pause on unresolved and Evidence retained.",
-      "say": "Here is our Alibi Test. First, I explicitly apply the synthetic sample’s declared gateway inventory. A second, unapproved device claiming the known gateway raises suspicion. Now suppose the operator verifies that this is an authorized backup router. I approve its MAC address. The assessment changes back to unresolved. The packet observations, frame references, and links remain unchanged, and the DNS and TCP failures still need investigation. Context changes the interpretation; it does not rewrite the evidence."
+      "say": "Here’s the Alibi Test. Applying the sample’s declared gateway inventory raises suspicion about the second MAC. After verifying it as an approved backup router, I approve it. The assessment returns to unresolved. The original observations, frame references and links remain unchanged. The DNS and TCP failures still need investigation. Trusted context changes the interpretation, while the packet facts stay fixed."
     },
     {
       "id": "lab",
@@ -76,5 +76,6 @@
       "screen": "Show the clearly labeled closing card with deployment and repository URLs.",
       "say": "The frontend is deployed on Vercel, with FastAPI on Render. Judges can also run everything locally and reproduce the included samples and tests. CausalPacket helps users move from unusual packets to evidence they can investigate. Thank you."
     }
-  ]
+  ],
+  "recorded_duration_seconds": 228.36
 }

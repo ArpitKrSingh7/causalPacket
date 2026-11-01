@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import re
 import tarfile
+import zipfile
 from tempfile import TemporaryDirectory
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -59,6 +60,17 @@ def validate_samples(root):
             original=root/'samples'/path.name
             if not original.is_file() or original.read_bytes()!=path.read_bytes():
                 raise ValueError('A sample differs from deterministic synthetic generation: '+path.name)
+    test_pack=root/'frontend/public/samples/causalpacket-test-captures.zip'
+    if test_pack.exists():
+        with zipfile.ZipFile(test_pack) as pack:
+            expected=set(manifest['scenarios'])|{'manifest.json','README.txt'}
+            if len(pack.namelist())!=len(expected) or set(pack.namelist())!=expected:
+                raise ValueError('The public test pack has unexpected members.')
+            for name in (*manifest['scenarios'], 'manifest.json'):
+                if pack.read(name)!=(root/'samples'/name).read_bytes():
+                    raise ValueError('The public test pack differs from the synthetic source: '+name)
+            if any(re.search(pattern,pack.read('README.txt')) for pattern in SECRET_PATTERNS):
+                raise ValueError('Potential credential pattern in the public test-pack instructions.')
 
 
 def create_archive(root,output,check_samples=True):

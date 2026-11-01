@@ -1,69 +1,135 @@
 1
-00:00:01,000 --> 00:00:13,000
-CausalPacket: Fault or Foe?
-Investigate network faults and suspicious activity using packet evidence.
+00:00:00,696 --> 00:00:05,364
+Hi, I’m Arpit Kumar Singh, and this is CausalPacket, built for the IIITDM Kancheepuram Cybersecurity
 
 2
-00:00:14,000 --> 00:00:24,000
-Synthetic service failure: 12 explicitly refused connection attempts.
-The capture supports a service problem; these retries do not prove an attack.
+00:00:05,364 --> 00:00:10,032
+Hackathon. Our question is simple: when a network breaks, is it a fault, or something
 
 3
-00:00:25,000 --> 00:00:33,000
-Inspect exact frames, competing explanations and practical next checks.
-Recorded facts are separated from suspected causes.
+00:00:10,032 --> 00:00:14,699
+suspicious?
 
 4
-00:00:34,000 --> 00:00:44,000
-A scan pattern and an independent service fault form two investigations.
-Grouping findings does not hide the unrelated outage.
+00:00:14,701 --> 00:00:20,701
+Small offices and student labs often have no network specialist. A packet capture contains the
 
 5
-00:00:45,000 --> 00:00:54,000
-The operator declares an authorized scanner in the Alibi Test.
-Its interpretation changes; the independent service fault remains.
+00:00:20,701 --> 00:00:26,701
+clues, but reading it takes expertise. And a service outage can look surprisingly similar to
 
 6
-00:00:55,000 --> 00:01:04,000
-Gateway investigation: ARP identity change, DNS errors and TCP refusals.
-Empty policy leaves the assessment unresolved; association is not causation.
+00:00:26,701 --> 00:00:32,701
+an attack. We turn that capture into an understandable investigation.
 
 7
-00:01:05,000 --> 00:01:13,000
-Evidence includes frame numbers and retained protocol headers.
-Raw application payloads are omitted; IP/MAC metadata is still retained.
+00:00:32,702 --> 00:00:38,703
+We built our own stateful TCP, DNS, ARP and scan detectors. Scapy decodes packets; our
 
 8
-00:01:14,000 --> 00:01:34,000
-Gateway policy and device approvals are supplied explicitly in the Alibi Test.
-Approvals change interpretation while the recorded packet facts stay fixed.
+00:00:38,703 --> 00:00:44,704
+Python code tracks conversations, groups related observations, and compares explanations. The Next.js interface shows what
 
 9
-00:01:35,000 --> 00:01:44,000
-The approved gateway interpretation remains unresolved, with service symptoms.
-Markdown and JSON exports preserve evidence, context and remaining problems.
+00:00:44,704 --> 00:00:50,705
+was observed, what remains uncertain, and what to check next.
 
 10
-00:01:45,000 --> 00:01:56,000
-Damaged input produces partial analysis of the valid prefix.
-Coverage limits are visible instead of a false success claim.
+00:00:50,706 --> 00:00:57,457
+This synthetic capture contains twelve refused connection attempts. The report suggests checking the service and
 
 11
-00:01:57,000 --> 00:02:06,500
-Healthy synthetic exchanges produce no findings in the supported checks.
-CausalPacket runs locally; an empty finding list does not certify safety.
+00:00:57,457 --> 00:01:04,208
+its access policy. Opening a supporting frame shows the actual protocol headers behind the finding.
 
 12
-00:02:07,000 --> 00:02:20,500
-Recorded synthetic experiment results: the same 20 probes, with fewer replies.
-When too few outcomes are known, the assessment becomes unresolved.
+00:01:04,208 --> 00:01:10,958
+The detailed explanation compares these failures with an earlier completed exchange. This supports investigating a
 
 13
-00:02:21,000 --> 00:02:36,500
-Thirty controlled variants check healthy services, independent faults and gateway links.
-These are measured sensitivity controls, not production accuracy claims.
+00:01:10,958 --> 00:01:17,709
+service fault; repeated failure alone does not prove an attack.
 
 14
-00:02:37,000 --> 00:02:42,500
-Follow the evidence. Compare explanations.
-Run the included synthetic captures locally with the documented setup.
+00:01:17,718 --> 00:01:25,053
+This next capture contains two problems: possible scanning across many ports, and a separate unavailable
+
+15
+00:01:25,053 --> 00:01:32,388
+service. CausalPacket keeps them as independent investigations. Authorizing a known scanner changes its interpretation, while
+
+16
+00:01:32,388 --> 00:01:39,723
+the service failure remains. Grouping findings should never hide an unrelated problem.
+
+17
+00:01:39,723 --> 00:01:45,974
+Now, two MAC addresses claim the same IP, alongside DNS errors and TCP refusals. The
+
+18
+00:01:45,974 --> 00:01:52,225
+evidence board links observations only when the configured rules find the required packet relationships. Close
+
+19
+00:01:52,225 --> 00:01:58,476
+timing by itself is not enough. With no gateway inventory supplied, the assessment stays unresolved.
+
+20
+00:01:58,476 --> 00:02:04,726
+We do not claim that these links prove causation.
+
+21
+00:02:04,728 --> 00:02:14,729
+Here’s the Alibi Test. Applying the sample’s declared gateway inventory raises suspicion about the second
+
+22
+00:02:14,729 --> 00:02:24,729
+MAC. After verifying it as an approved backup router, I approve it. The assessment returns
+
+23
+00:02:24,729 --> 00:02:34,730
+to unresolved. The original observations, frame references and links remain unchanged. The DNS and TCP
+
+24
+00:02:34,730 --> 00:02:44,730
+failures still need investigation. Trusted context changes the interpretation, while the packet facts stay fixed.
+
+25
+00:02:44,732 --> 00:02:51,233
+We also test how the diagnosis reacts when evidence disappears. This lab actually reanalyzes modified
+
+26
+00:02:51,233 --> 00:02:57,734
+synthetic captures. Compare twenty observed replies with no replies: reduced visibility should weaken the conclusion,
+
+27
+00:02:57,734 --> 00:03:04,235
+rather than produce a confident attack label. These are controlled sensitivity experiments, not a claim
+
+28
+00:03:04,235 --> 00:03:10,736
+of production accuracy. The active investigation stays separate.
+
+29
+00:03:10,737 --> 00:03:16,739
+A damaged capture produces partial coverage and a clear warning. Reports include the supporting frames,
+
+30
+00:03:16,739 --> 00:03:22,741
+possible causes, and next checks, while omitting raw application payloads. Parsing runs with bounded file,
+
+31
+00:03:22,741 --> 00:03:28,743
+packet, time and memory limits. These limits are documented, along with unsupported checks.
+
+32
+00:03:28,744 --> 00:03:35,283
+The frontend is deployed on Vercel, with FastAPI on Render. Judges can also run everything
+
+33
+00:03:35,283 --> 00:03:41,821
+locally and reproduce the included samples and tests. CausalPacket helps users move from unusual packets
+
+34
+00:03:41,821 --> 00:03:48,360
+to evidence they can investigate. Thank you.

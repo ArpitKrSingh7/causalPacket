@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Upload, FileUp, AlertCircle, Loader2, ArrowUpRight, ChevronDown, ShieldCheck } from "lucide-react";
+import { Upload, FileUp, AlertCircle, Loader2, ArrowUpRight, ChevronDown, ShieldCheck, Download } from "lucide-react";
 import type { SampleInfo } from "@/lib/types";
 
 interface UploadAreaProps {
@@ -149,6 +149,10 @@ export function UploadArea({
             </div>
             {featured.length > 0 && samples.length > featured.length && <button type="button" onClick={() => setShowAllSamples(!showAllSamples)} aria-expanded={showAllSamples} className="flex items-center gap-2 mt-3 text-[11px] text-slate-500 hover:text-ink py-1">{showAllSamples ? "Show featured captures" : `Explore all ${samples.length} captures`}<ChevronDown className={`w-3.5 h-3.5 transition-transform ${showAllSamples ? "rotate-180" : ""}`} /></button>}
           </>}
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3 mt-3">
+            <a href="/samples/causalpacket-test-captures.zip" download className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-cobalt hover:underline underline-offset-4"><Download className="w-3.5 h-3.5" />Download test captures (.zip)</a>
+            <span className="text-[10px] text-slate-500">Extract, then upload one .pcap</span>
+          </div>
         </div>
       </div>
     </section>

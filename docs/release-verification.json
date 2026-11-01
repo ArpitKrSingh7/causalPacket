@@ -25,10 +25,13 @@
   },
   "live_browser": "Not verified for the new layout: this execution environment denies local HTTP binding and Chromium launch.",
   "video": {
-    "duration_seconds": 162.96,
-    "bytes": 5648435,
-    "sha256": "ebb8325272bd8cbf0313113f24438a2aa6019b0c153aaf624260911f10e05629",
-    "method": "Original recorded UI footage, corrected captions, then clearly labeled slides from measured synthetic worker results. No new live-browser recording is claimed."
+    "duration_seconds": 228.36,
+    "bytes": 7586017,
+    "sha256": "a0d3df04b5a1aeeba5a0e28c63725e7e765c1a49e1457935d1a4a383329bb3c4",
+    "audio": "silent; narration-ready",
+    "method": "Actual redesigned UI recorded outside the restricted tool runtime, using real local API responses and synthetic captures; explicit deployment end card. Recording status and server log reviewed, representative frames visually checked.",
+    "timings": "docs/demo-timings.json",
+    "captions": "docs/demo.srt"
   },
   "hosting_configuration": {
     "backend_tests_passed": 156,

@@ -76,6 +76,7 @@ export default function InvestigationWorkspace() {
   // Cancellation and Generation Tracking
   const activeAbortControllerRef = useRef<AbortController | null>(null);
   const requestIdRef = useRef<number>(0);
+  const wakeupAttemptsRef = useRef(0);
 
   const abortPendingRequests = useCallback(() => {
     requestIdRef.current += 1;
@@ -128,6 +129,18 @@ export default function InvestigationWorkspace() {
       }
     };
   }, [checkHealth, loadSamples]);
+
+  // A sleeping demo host can reject its first request. Retry a few times while
+  // preserving the current report and stop as soon as its engine is available.
+  useEffect(() => {
+    if (!api.API_IS_REMOTE || healthLoading || healthData?.engine_ready || wakeupAttemptsRef.current >= 3) return;
+    const timer = setTimeout(() => {
+      wakeupAttemptsRef.current += 1;
+      void checkHealth();
+      void loadSamples();
+    }, 15000);
+    return () => clearTimeout(timer);
+  }, [healthLoading, healthData?.engine_ready, checkHealth, loadSamples]);
 
   // Handle switching preview fixtures
   const handleSelectFixture = (key: string) => {
@@ -460,6 +473,11 @@ export default function InvestigationWorkspace() {
           isEngineReady={healthData?.engine_ready}
           isLiveMode={isLiveMode}
         />
+
+        {api.API_IS_REMOTE && !healthData?.engine_ready && <section role="status" className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+          <div className="max-w-3xl"><p className="text-xs font-semibold text-amber-900">First visit? The demo API may be waking up.</p><p className="text-[11px] leading-6 text-amber-900/90">Render pauses the demo after inactivity. Please allow about a minute and keep this tab open. We retry the connection automatically; choose a sample or upload when Engine online appears. You can download the test captures while you wait.</p></div>
+          <button type="button" disabled={healthLoading} onClick={() => { void checkHealth(); void loadSamples(); }} className="button-secondary disabled:opacity-50">{healthLoading ? "Connecting…" : "Retry connection"}</button>
+        </section>}
 
         {!report && <Welcome />}
         {report && <CaptureOverview report={report} expanded={ingestExpanded} onChange={() => setIngestExpanded(!ingestExpanded)} />}

@@ -13,13 +13,15 @@ the organizer form. This file records actual state; it is not a submission recei
 - Nine deterministic sample captures and thirty controlled experimental variants.
 - Bounded input/worker/state budgets, metadata handling and cleanup.
 - Concise README, dependency disclosure, local launcher and verification scripts.
-- **Included demo:** `docs/demo.mp4`, 162.96 seconds (2:43), H.264, 5,648,435
-  bytes. SHA256: `ebb8325272bd8cbf0313113f24438a2aa6019b0c153aaf624260911f10e05629`.
-  Genuine recorded UI footage is followed by clearly labeled slides from measured
-  synthetic worker results. The footage shows the earlier interface layout;
-  the added slides are not represented as a fresh browser recording. Captions
-  are supplied in `docs/demo.srt`. Full decode and representative frames checked.
-- New-interface voice-over script (about 3:45) and optional `./run.sh record-demo` recorder are prepared. Fresh recording is blocked here by Chromium permissions; no new video artifact is claimed.
+- **Included demo:** `docs/demo.mp4`, 228.36 seconds (3:48), H.264, 7,586,017 bytes. SHA256: `a0d3df04b5a1aeeba5a0e28c63725e7e765c1a49e1457935d1a4a383329bb3c4`.
+  Actual redesigned interface with real local API responses and synthetic captures;
+  deployment URLs appear on an explicit end card. The silent recording is complete.
+  The team adds voice-over using `docs/demo-script.md`; captions and measured scene
+  times are in `docs/demo.srt` and `docs/demo-timings.json`.
+- Website test-pack download includes all nine original synthetic captures and
+  expected outcomes. The README explains one-click samples and upload testing.
+- Hosted first-visit notice explains Render wake-up and provides bounded automatic
+  retries plus a manual connection retry.
 - Old work orders/planning notes are archived under ignored local artifacts.
   The assistant handles the remaining work directly; no external-agent handoff.
 

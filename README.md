@@ -11,14 +11,35 @@ facts, competing causes, exact packet references and practical next checks.
 
 Built for the **IIITDM Kancheepuram Cybersecurity Hackathon · Network Track · 2026**.
 
-**[▶ Watch the 2:43 captioned demo](docs/demo.mp4)** ·
+**[▶ Watch the 3:48 demo](docs/demo.mp4)** ·
 [Live app](https://causal-packet.vercel.app/) ·
 [Voice-over script & new-UI recorder](docs/demo-script.md) ·
 [Example investigation](docs/example-investigation.md) ·
 [Evaluation](docs/evaluation.md)
 
-The video combines a recorded UI walkthrough with labeled, measured synthetic
-experiment results. The walkthrough shows the earlier interface layout.
+The recording shows the redesigned interface analyzing synthetic captures through
+the real local API. Its final card links to the deployed frontend and API.
+
+## Try it on the website · no installation
+
+Open **[causal-packet.vercel.app](https://causal-packet.vercel.app/)** and keep
+**Live API** selected.
+
+> **First visit: please allow about a minute.** Render pauses the free API after
+> inactivity. Keep the page open while it wakes; the website retries automatically.
+> Wait for **Engine online**, or use **Retry connection**. A brief start-up delay
+> does not mean the project is broken. The test-pack download works while you wait.
+
+1. Click **Service failure** under **Sample Captures**: expect 12 refused connections and a likely fault. Click a frame number to inspect its evidence.
+2. Click **Change capture → Gateway identity investigation**. Open **Test another explanation**, apply **sample inventory**, then approve the second gateway MAC. Watch **unresolved → suspected attack → unresolved**, with service problems retained.
+3. Use **Explore all captures** for the healthy, scan, DNS and damaged-input controls. Open the evidence lab to run its separate synthetic experiment; export reports as Markdown or JSON.
+
+**Test upload yourself:** [download the nine-capture test pack](https://causal-packet.vercel.app/samples/causalpacket-test-captures.zip),
+extract it, choose **Select capture file**, and upload `02_service_failure.pcap`.
+The ZIP includes an explanation of every expected result. **Upload a `.pcap`, not
+the ZIP.** The same download is available beside the website's sample cards.
+All test files are generated offline with fictional addresses. Hosted uploads
+reach the API server; keep sensitive captures local.
 
 ## Our contribution
 

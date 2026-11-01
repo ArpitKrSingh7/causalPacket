@@ -23,8 +23,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 9650,
-      "sha256": "11ad33c440274274d226eeb60e6ba3bb8521ab15bd7d25b2052853b7bbebf627"
+      "bytes": 11233,
+      "sha256": "9ce128068f27924dfd795d6e2048cec0205dbb142a29a65e2d8966a2671281c8"
     },
     {
       "path": "backend/__init__.py",
@@ -173,8 +173,13 @@
     },
     {
       "path": "docs/demo-script.md",
-      "bytes": 7036,
-      "sha256": "d7da12d4c1e2ebb426e6336f114d5028585a82ea7112d57ab402911341195e93"
+      "bytes": 6797,
+      "sha256": "020b641ced0fbd5c624df227ff493d32901c0611aa968f2f36eba97105191212"
+    },
+    {
+      "path": "docs/demo-timings.json",
+      "bytes": 6420,
+      "sha256": "2f7da488a806871d398d28987d2134080403530d80f19c27131ca721052c0b87"
     },
     {
       "path": "docs/demo-verification.json",
@@ -183,13 +188,13 @@
     },
     {
       "path": "docs/demo.mp4",
-      "bytes": 5648435,
-      "sha256": "ebb8325272bd8cbf0313113f24438a2aa6019b0c153aaf624260911f10e05629"
+      "bytes": 7586017,
+      "sha256": "a0d3df04b5a1aeeba5a0e28c63725e7e765c1a49e1457935d1a4a383329bb3c4"
     },
     {
       "path": "docs/demo.srt",
-      "bytes": 2387,
-      "sha256": "dda45a1374ee9e7db4dea07c2808e3df7f70ff628d581aaeb3ede51678d5f35b"
+      "bytes": 4285,
+      "sha256": "55cc293576f165f3a40be4bbfa633076f416e96dfdc56c83ead03ddfc20c2dea"
     },
     {
       "path": "docs/dependencies.md",
@@ -233,8 +238,8 @@
     },
     {
       "path": "docs/hackathon-review.md",
-      "bytes": 8407,
-      "sha256": "de42495021d8fe833cf992dc4f99efe8529804607f255e433ddc0d7a9323ebe1"
+      "bytes": 8293,
+      "sha256": "6ffc9ffaae08c6b737a4e98ee40ab3cc7f0e9b9f50dfeefd63d5a1df4bbb0b77"
     },
     {
       "path": "docs/novelty.md",
@@ -243,8 +248,8 @@
     },
     {
       "path": "docs/release-verification.json",
-      "bytes": 3741,
-      "sha256": "1b480f48359dbc2ec06d39c7a611efccbda014c9b5c849fa45c77559e718c578"
+      "bytes": 3929,
+      "sha256": "8c59d553f05c1c936dfe547e85b580ae493d8e70bbcfffc5ed5cd2c11dc18c51"
     },
     {
       "path": "docs/report.schema.json",
@@ -258,8 +263,8 @@
     },
     {
       "path": "docs/submission-status.md",
-      "bytes": 4205,
-      "sha256": "0797f5c779fe27715d6d87b85d5710af0dbdc558754da36bd7df6420f98114af"
+      "bytes": 4284,
+      "sha256": "4ed2f470b7ea2ccc23b7c5ce839b815e7178eee077d0fffe9cbc7d174083ecb1"
     },
     {
       "path": "docs/ui-verification.json",
@@ -268,8 +273,8 @@
     },
     {
       "path": "docs/video-voiceover.json",
-      "bytes": 5778,
-      "sha256": "7ab2c8514b1e08e2b72da9666bfe8c9832c302cc276269d5184398198073162d"
+      "bytes": 5741,
+      "sha256": "21f20957f63b776a6d4aa6aaa83b41b263b96c5e94f36b3b32fda6f7befc82e9"
     },
     {
       "path": "docs/workload-evaluation.json",
@@ -333,8 +338,8 @@
     },
     {
       "path": "frontend/app/page.tsx",
-      "bytes": 20204,
-      "sha256": "6689fcd7045b5c8e30bb79f570c674b7b41b52b45b32659de609be9c8209563f"
+      "bytes": 21685,
+      "sha256": "35c2f87d82e85cf87acce36a2c673dd65517394cb832e64fcad965ee491b41a8"
     },
     {
       "path": "frontend/components/AlibiTest.tsx",
@@ -378,8 +383,8 @@
     },
     {
       "path": "frontend/components/Header.tsx",
-      "bytes": 3054,
-      "sha256": "fb9e8edefca797fee81435a8effd02e02542c624468646e99b32d4253f875ae9"
+      "bytes": 3099,
+      "sha256": "f17accdf027f6683b2860afc33b0ce52ae51cacc157f12759f32bbc90a0c87e2"
     },
     {
       "path": "frontend/components/IncidentDetail.tsx",
@@ -413,8 +418,8 @@
     },
     {
       "path": "frontend/components/UploadArea.tsx",
-      "bytes": 9855,
-      "sha256": "549cd961aac69791adc43cde3dd7918f420a07dde7a09001fcd848b8334b4882"
+      "bytes": 10345,
+      "sha256": "a4ca7ce77bf319ee589ea3076d3f7e08235f319f571b593344eabe78de749f64"
     },
     {
       "path": "frontend/components/Welcome.tsx",
@@ -500,6 +505,11 @@
       "path": "frontend/public/brand/packet-mark.webp",
       "bytes": 13830,
       "sha256": "9f874c80bfe4d0fe359532fbd594cc18deba6ced82c1806a846d24239f1d97f8"
+    },
+    {
+      "path": "frontend/public/samples/causalpacket-test-captures.zip",
+      "bytes": 7522,
+      "sha256": "efb0d3f9917f3f7705bcd84c9ee8b60d84b35d2d3870e8fcb36334386a1172c5"
     },
     {
       "path": "frontend/tailwind.config.ts",
@@ -638,8 +648,8 @@
     },
     {
       "path": "scripts/package_submission.py",
-      "bytes": 5280,
-      "sha256": "76e8a58eec628473e43064da6c83d1559776b9cd3e683913aa5bb14de38ef516"
+      "bytes": 6132,
+      "sha256": "dc4f5d6d1abf0f77a995e4dda15c34171f12efab4140a32a31831f94b3c688f9"
     },
     {
       "path": "scripts/prepare_ui_checks.py",

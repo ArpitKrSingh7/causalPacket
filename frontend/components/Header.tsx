@@ -26,7 +26,7 @@ export function Header({ isLiveMode, onToggleMode, healthData, healthLoading, he
           <div className="flex items-center gap-2 text-[11px] text-slate-500" title={healthError || (ready ? "Backend connected and analysis engine ready" : "The backend may need a moment to start")}>
             <span className={`h-1.5 w-1.5 rounded-full ${healthLoading ? "bg-slate-400" : ready ? "bg-emerald-600" : "bg-amber-600"}`} />
             <span>{healthLoading ? "Connecting…" : ready ? "Engine online" : online ? "Engine unavailable" : "API offline"}</span>
-            <button type="button" onClick={onRefreshHealth} aria-label="Refresh health" className="p-1 hover:text-ink"><RefreshCw className={`h-3 w-3 ${healthLoading ? "animate-spin" : ""}`} /></button>
+            <button type="button" onClick={onRefreshHealth} disabled={healthLoading} aria-label="Refresh health" className="p-1 hover:text-ink disabled:opacity-50"><RefreshCw className={`h-3 w-3 ${healthLoading ? "animate-spin" : ""}`} /></button>
           </div>
           <div className="flex items-center rounded-lg border border-line p-1 bg-white" aria-label="Workspace mode">
             <button type="button" onClick={() => onToggleMode(true)} aria-pressed={isLiveMode} className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-semibold transition-colors ${isLiveMode ? "bg-ink text-white" : "text-slate-500 hover:bg-muted"}`}><Radio className="h-3 w-3" />Live API</button>
