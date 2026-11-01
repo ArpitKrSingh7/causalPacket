@@ -10,7 +10,7 @@ import tarfile
 from tempfile import TemporaryDirectory
 
 ROOT=Path(__file__).resolve().parents[1]
-TOP_FILES={'.gitignore','.python-version','README.md','PLAN.md','run.sh','pyproject.toml','requirements.txt','requirements-dev.txt'}
+TOP_FILES={'.gitignore','.python-version','.env.example','README.md','PLAN.md','run.sh','pyproject.toml','requirements.txt','requirements-dev.txt','render.yaml'}
 SOURCE_DIRS={'backend','scripts','tests','docs','samples','frontend'}
 SKIP_DIRS={'node_modules','.next','out','__pycache__','.pytest_cache','.ruff_cache','coverage','playwright-report','test-results'}
 SECRET_PATTERNS=(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',rb'\bAKIA[A-Z0-9]{16}\b',rb'\bghp_[A-Za-z0-9]{36}\b',rb'\bsk-proj-[A-Za-z0-9_-]{60,}\b')

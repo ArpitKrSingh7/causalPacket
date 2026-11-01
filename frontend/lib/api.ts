@@ -11,6 +11,14 @@ import type { ExperimentReport } from "./lab";
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
 
+export const API_IS_REMOTE = (() => {
+  try {
+    return !["localhost", "127.0.0.1", "::1", "[::1]"].includes(new URL(API_BASE_URL).hostname);
+  } catch {
+    return true;
+  }
+})();
+
 export class ApiError extends Error {
   code: string;
   status: number;

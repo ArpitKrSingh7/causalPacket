@@ -11,6 +11,7 @@ interface UploadAreaProps {
   isAnalyzing: boolean;
   currentSourceName?: string;
   isEngineReady?: boolean;
+  isHostedApi?: boolean;
 }
 
 const MAX_FILE_SIZE_BYTES = 25 * 1024 * 1024; // 25 MiB
@@ -23,6 +24,7 @@ export function UploadArea({
   isAnalyzing,
   currentSourceName,
   isEngineReady = true,
+  isHostedApi = false,
 }: UploadAreaProps) {
   const [dragActive, setDragActive] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -106,6 +108,7 @@ export function UploadArea({
           <p className="text-xs text-slate-400 mt-0.5">
             Upload your own .pcap / .pcapng file (up to 25 MiB), or analyze a synthetic scenario capture.
           </p>
+          {isHostedApi && <p className="text-xs text-amber-200 mt-2">Hosted analysis uploads files to the API server. Use authorized captures or the included synthetic samples; keep sensitive captures local.</p>}
         </div>
 
         {currentSourceName && (

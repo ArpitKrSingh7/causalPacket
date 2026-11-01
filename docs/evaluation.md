@@ -10,7 +10,7 @@ See [release-verification.json](release-verification.json) for scope and limits.
 ## Verification actually run
 
 - Hardened clean environment: Python 3.12.16, Linux x86_64, pytest 9.2.0.
-- `.venv-hardened/bin/python -m pytest -q`: **136 passed in 13.77 seconds** on the final cleanup recheck.
+- `.venv-hardened/bin/python -m pytest -q`: **156 passed in 14.41 seconds** after hosting configuration was added.
 - `.venv-hardened/bin/python -m scripts.check_contract`: all three fictional UI fixtures,
   cross-reference integrity, before/after invariants, schema and context checks pass.
 - CLI and HTTPX ASGI upload/sample flows use real generated capture bytes and the

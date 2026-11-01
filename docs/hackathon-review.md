@@ -6,7 +6,7 @@ prediction of the final ranking.
 
 ## Verification performed in this review
 
-- Python 3.12.16: **136 backend tests passed** after the evidence-lab addition.
+- Python 3.12.16: **156 backend tests passed** including evidence-lab and hosting controls.
 - All three fictional fixture/schema/reference checks passed.
 - All nine real synthetic-capture scenarios passed through ASGI and isolated
   workers, including context invariants, exports and malformed-input recovery.
@@ -80,8 +80,11 @@ required. This is an implementation and evidence review, not a score guarantee.
 
 ## Hosting boundary
 
-The current backend accepts localhost origins in both CORS and body middleware.
+The default backend accepts localhost origins in both CORS and body middleware;
+`CAUSALPACKET_ALLOWED_ORIGINS` can configure exact deployed frontend origins in both.
 It also uses one process-local report store. A Vercel frontend alone is not the
 full application. Preserve local setup and video as the submission baseline;
 do not expose this local-development upload configuration unchanged as a public
-multi-user capture service. No public deployment or form submission is claimed.
+multi-user capture service. Render/Vercel setup is documented in
+[deployment.md](deployment.md). No successful public deployment or form submission
+is claimed until its actual hosted behavior is verified.

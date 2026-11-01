@@ -473,6 +473,7 @@ export default function InvestigationWorkspace() {
           isAnalyzing={isAnalyzing}
           currentSourceName={report?.source_name}
           isEngineReady={healthData?.engine_ready}
+          isHostedApi={api.API_IS_REMOTE}
         />
         </div>}
 

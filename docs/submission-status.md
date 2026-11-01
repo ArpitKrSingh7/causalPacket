@@ -24,7 +24,7 @@ the organizer form. This file records actual state; it is not a submission recei
 
 ## Verification
 
-- **136 backend tests pass**, including original-capture preservation, lab bounds,
+- **156 backend tests pass**, including original-capture preservation, lab bounds,
   worker cancellation, visibility controls and malformed-input behavior.
 - Three fixture/reference/schema checks and all nine real synthetic demo flows pass.
 - Strict TypeScript, including unused import/parameter checks, passes.
@@ -36,6 +36,10 @@ the organizer form. This file records actual state; it is not a submission recei
   is **not claimed**: the current environment denies local HTTP binding and
   Chromium startup. No alternate connected browser session is available.
 - No test/development server is intentionally left running.
+- Render/Vercel configuration is prepared. Exact configured origins are shared
+  by CORS and body validation; wildcard/path/credential-bearing origins are
+  rejected. The lab's overall timeout remains bounded at 60 seconds maximum.
+  Hosted URLs and successful cloud-runtime checks are not yet claimed.
 - A clean extraction of the release archive also passed all 136 backend tests,
   contracts, nine demo scenarios, production build and nine component interaction
   scenarios, reusing the existing pinned dependencies. See

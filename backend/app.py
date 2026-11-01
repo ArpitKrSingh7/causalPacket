@@ -9,7 +9,6 @@ from typing import Annotated, Literal
 
 from fastapi import FastAPI, Query, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from pydantic import ValidationError
 from starlette.datastructures import UploadFile
@@ -19,7 +18,8 @@ from backend.core.analyzer import reinterpret_report
 from backend.core.config import DEFAULT_CONFIG
 from backend.core.errors import AnalysisError
 from backend.core.experiments import ExperimentReport, ExperimentRequest, run_experiment
-from backend.core.ingestion import BoundedBodyMiddleware
+from backend.core.ingestion import install_web_middleware
+from backend.core.web_config import allowed_origins, lab_timeout_seconds
 from backend.core.models import AnalysisReport, ErrorDetail, ErrorResponse, EvidencePage, HealthResponse, NetworkContext, SamplesResponse
 from backend.core.sessions import ReportStore
 from backend.core.supervisor import run_analysis
@@ -48,10 +48,8 @@ async def lifespan(_app):
 
 app = FastAPI(title="CausalPacket", version="0.4.0", lifespan=lifespan,
     description="Evidence-first TCP, scan, ARP and UDP DNS investigation with context re-evaluation.")
-app.add_middleware(BoundedBodyMiddleware)
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
-    allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"],
-    expose_headers=['Content-Disposition'])
+install_web_middleware(app, allowed_origins())
+LAB_TIMEOUT_SECONDS = lab_timeout_seconds()
 
 
 def error_response(status, code, message):
@@ -123,7 +121,7 @@ async def evidence_experiment(settings: ExperimentRequest):
         raise AnalysisError('analysis_busy', 'An analysis is already running. Try again shortly.', 429)
     async with analysis_gate:
         try:
-            async with asyncio.timeout(20):
+            async with asyncio.timeout(LAB_TIMEOUT_SECONDS):
                 result = await run_experiment(settings.seed)
         except TimeoutError:
             raise AnalysisError('analysis_timeout', 'The synthetic experiment exceeded its time budget.', 504) from None

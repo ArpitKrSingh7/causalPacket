@@ -11,9 +11,11 @@ hackathon. Official submission deadline: **1 November 2026, 21:00 IST**.
 - Gateway/scanner Alibi context changes with retained evidence and residual faults.
 - Compact investigation brief, clickable evidence map, timeline and report export.
 - Interactive synthetic evidence lab, with explicit source/derived frame mapping.
-- Nine reproducible sample captures, 136 backend tests, and nine frontend
+- Nine reproducible sample captures, 156 backend tests, and nine frontend
   component interaction scenarios. Thirty controlled experimental variants.
 - Captioned demonstration and a concise README with setup/dependency disclosure.
+- Render/Vercel hosting configuration with a shared explicit frontend-origin
+  allowlist, a bounded slower-host lab budget, and remote-upload disclosure.
 
 ## Final verification
 

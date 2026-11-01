@@ -3,14 +3,17 @@ import asyncio
 import json
 from tempfile import SpooledTemporaryFile
 from time import monotonic
+from starlette.middleware.cors import CORSMiddleware
 
 from backend.core.config import DEFAULT_CONFIG
+from backend.core.web_config import LOCAL_ORIGINS
 
 
 class BoundedBodyMiddleware:
-    def __init__(self, app):
+    def __init__(self, app, allowed_origins=LOCAL_ORIGINS):
         self.app = app
         self.upload_gate = asyncio.Lock()
+        self.allowed_origins = frozenset(value.encode('ascii') for value in allowed_origins)
 
     async def reject(self, send, status, code, message):
         data = json.dumps({"error": {"code": code, "message": message}}).encode()
@@ -21,8 +24,8 @@ class BoundedBodyMiddleware:
         if scope["type"] != "http" or scope["method"] != "POST":
             return await self.app(scope, receive, send)
         origin = dict(scope["headers"]).get(b"origin")
-        if origin is not None and origin not in (b"http://localhost:3000", b"http://127.0.0.1:3000"):
-            return await self.reject(send, 403, "origin_not_allowed", "Use the local CausalPacket interface for analysis requests.")
+        if origin is not None and origin not in self.allowed_origins:
+            return await self.reject(send, 403, "origin_not_allowed", "Use an approved CausalPacket interface for analysis requests.")
         upload = scope["path"] == "/api/analyze"
         maximum = DEFAULT_CONFIG.max_file_bytes + 16 * 1024 if upload else 16 * 1024
         if upload and self.upload_gate.locked():
@@ -72,3 +75,11 @@ class BoundedBodyMiddleware:
         finally:
             if upload:
                 self.upload_gate.release()
+
+
+def install_web_middleware(app, origins):
+    """Share one explicit allowlist across CORS and POST validation."""
+    app.add_middleware(BoundedBodyMiddleware, allowed_origins=origins)
+    app.add_middleware(CORSMiddleware, allow_origins=list(origins),
+        allow_credentials=False, allow_methods=['GET', 'POST', 'DELETE'],
+        allow_headers=['Content-Type'], expose_headers=['Content-Disposition'])

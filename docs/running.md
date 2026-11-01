@@ -49,7 +49,8 @@ The default frontend uses `http://127.0.0.1:8000`. Its optional
 [the frontend environment example](../frontend/.env.local.example).
 The backend allows only localhost/127.0.0.1 origins on port 3000 in its default
 configuration, in both CORS and request validation. Changing the frontend URL
-alone does not configure public hosting.
+alone does not configure public hosting. Set `CAUSALPACKET_ALLOWED_ORIGINS` on
+the backend to configure both layers; see [deployment.md](deployment.md).
 
 Stop both terminals when finished. The API reload watcher is restricted to
 `backend/`. Keep one backend process: metadata sessions live in process memory.

@@ -74,7 +74,8 @@ directly and export lab results separately. Do not replace the main report with 
 lab case or label these modified captures as original user evidence.
 
 The route shares the analysis gate, runs one worker at a time, has a 20-second
-overall deadline and a bounded output, and uses temporary files removed on exit.
+default overall deadline (configurable up to 60 seconds for a slower host) and a
+bounded output, and uses temporary files removed on exit.
 It does not evict original metadata sessions. The existing local-origin and body
 restrictions remain. The endpoint/CLI and dedicated interactive frontend are
 implemented. Nine socket-free component interaction scenarios passed using actual

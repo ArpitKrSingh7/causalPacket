@@ -38,6 +38,12 @@ Frontend uses `NEXT_PUBLIC_API_BASE_URL` with this default. Never hardcode a LAN
 address. Development origins allowed: `http://localhost:3000` and
 `http://127.0.0.1:3000`. No cookies or authentication are required locally.
 
+For hosting, `CAUSALPACKET_ALLOWED_ORIGINS` supplies exact comma-separated
+frontend origins to both CORS and POST validation. The default remains local.
+The lab's overall budget defaults to 20 seconds and can be configured with
+`CAUSALPACKET_LAB_TIMEOUT_SECONDS` from 1 to 60. Individual worker limits remain
+unchanged. See [deployment.md](deployment.md).
+
 | Method / path | Request | Final success response | Current status |
 | --- | --- | --- | --- |
 | `GET /api/health` | None | `HealthResponse` | Implemented; `engine_ready: true` |

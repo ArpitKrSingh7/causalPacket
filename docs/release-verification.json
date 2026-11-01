@@ -29,5 +29,13 @@
     "bytes": 5648435,
     "sha256": "ebb8325272bd8cbf0313113f24438a2aa6019b0c153aaf624260911f10e05629",
     "method": "Original recorded UI footage, corrected captions, then clearly labeled slides from measured synthetic worker results. No new live-browser recording is claimed."
+  },
+  "hosting_configuration": {
+    "backend_tests_passed": 156,
+    "pytest_seconds": 14.41,
+    "configured_origin": "Exact shared origin allowlist tested across CORS and body middleware; invalid origins rejected.",
+    "lab_budget": "Default 20 seconds, configurable only from 1 to 60 seconds.",
+    "frontend": "Production compilation and existing nine component interactions passed; remote-upload notice added.",
+    "deployment": "Prepared only; actual cloud URLs and runtime behavior have not yet been verified."
   }
 }

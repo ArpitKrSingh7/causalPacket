@@ -29,6 +29,8 @@ needed. Setup downloads dependencies; analysis runs locally. **Ctrl+C stops both
 
 [CLI, separate terminals and troubleshooting →](docs/running.md)
 
+[Host the demo on Render + Vercel →](docs/deployment.md)
+
 ## Try the Alibi Test
 
 Choose **Gateway identity investigation**. Two MAC addresses claim one IP, with
@@ -85,7 +87,7 @@ association; they do not prove causation.
 
 ## Reproducible checks
 
-**136 backend tests passed · 9 synthetic demo scenarios passed · TypeScript and
+**156 backend tests passed · 9 synthetic demo scenarios passed · TypeScript and
 Next.js production build passed.** These controls do not establish production
 accuracy or a calibrated probability of attack.
 
