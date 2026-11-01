@@ -23,8 +23,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7055,
-      "sha256": "b7450b002d1470968d56521a6e530d574689d92f7b7bfc019126e3066d31cee6"
+      "bytes": 9650,
+      "sha256": "11ad33c440274274d226eeb60e6ba3bb8521ab15bd7d25b2052853b7bbebf627"
     },
     {
       "path": "backend/__init__.py",
@@ -218,8 +218,8 @@
     },
     {
       "path": "docs/evaluation.md",
-      "bytes": 14873,
-      "sha256": "8fe60affaf8bde576e3f1d9e7835d6275794f8ea605a392de3bc1bed6eb416e5"
+      "bytes": 14408,
+      "sha256": "4dc6472d5854eb0584514a6393718648084496d0afce23598d241ee4f1f8f184"
     },
     {
       "path": "docs/evidence-experiments.json",
@@ -233,13 +233,13 @@
     },
     {
       "path": "docs/hackathon-review.md",
-      "bytes": 8299,
-      "sha256": "effebcf89cfc4f71a343f2534ab922d13a809ad4d209ebba914fa40d343d0d0c"
+      "bytes": 8407,
+      "sha256": "de42495021d8fe833cf992dc4f99efe8529804607f255e433ddc0d7a9323ebe1"
     },
     {
       "path": "docs/novelty.md",
-      "bytes": 5146,
-      "sha256": "7ee883c75af44839f8b2936912cc17b8b64ad3d1b9d2827307d3e64983b77805"
+      "bytes": 7383,
+      "sha256": "c3d0b63dbca27ae1134e42f8b2cc18da55a63e06bfccc5d9bf51193a13a49fc7"
     },
     {
       "path": "docs/release-verification.json",

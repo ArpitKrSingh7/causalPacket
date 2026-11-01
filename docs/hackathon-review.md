@@ -41,7 +41,7 @@ prediction of the final ranking.
 | Input validation and secrets | Scoped checks pass | Typed models, bounded bodies, safe errors, metadata allowlist and packaging credential-pattern checks. This is not proof that every vulnerability or secret is absent. |
 | Safe testing | Inspected repository uses synthetic controls | No live capture/probing path found in the engine or sample generator. External team conduct cannot be verified from source alone. |
 | README/setup | Present and exercised | Linux/WSL, Python 3.12+, Node and pnpm prerequisites; launch/check instructions; earlier clean extracted-source tests reported by AGY. |
-| Public GitHub repository | Not verified / pending | The prepared local checkout has release commits but no configured remote at review time. Local commits are not publication. |
+| Public GitHub repository | Exists; latest source publication remains with the team | https://github.com/ArpitKrSingh7/causalPacket. The prepared checkout has the configured remote; the team pushes the latest release. |
 | Video 2–5 minutes | 2:43 duration passes; captions corrected | Genuine walkthrough plus labeled measured-result slides; included and linked from README. Anonymous public access depends on publication. No narration track exists. |
 | Built during event | Local commit dates within supplied window | Both inspected release commits are dated early 1 November IST. That alone cannot prove the entire development history or team eligibility. |
 | Team size / membership | Requires team confirmation | Source cannot verify the 1–3 member rule or membership in only one team. |
@@ -61,22 +61,20 @@ explicit uncertainty.
 | Technical implementation, 30% | Stateful matching, original correlation, bounded worker, reproducible controls | Present one real investigation clearly; avoid adding unverified detector families. |
 | Security, 20% | Bounded local ingestion, metadata handling, cleanup and no external inference service | Preserve the local privacy story. Public hosting requires explicit origin configuration and additional deployment review. |
 | Feasibility, 10% | Documented local launcher, pinned packages, included samples | Finish public repository verification. Live hosting is optional in the supplied rules. |
-| Video, 20% | Actual capture-driven 2:07 walkthrough | Correct scene captions now; after a UI change, record the new layout with time to read each Alibi transition. |
+| Video, 20% | Included 2:43 captioned demo with genuine earlier UI footage and measured-result slides | Record the redesigned interface with narration; let judges read each Alibi transition. |
 
-At 1280 by 900 in the inspected screenshot, upload/export/coverage panels consume
-most of the first screen. The diagnosis starts near the bottom and the Alibi
-controls require substantial scrolling. Improving this hierarchy is more useful
-than decorative animation: collapse ingestion after loading, show the selected
-case summary and next check immediately, and render existing observation/edge
-data as an accessible, clickable evidence map.
+The final interface addresses the earlier hierarchy problem: ingestion collapses
+after loading, the investigation brief and first next check appear prominently,
+and the dark evidence board renders actual observation/frame associations. The
+Alibi Test and synthetic evidence lab remain interactive and explicit about their
+limits. Nine component interaction checks and the production build pass. A fresh
+live-browser layout pass is not claimed because Chromium startup is blocked in
+this execution environment. The included video still shows the earlier interface;
+the new narration and recorder are in [demo-script.md](demo-script.md).
 
-The compact investigation brief, clickable packet-link map and interactive
-evidence lab are now implemented. Nine component interaction checks pass using
-actual worker responses as test transport data. The original screenshots/video
-describe the earlier layout; a fresh live-browser layout run is not claimed
-because this execution environment blocks local HTTP sockets and Chromium.
-The assistant owns the remaining work directly; no external-agent handoff is
-required. This is an implementation and evidence review, not a score guarantee.
+The strongest remaining presentation task is a clear narrated demonstration of
+fixed packet facts, changed trusted context and a residual fault that survives.
+A strong implementation cannot guarantee a ranking against unknown submissions.
 
 ## Hosting boundary
 
@@ -86,5 +84,6 @@ It also uses one process-local report store. A Vercel frontend alone is not the
 full application. Preserve local setup and video as the submission baseline;
 do not expose this local-development upload configuration unchanged as a public
 multi-user capture service. Render/Vercel setup is documented in
-[deployment.md](deployment.md). No successful public deployment or form submission
-is claimed until its actual hosted behavior is verified.
+[deployment.md](deployment.md). The public frontend/backend URLs are recorded in [submission-status.md](submission-status.md).
+The exact Vercel-origin CORS preflight returned HTTP 200; this is not a fresh
+browser verification of the redesigned interface or an organizer submission receipt.

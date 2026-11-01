@@ -4,9 +4,12 @@
 
 > **The network is broken. Is it a fault, suspicious activity, or too early to tell?**
 
-CausalPacket investigates packet captures and explains what happened, the possible
-causes, the exact supporting packets, and what to check next. Built for the
-**IIITDM Kancheepuram Cybersecurity Hackathon · Network Track · 2026**.
+Small offices and campus labs often have no network specialist. Outages and
+attacks can produce similar packet symptoms, leaving beginners unsure what to fix.
+**CausalPacket turns a capture into an understandable investigation:** observed
+facts, competing causes, exact packet references and practical next checks.
+
+Built for the **IIITDM Kancheepuram Cybersecurity Hackathon · Network Track · 2026**.
 
 **[▶ Watch the 2:43 captioned demo](docs/demo.mp4)** ·
 [Live app](https://causal-packet.vercel.app/) ·
@@ -16,6 +19,18 @@ causes, the exact supporting packets, and what to check next. Built for the
 
 The video combines a recorded UI walkthrough with labeled, measured synthetic
 experiment results. The walkthrough shows the earlier interface layout.
+
+## Our contribution
+
+| Distinctive workflow | Demonstration |
+| --- | --- |
+| **Alibi Test: challenge the interpretation** | Approve a verified backup gateway; suspicion changes while packet facts and unresolved service problems remain. |
+| **Evidence lab: challenge the evidence** | Reanalyze modified synthetic captures; missing replies can weaken a scan assessment. |
+| **Packet-backed cross-layer grouping** | Link ARP/DNS/TCP observations using actual next-hop MAC evidence; keep independent faults visible. |
+
+Our originality is this implemented combination for beginners. Detection,
+timelines and dependency graphs are established ideas; we make no first-ever
+claim. [Research context and measured experiments →](docs/novelty.md)
 
 ## Run it
 
@@ -81,6 +96,7 @@ flowchart LR
     C --> D[Observations and packet links]
     D --> E[Competing explanations]
     F[Alibi Test: operator context] --> E
+    H[Lab: separate synthetic variants] --> B
     E --> G[Frames, timeline and next steps]
 ```
 
@@ -88,6 +104,22 @@ flowchart LR
 our code implements tracking, detection, grouping and diagnosis. No Wireshark/
 tshark diagnosis output or external inference API is used. Packet links support
 association; they do not prove causation.
+
+<details>
+<summary><strong>Research foundations · three papers that informed the design</strong></summary>
+
+| Paper | Idea adapted in our implementation |
+| --- | --- |
+| **Chen et al., SIGCOMM 2016:** [The Good, the Bad, and the Differences: Better Network Diagnostics with Differential Provenance](https://haeberlen.cis.upenn.edu/papers/diffprov-sigcomm2016.pdf) | Compare failing behavior with a relevant successful example. We retain earlier successful exchanges as explicit comparators. |
+| **Bahl et al., SIGCOMM 2007 — Sherlock:** [Towards Highly Reliable Enterprise Network Services via Inference of Multi-level Dependencies](https://www.microsoft.com/en-us/research/publication/towards-highly-reliable-enterprise-network-services-via-inference-of-multi-level-dependencies/) | Consider relationships across layers. Our conservative rules group packet-linked observations into investigations. |
+| **Jung et al., IEEE Security & Privacy 2004 — TRW:** [Fast Portscan Detection Using Sequential Hypothesis Testing](https://people.csail.mit.edu/awberger/papers/fastPortscanDetectionUsingSequentialHypothesisTesting_JungPaxsonBergerBalakrishnan_2004.pdf) | Connection outcomes matter alongside probe diversity. Our scan heuristics require sufficient observed outcomes before raising suspicion. |
+
+These are design inspirations, not reproduced algorithms: we do not implement
+DiffProv's provenance reconstruction, Sherlock's probabilistic inference, or TRW's
+sequential hypothesis test. Our detection and diagnosis logic is original,
+deterministic Python; the Alibi Test and evidence lab are our project contributions.
+
+</details>
 
 ## Reproducible checks
 

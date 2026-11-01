@@ -5,6 +5,25 @@ inspect packet facts, compare fault/security explanations, supply explicit conte
 and test whether conclusions still have support when relevant evidence changes.
 It is not a claim to have invented network anomaly detection or causal inference.
 
+## Research-to-implementation mapping
+
+Three verified research papers inform the design. Their algorithms are not
+dependencies of this project, and we do not claim to reproduce their results.
+
+| Research inspiration | What our code actually does | Boundary |
+| --- | --- | --- |
+| [DiffProv, Chen et al., SIGCOMM 2016](https://haeberlen.cis.upenn.edu/papers/diffprov-sigcomm2016.pdf) compares working and failing behavior using differential provenance. | [analyzer.py](../backend/core/analyzer.py) retains earlier completed exchanges for the same client/service and explicitly reports when a comparator is unavailable. | This is a bounded within-capture comparison, not reconstruction or differencing of formal provenance trees. |
+| [Sherlock, Bahl et al., SIGCOMM 2007](https://www.microsoft.com/en-us/research/publication/towards-highly-reliable-enterprise-network-services-via-inference-of-multi-level-dependencies/) models multi-level dependencies for fault localization. | [correlation.py](../backend/core/correlation.py) requires scope, timing and client frames addressed to the new claimant MAC before associating ARP and service findings. | No learned dependency discovery, probabilistic localization, or proof of a causal root cause. |
+| [TRW, Jung et al., IEEE S&P 2004](https://people.csail.mit.edu/awberger/papers/fastPortscanDetectionUsingSequentialHypothesisTesting_JungPaxsonBergerBalakrishnan_2004.pdf) uses connection outcomes to distinguish scanning behavior. | [scan.py](../backend/detectors/scan.py) uses bounded diversity windows and known outcomes; documented thresholds govern interpretation. | No sequential likelihood-ratio test or claim to inherit TRW's accuracy. |
+
+The signature contribution is the **two complementary challenges**: the Alibi
+Test changes trusted context while preserving facts; the evidence lab changes
+synthetic evidence and measures what conclusions survive. Packet-backed grouping
+and explicit uncertainty make this a coherent, reproducible investigation workflow.
+These are implementation and interaction contributions, not a new causal-inference
+algorithm. We do not claim an entropy classifier, graph neural network or an
+implementation of the other papers discussed during planning.
+
 ## Related capabilities already exist
 
 - [Suricata EVE](https://docs.suricata.io/en/latest/output/eve/eve-json-output.html)

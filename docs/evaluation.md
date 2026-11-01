@@ -15,22 +15,16 @@ See [release-verification.json](release-verification.json) for scope and limits.
   cross-reference integrity, before/after invariants, schema and context checks pass.
 - CLI and HTTPX ASGI upload/sample flows use real generated capture bytes and the
   resource-limited worker. No UI fixture is served as an analysis result.
-- AGY reports frontend typecheck/build and the TCP/scan browser walkthrough
-  passed, including corrected preview/live provenance. AGY also reports the real ARP/DNS gateway
-  walkthrough and edge presentation passed in AGY-003. The patched frontend
-  dependency/browser pass was completed by AGY in AGY-004, with test servers
-  stopped afterward. JSON/Markdown exports are implemented; the download UI
-  hookup is assigned in AGY-005.
-- The latest local `./run.sh check` passed Python tests, contract checks and
-  frontend typechecking, then Turbopack was blocked by the tool sandbox's
-  prohibition on binding its internal CSS-worker socket (`Operation not
-  permitted`). That invocation is not a passing production build; AGY's
-  previously reported build/browser pass is recorded separately above.
-- The direct alternate command `node node_modules/next/dist/bin/next build
-  --webpack` subsequently passed compilation, TypeScript and static generation
-  on the current source. The package-manager invocation of the same alternate
-  build had failed to parse a TypeScript child-process result; the direct Node
-  invocation succeeded. No typechecking was disabled and no server was started.
+- The current redesigned frontend passes strict TypeScript, direct Node/Webpack
+  production compilation and static generation, plus nine React Test Renderer
+  interaction scenarios using actual API/worker outputs as HTTP stubs.
+- Earlier browser walkthroughs covered the previous interface. A fresh browser
+  verification or recording of the redesign is not claimed: Chromium startup is
+  blocked in this tool environment. Component interactions do not establish CSS
+  layout or real browser transport behavior. See [release-verification.json](release-verification.json).
+- Report export, Alibi controls and the interactive evidence lab are implemented.
+  The optional [new-interface recorder and narration](demo-script.md) require a
+  machine with ordinary Chromium permissions.
 
 ## Sample observations
 
@@ -104,9 +98,9 @@ alone do not link incidents. Independent faults and scans remain visible.
 
 No labeled production dataset, broad compatibility assessment, large-capture
 benchmark, calibrated accuracy claim, or full penetration audit is claimed.
-A clean Python 3.12 backend install passed all tests, and AGY reports the gateway
-browser flow passed. Patched frontend-version verification was completed in AGY-004; report-download
-UI verification remains in AGY-005. PCAPNG simple/obsolete packet blocks, non-Ethernet link types,
+A clean Python 3.12 backend install passed all tests. The current export UI passes
+component interaction and stale-response checks; the earlier browser flow covered
+the previous interface. PCAPNG simple/obsolete packet blocks, non-Ethernet link types,
 full reconstruction, general data retransmissions, fragments, encrypted traffic,
 TCP DNS, truncated-response fallback, DHCP, DNS manipulation, and MTU checks are
 outside current coverage. Domain fingerprints are not guaranteed anonymization.
@@ -154,7 +148,7 @@ worker, and launcher cleanup signals only the process groups it created.
 
 The 24-package pinned backend/development set returned no matching known
 advisories in the recorded OSV version check. See [dependency-audit.md](dependency-audit.md)
-for exact versions, sources, date, pending frontend work, and limitations.
+for exact versions, sources, date and limitations.
 
 
 ## Report and submission-artifact checks
