@@ -8,7 +8,7 @@ the organizer form. This file records actual state; it is not a submission recei
 - Four original detector families: TCP, scanning, ARP and UDP DNS.
 - Competing explanations, exact frame evidence, comparisons and packet links.
 - Gateway/scanner Alibi reinterpretation preserving facts and residual faults.
-- Next.js compact brief, evidence map, timeline, coverage and Markdown/JSON export.
+- Redesigned Next.js workspace: generated logo/favicon and original artwork, local fonts, investigation brief, dark evidence board, timeline, coverage and export.
 - Interactive synthetic evidence lab with separate state and source-frame mapping.
 - Nine deterministic sample captures and thirty controlled experimental variants.
 - Bounded input/worker/state budgets, metadata handling and cleanup.
@@ -19,6 +19,7 @@ the organizer form. This file records actual state; it is not a submission recei
   synthetic worker results. The footage shows the earlier interface layout;
   the added slides are not represented as a fresh browser recording. Captions
   are supplied in `docs/demo.srt`. Full decode and representative frames checked.
+- New-interface voice-over script (about 3:45) and optional `./run.sh record-demo` recorder are prepared. Fresh recording is blocked here by Chromium permissions; no new video artifact is claimed.
 - Old work orders/planning notes are archived under ignored local artifacts.
   The assistant handles the remaining work directly; no external-agent handoff.
 
@@ -33,13 +34,16 @@ the organizer form. This file records actual state; it is not a submission recei
   outputs as HTTP stubs. These cover provenance, lab/main separation, mapped
   frames, errors, stale source/context/mode responses and stale export cancellation.
 - Earlier live-browser checks cover the previous layout. A new live-browser pass
-  is **not claimed**: the current environment denies local HTTP binding and
-  Chromium startup. No alternate connected browser session is available.
+  is **not claimed**: Chromium startup is denied with `Operation not permitted`.
+  Component interactions and production HTML were checked separately. No alternate connected browser session is available.
 - No test/development server is intentionally left running.
 - Render/Vercel configuration is prepared. Exact configured origins are shared
   by CORS and body validation; wildcard/path/credential-bearing origins are
   rejected. The lab's overall timeout remains bounded at 60 seconds maximum.
-  Hosted URLs and successful cloud-runtime checks are not yet claimed.
+  Public URLs: https://causal-packet.vercel.app and https://causalpacket.onrender.com.
+  The Render CORS preflight for the exact Vercel origin returned HTTP 200 with
+  the matching allow-origin header. A fresh browser walkthrough of the redesign
+  remains pending after the team publishes the updated source.
 - A clean extraction of the release archive also passed all 136 backend tests,
   contracts, nine demo scenarios, production build and nine component interaction
   scenarios, reusing the existing pinned dependencies. See
@@ -47,9 +51,9 @@ the organizer form. This file records actual state; it is not a submission recei
 
 ## External completion
 
-1. **Public repository:** the prepared Git checkout is
-   `.artifacts/submission-checkout`. The team will create the public
-   `causalpacket` repository and push the release. Publication is not yet claimed.
+1. **Public repository:** https://github.com/ArpitKrSingh7/causalPacket exists.
+   The prepared Git checkout is `.artifacts/submission-checkout`; the team handles
+   pushing the latest redesign commit and reviewing the automatic redeployments.
 2. **Organizer form:** the supplied rules did not contain the actual form URL.
    The team leader submits the public repository/video location and team details
    before the deadline and preserves the confirmation.

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Upload, FileUp, AlertCircle, Loader2, Database } from "lucide-react";
+import { Upload, FileUp, AlertCircle, Loader2, ArrowUpRight, ChevronDown, ShieldCheck } from "lucide-react";
 import type { SampleInfo } from "@/lib/types";
 
 interface UploadAreaProps {
@@ -26,11 +26,13 @@ export function UploadArea({
   isEngineReady = true,
   isHostedApi = false,
 }: UploadAreaProps) {
+  const [showAllSamples, setShowAllSamples] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateAndProcessFile = (file: File) => {
+    if (isAnalyzing || !isEngineReady) return;
     setValidationError(null);
 
     const validExtensions = [".pcap", ".pcapng"];
@@ -91,148 +93,64 @@ export function UploadArea({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      if (!isAnalyzing) {
+      if (!isAnalyzing && isEngineReady) {
         fileInputRef.current?.click();
       }
     }
   };
 
+  const featuredIds = ["gateway-transition", "mixed-scan-and-fault", "service-failure", "healthy"];
+  const featured = featuredIds.map((id) => samples.find((sample) => sample.id === id)).filter((sample): sample is SampleInfo => !!sample);
+  const visibleSamples = showAllSamples || featured.length === 0 ? samples : featured;
+  const sampleTags: Record<string, string> = {
+    "gateway-transition": "ARP · DNS · TCP", "mixed-scan-and-fault": "TCP · Multiple incidents",
+    "service-failure": "TCP · Earlier-success comparison", healthy: "TCP · DNS · Baseline",
+    "possible-scan": "TCP · Destination diversity", "dns-faults": "DNS · Resolver errors",
+    truncated: "Partial capture · Recovery", "arp-healthy": "ARP · Negative control", "dns-healthy": "DNS · Negative control",
+  };
+
   return (
-    <div className="bg-navy-900 border border-slate-800 rounded-xl p-4 sm:p-5 shadow-sm space-y-4">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-800/80">
-        <div>
-          <h2 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-            <FileUp className="w-4 h-4 text-teal-400" />
-            Analyze Capture or Select Sample
-          </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Upload your own .pcap / .pcapng file (up to 25 MiB), or analyze a synthetic scenario capture.
-          </p>
-          {isHostedApi && <p className="text-xs text-amber-200 mt-2">Hosted analysis uploads files to the API server. Use authorized captures or the included synthetic samples; keep sensitive captures local.</p>}
-        </div>
-
-        {currentSourceName && (
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-navy-850 border border-slate-800 text-xs text-slate-300">
-            <span className="text-slate-500">Loaded:</span>
-            <span className="font-mono text-teal-300 truncate max-w-xs">{currentSourceName}</span>
-          </div>
-        )}
+    <section aria-labelledby="capture-title" className="space-y-5 scroll-mt-28">
+      <div className="flex flex-wrap gap-3 items-end justify-between">
+        <div><p className="eyebrow text-accent mb-2">Your investigation starts here</p><h2 id="capture-title" className="font-display text-2xl sm:text-[28px] font-medium tracking-[-.04em]">Open a case.</h2></div>
+        {currentSourceName && <span className="text-[10px] font-mono text-slate-500 break-all">Loaded: {currentSourceName}</span>}
+        <p className="text-xs text-slate-500 max-w-sm leading-6">Bring your own capture, or explore a reproducible scenario. Every sample runs through the real analysis engine.</p>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Upload Dropzone (Takes 2 cols on md) */}
-        <div className="md:col-span-2">
-          <div
-            role="button"
-            tabIndex={0}
+      <div className="grid lg:grid-cols-[.85fr_1.55fr] gap-5">
+        <div className="bg-white border border-line rounded-2xl p-5 sm:p-6 flex flex-col">
+          <div className="flex items-center justify-between mb-4"><h3 className="text-xs font-semibold flex items-center gap-2"><FileUp className="w-4 h-4 text-accent" />Your packet capture</h3><span className="font-mono text-[9px] text-slate-500">UP TO 25 MiB</span></div>
+          <div role="button" tabIndex={isAnalyzing || !isEngineReady ? -1 : 0}
             aria-label="Upload capture file: Click or press Enter to select a .pcap or .pcapng file"
-            onDragEnter={handleDrag}
-            onDragOver={handleDrag}
-            onDragLeave={handleDrag}
-            onDrop={handleDrop}
-            onClick={() => {
-              if (!isAnalyzing) fileInputRef.current?.click();
-            }}
+            aria-disabled={isAnalyzing || !isEngineReady}
+            onDragEnter={handleDrag} onDragOver={handleDrag} onDragLeave={handleDrag} onDrop={handleDrop}
+            onClick={() => { if (!isAnalyzing && isEngineReady) fileInputRef.current?.click(); }}
             onKeyDown={handleKeyDown}
-            className={`border-2 border-dashed rounded-lg p-5 text-center cursor-pointer transition-all relative flex flex-col items-center justify-center min-h-[140px] focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
-              dragActive
-                ? "border-teal-400 bg-teal-500/10 scale-[0.99]"
-                : "border-slate-700/80 hover:border-slate-500 bg-navy-950/50 hover:bg-navy-950/80"
-            } ${isAnalyzing ? "pointer-events-none opacity-70" : ""}`}
-          >
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".pcap,.pcapng"
-              className="hidden"
-              onChange={handleFileChange}
-              disabled={isAnalyzing}
-            />
-
-            {isAnalyzing ? (
-              <div className="flex flex-col items-center gap-2 text-teal-300">
-                <Loader2 className="w-6 h-6 animate-spin" />
-                <span className="text-xs font-mono font-medium">Analyzing packet capture...</span>
-                <span className="text-[11px] text-slate-500 font-mono">Running protocol detectors and correlation</span>
-              </div>
-            ) : (
-              <>
-                <div className="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-300 mb-2 group-hover:bg-teal-500/10">
-                  <Upload className="w-5 h-5 text-teal-400" />
-                </div>
-                <div className="text-xs font-medium text-slate-200">
-                  <span className="text-teal-400 hover:underline">Select capture file</span> or drag and drop here
-                </div>
-                <div className="text-[11px] text-slate-500 mt-1 font-mono">
-                  Supports .pcap, .pcapng · Up to 25 MiB
-                </div>
-              </>
-            )}
+            className={`group flex-1 min-h-[205px] flex flex-col items-center justify-center text-center border border-dashed rounded-xl p-6 transition-colors outline-offset-4 ${dragActive ? "border-accent bg-orange-50" : "border-slate-300 bg-[#f8f9fa] hover:border-accent"} ${isAnalyzing || !isEngineReady ? "opacity-60 cursor-wait" : "cursor-pointer"}`}>
+            <input ref={fileInputRef} type="file" accept=".pcap,.pcapng" className="hidden" onChange={handleFileChange} disabled={isAnalyzing || !isEngineReady} />
+            {isAnalyzing ? <div role="status" className="space-y-3"><Loader2 className="w-7 h-7 animate-spin text-accent mx-auto" /><p className="text-xs font-semibold">Analyzing packet capture...</p><p className="text-[10px] text-slate-500">Reading packets and comparing explanations</p></div> : <>
+              <div className="w-12 h-14 rounded-lg bg-white border border-slate-200 shadow-[0_4px_0_0_#e8ebf0] flex items-center justify-center mb-5 rotate-[-5deg] group-hover:rotate-0 transition-transform"><Upload className="w-5 h-5 text-accent" /></div>
+              <p className="text-sm font-semibold">Drop your capture here</p><p className="text-xs text-slate-500 mt-1.5">or <span className="text-cobalt underline underline-offset-4">Select capture file</span></p>
+              <span className="text-[10px] font-mono text-slate-500 mt-5">.pcap / .pcapng</span>
+            </>}
           </div>
-
-          {validationError && (
-            <div className="mt-2 flex items-center gap-2 p-2.5 rounded-md bg-red-950/40 border border-red-500/30 text-red-300 text-xs">
-              <AlertCircle className="w-4 h-4 flex-shrink-0" />
-              <span>{validationError}</span>
-            </div>
-          )}
+          {validationError && <div role="alert" className="mt-3 flex items-start gap-2 rounded-lg bg-red-50 p-3 text-red-700 text-xs"><AlertCircle className="w-4 h-4 shrink-0" /><span>{validationError}</span></div>}
+          <p className="text-[10px] leading-5 text-slate-500 mt-4 flex items-start gap-2"><ShieldCheck className="w-3.5 h-3.5 shrink-0 mt-0.5 text-slate-400" /><span>{isHostedApi ? "Hosted analysis uploads files to the API server. Use authorized captures or synthetic samples; keep sensitive captures local." : "Analyze authorized captures locally. Reports retain protocol headers and omit raw application payloads."}</span></p>
         </div>
-
-        {/* Server Samples Section (1 col) */}
-        <div className="bg-navy-950/60 border border-slate-800 rounded-lg p-3.5 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-200">
-                <Database className="w-3.5 h-3.5 text-teal-400" />
-                Sample Captures
-              </span>
-              <span className="text-[10px] font-mono text-slate-500">
-                {samples.length} available
-              </span>
+        <div className="min-w-0">
+          <div className="flex items-center justify-between mb-3 px-0.5"><h3 className="text-xs font-semibold">Sample Captures <span className="font-normal text-slate-500 ml-1">/ simulated scenarios</span></h3><span className="text-[10px] font-mono text-slate-500">{samples.length} available</span></div>
+          {samplesLoading ? <div className="rounded-xl border border-line p-8 text-xs text-slate-500 flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" />Loading sample catalog…</div> : samples.length === 0 ? <div className="rounded-xl border border-line bg-white p-7 text-xs leading-6 text-slate-500"><strong className="block text-ink">Sample catalog is unavailable</strong>Connect to the backend, then refresh its status to load the included synthetic captures.</div> : <>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {visibleSamples.map((sample, index) => <button key={sample.id} data-sample-id={sample.id} type="button" onClick={() => onSelectSample(sample.id)} disabled={!sample.available || isAnalyzing || !isEngineReady} className="sample-card group">
+                <span className="flex items-center justify-between w-full mb-2.5"><span className="font-mono text-[9px] text-slate-500">CASE {String(index + 1).padStart(2, "0")}</span><ArrowUpRight className="sample-arrow w-4 h-4 text-slate-400" /></span>
+                <span className="text-xs font-semibold leading-5 text-ink">{sample.title}</span>
+                <span className="text-[11px] text-slate-500 leading-5 mt-1 line-clamp-2">{sample.description}</span>
+                {sampleTags[sample.id] && <span className="font-mono text-[9px] text-slate-500 mt-3 pt-2 border-t border-line/70 w-full">{sampleTags[sample.id]}</span>}
+              </button>)}
             </div>
-
-            {samplesLoading ? (
-              <div className="flex items-center gap-2 text-xs text-slate-500 py-3">
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                <span>Loading catalog...</span>
-              </div>
-            ) : samples.length === 0 ? (
-              <div className="text-xs text-slate-400 bg-navy-900/60 border border-slate-800/80 rounded p-2.5">
-                <p className="text-slate-300 font-medium">Catalog currently empty</p>
-                <p className="text-[11px] text-slate-500 mt-1">
-                  Synthetic test captures will be listed here once the backend exposes them.
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-1.5 max-h-36 overflow-y-auto pr-1">
-                {samples.map((sample) => (
-                  <button
-                    key={sample.id}
-                    type="button"
-                    onClick={() => onSelectSample(sample.id)}
-                    disabled={!sample.available || isAnalyzing}
-                    className="w-full text-left p-2 rounded bg-navy-850 hover:bg-slate-800 border border-slate-800/80 hover:border-teal-500/40 text-xs transition-all flex items-center justify-between group disabled:opacity-50 focus:outline-none focus:ring-1 focus:ring-teal-400"
-                  >
-                    <div className="min-w-0 pr-1">
-                      <div className="font-medium text-slate-200 group-hover:text-teal-300 truncate">
-                        {sample.title}
-                      </div>
-                      <div className="text-[10px] text-slate-500 line-clamp-1">
-                        {sample.description}
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className="mt-2 pt-2 border-t border-slate-800/60 text-[10px] text-slate-500 flex items-center justify-between">
-            <span>Synthetic reproducible captures</span>
-            {isEngineReady && <span className="text-teal-400 font-mono">Live Engine</span>}
-          </div>
+            {featured.length > 0 && samples.length > featured.length && <button type="button" onClick={() => setShowAllSamples(!showAllSamples)} aria-expanded={showAllSamples} className="flex items-center gap-2 mt-3 text-[11px] text-slate-500 hover:text-ink py-1">{showAllSamples ? "Show featured captures" : `Explore all ${samples.length} captures`}<ChevronDown className={`w-3.5 h-3.5 transition-transform ${showAllSamples ? "rotate-180" : ""}`} /></button>}
+          </>}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

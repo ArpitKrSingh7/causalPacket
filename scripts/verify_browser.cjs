@@ -19,7 +19,8 @@ async function sample(page,id,title){
   const change=page.getByRole('button',{name:'Change capture',exact:true});
   if(await change.isVisible())await change.click();
   const response=page.waitForResponse(r=>r.url().includes('/api/samples/'+id+'/analyze')&&r.request().method()==='POST');
-  await page.getByRole('button',{name:new RegExp(title)}).click();
+  if(await page.locator(`[data-sample-id="${id}"]`).count()===0)await page.getByRole('button',{name:/Explore all \d+ captures/}).click();
+  await page.locator(`[data-sample-id="${id}"]`).click();
   const actual=await response;assert.equal(actual.status(),200);
   const report=await actual.json();
   await page.getByRole('button',{name:'Change capture',exact:true}).waitFor();
@@ -42,9 +43,9 @@ async function main(){
     page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
     page.on('download',download=>downloads.push(download));
     await page.goto('http://localhost:3000');
-    await page.getByRole('heading',{name:'Choose a sample or upload a capture to begin'}).waitFor();
+    await page.getByRole('heading',{name:/Fault or foe/}).waitFor();
     assert.equal(await summary(page).count(),0);
-    await page.getByText('API Online',{exact:true}).waitFor();
+    await page.getByText('Engine online',{exact:true}).waitFor();
     pass('Fresh Live state and actual backend catalog');
 
     const service=await sample(page,'service-failure','Service failure');

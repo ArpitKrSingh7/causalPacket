@@ -65,17 +65,17 @@ export function EvidenceTimeline({
   const getProtocolBadge = (proto: PacketEvidence["protocol"]) => {
     switch (proto) {
       case "ARP":
-        return "bg-sky-500/20 text-sky-300 border-sky-500/40";
+        return "bg-sky-500/20 text-sky-700 border-sky-500/40";
       case "TCP":
-        return "bg-teal-500/20 text-teal-300 border-teal-500/40";
+        return "bg-teal-500/20 text-teal-700 border-teal-500/40";
       case "DNS":
         return "bg-purple-500/20 text-purple-300 border-purple-500/40";
       case "UDP":
-        return "bg-indigo-500/20 text-indigo-300 border-indigo-500/40";
+        return "bg-indigo-500/20 text-indigo-700 border-indigo-500/40";
       case "ICMP":
-        return "bg-amber-500/20 text-amber-300 border-amber-500/40";
+        return "bg-amber-500/20 text-amber-800 border-amber-500/40";
       default:
-        return "bg-slate-700/50 text-slate-300 border-slate-600/50";
+        return "bg-slate-200/50 text-slate-600 border-slate-300/50";
     }
   };
 
@@ -90,15 +90,15 @@ export function EvidenceTimeline({
   };
 
   return (
-    <div className="bg-navy-900 border border-slate-800 rounded-xl p-4 sm:p-5 shadow-sm space-y-4">
+    <div className="bg-white border border-line rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
       {/* Header and Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-line">
         <div>
-          <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-            <Clock className="w-4 h-4 text-teal-400" />
+          <h3 className="text-sm font-semibold text-ink flex items-center gap-2">
+            <Clock className="w-4 h-4 text-teal-700" />
             Chronological Evidence Timeline
           </h3>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 mt-0.5">
             Original capture frame order with exact offsets and sanitized header metadata
           </p>
         </div>
@@ -106,13 +106,13 @@ export function EvidenceTimeline({
         {/* Counts & Active Filter Pill */}
         <div className="flex items-center gap-2">
           {filteredFrameNumbers !== null && (
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-500/15 border border-teal-500/30 text-teal-300 text-xs font-mono">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-500/15 border border-teal-500/30 text-teal-700 text-xs font-mono">
               <Filter className="w-3 h-3" />
               <span>{activeFilterLabel || "Observation filter active"}</span>
               <button
                 type="button"
                 onClick={onClearFilter}
-                className="hover:text-teal-100 ml-1"
+                className="hover:text-teal-700 ml-1"
                 title="Clear observation filter"
               >
                 <X className="w-3.5 h-3.5" />
@@ -139,8 +139,8 @@ export function EvidenceTimeline({
               onClick={() => setSelectedProtocol(proto)}
               className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${
                 selectedProtocol === proto
-                  ? "bg-teal-500/20 text-teal-300 border border-teal-500/40 font-semibold"
-                  : "bg-navy-950 text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700"
+                  ? "bg-teal-500/20 text-teal-700 border border-teal-500/40 font-semibold"
+                  : "bg-slate-50 text-slate-500 hover:text-ink border border-line hover:border-line"
               }`}
             >
               {proto}
@@ -155,20 +155,20 @@ export function EvidenceTimeline({
             placeholder="Search frame, IP, summary..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full sm:w-48 bg-navy-950 border border-slate-800 rounded-md pl-8 pr-2.5 py-1 text-xs text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-teal-400"
+            className="w-full sm:w-48 bg-slate-50 border border-line rounded-md pl-8 pr-2.5 py-1 text-xs text-ink placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-400"
           />
         </div>
       </div>
 
       {/* Timeline Frames List */}
       {visibleFrames.length === 0 ? (
-        <div className="p-8 text-center bg-navy-950/50 border border-slate-800/80 rounded-lg text-slate-400 text-xs">
+        <div className="p-8 text-center bg-slate-50/50 border border-line/80 rounded-lg text-slate-500 text-xs">
           No frames match the active filters or search criteria.
           {filteredFrameNumbers !== null && (
             <button
               type="button"
               onClick={onClearFilter}
-              className="block mx-auto mt-2 text-teal-400 hover:underline"
+              className="block mx-auto mt-2 text-teal-700 hover:underline"
             >
               Clear observation filter
             </button>
@@ -191,11 +191,11 @@ export function EvidenceTimeline({
                     onOpenFrame(frame.frame_number);
                   }
                 }}
-                className="p-3 rounded-lg bg-navy-950/70 hover:bg-navy-850/80 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs focus:outline-none focus:ring-1 focus:ring-teal-400"
+                className="p-3 rounded-lg bg-slate-50/70 hover:bg-slate-50/80 border border-line hover:border-line transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs focus:outline-none focus:ring-1 focus:ring-teal-400"
               >
                 {/* Left: Frame #, Protocol, Offset */}
                 <div className="flex items-center gap-2.5 flex-shrink-0">
-                  <span className="font-mono font-bold text-teal-300 px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/25">
+                  <span className="font-mono font-bold text-teal-700 px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/25">
                     #{frame.frame_number}
                   </span>
                   <span
@@ -210,22 +210,22 @@ export function EvidenceTimeline({
 
                 {/* Center: Endpoints & Summary */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 text-slate-300 font-mono text-[11px] truncate">
+                  <div className="flex items-center gap-1.5 text-slate-600 font-mono text-[11px] truncate">
                     <span className="truncate">
                       {formatEndpoint(frame.source_ip, frame.source_mac, frame.source_port)}
                     </span>
-                    <ArrowRight className="w-3 h-3 text-slate-600 flex-shrink-0" />
+                    <ArrowRight className="w-3 h-3 text-slate-400 flex-shrink-0" />
                     <span className="truncate">
                       {formatEndpoint(frame.destination_ip, frame.destination_mac, frame.destination_port)}
                     </span>
                   </div>
-                  <div className="text-slate-400 group-hover:text-slate-200 transition-colors text-xs truncate mt-0.5">
+                  <div className="text-slate-500 group-hover:text-ink transition-colors text-xs truncate mt-0.5">
                     {frame.summary}
                   </div>
                 </div>
 
                 {/* Right: Action badge */}
-                <div className="flex items-center gap-1 text-slate-500 group-hover:text-teal-300 font-mono text-[11px] flex-shrink-0 self-end sm:self-center">
+                <div className="flex items-center gap-1 text-slate-500 group-hover:text-teal-700 font-mono text-[11px] flex-shrink-0 self-end sm:self-center">
                   <span>Inspect</span>
                   <ExternalLink className="w-3 h-3" />
                 </div>

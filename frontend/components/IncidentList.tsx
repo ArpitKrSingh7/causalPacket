@@ -1,5 +1,6 @@
-import { ShieldAlert, AlertTriangle, HelpCircle, ChevronRight, CheckCircle2 } from "lucide-react";
-import type { Incident, Assessment, Severity } from "@/lib/types";
+import { ArrowUpRight, CheckCircle2, Circle, ShieldAlert, TriangleAlert } from "lucide-react";
+import type { Incident } from "@/lib/types";
+import { assessmentLabel, assessmentStyle } from "@/lib/presentation";
 
 interface IncidentListProps {
   incidents: Incident[];
@@ -7,139 +8,22 @@ interface IncidentListProps {
   onSelectIncident: (id: string) => void;
 }
 
-export function IncidentList({
-  incidents,
-  selectedIncidentId,
-  onSelectIncident,
-}: IncidentListProps) {
-  const getAssessmentBadge = (assessment: Assessment) => {
-    switch (assessment) {
-      case "suspected_attack":
-        return {
-          label: "Suspected Attack",
-          color: "bg-red-500/15 border-red-500/40 text-red-300",
-          icon: ShieldAlert,
-        };
-      case "likely_fault":
-        return {
-          label: "Likely Fault",
-          color: "bg-amber-500/15 border-amber-500/40 text-amber-300",
-          icon: AlertTriangle,
-        };
-      case "unresolved":
-      default:
-        return {
-          label: "Unresolved",
-          color: "bg-slate-700/50 border-slate-600/50 text-slate-300",
-          icon: HelpCircle,
-        };
-    }
-  };
-
-  const getSeverityBadge = (severity: Severity) => {
-    switch (severity) {
-      case "high":
-        return "text-red-400 bg-red-950/60 border-red-800/60";
-      case "medium":
-        return "text-amber-400 bg-amber-950/60 border-amber-800/60";
-      case "low":
-        return "text-sky-400 bg-sky-950/60 border-sky-800/60";
-      case "info":
-      default:
-        return "text-slate-400 bg-slate-800/60 border-slate-700/60";
-    }
-  };
-
-  if (incidents.length === 0) {
-    return (
-      <div className="bg-navy-900 border border-slate-800 rounded-xl p-5 shadow-sm text-center">
-        <div className="w-12 h-12 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center mx-auto mb-3">
-          <CheckCircle2 className="w-6 h-6" />
-        </div>
-        <h3 className="text-sm font-semibold text-slate-200">
-          No significant findings in the supported checks
-        </h3>
-        <p className="text-xs text-slate-400 mt-2 max-w-sm mx-auto leading-relaxed">
-          The analyzed traffic completed without triggering supported fault or probe signatures.
-          This describes the analyzed sample only, not a network safety certification.
-        </p>
-      </div>
-    );
-  }
-
+export function IncidentList({ incidents, selectedIncidentId, onSelectIncident }: IncidentListProps) {
   return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between px-1 mb-1">
-        <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-          Incidents ({incidents.length})
-        </h3>
-      </div>
-
-      <div className="space-y-2">
-        {incidents.map((incident) => {
-          const isSelected = incident.id === selectedIncidentId;
-          const assessment = getAssessmentBadge(incident.assessment);
-          const AssessmentIcon = assessment.icon;
-
-          return (
-            <div
-              key={incident.id}
-              role="button"
-              tabIndex={0}
-              onClick={() => onSelectIncident(incident.id)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  onSelectIncident(incident.id);
-                }
-              }}
-              className={`w-full text-left p-3.5 rounded-xl border transition-all cursor-pointer relative group focus:outline-none focus:ring-1 focus:ring-teal-400 ${
-                isSelected
-                  ? "bg-navy-850 border-teal-500/60 shadow-md ring-1 ring-teal-500/30"
-                  : "bg-navy-900/90 hover:bg-navy-850/80 border-slate-800/90 hover:border-slate-700"
-              }`}
-            >
-              {/* Badges */}
-              <div className="flex items-center gap-1.5 flex-wrap mb-2">
-                <span
-                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-medium border ${assessment.color}`}
-                >
-                  <AssessmentIcon className="w-3 h-3" />
-                  {assessment.label}
-                </span>
-
-                <span
-                  className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase font-semibold border ${getSeverityBadge(
-                    incident.severity
-                  )}`}
-                >
-                  {incident.severity}
-                </span>
-              </div>
-
-              {/* Title & Summary */}
-              <h4 className="text-sm font-semibold text-slate-100 group-hover:text-teal-300 transition-colors">
-                {incident.title}
-              </h4>
-              <p className="text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed">
-                {incident.summary}
-              </p>
-
-              {/* Counts footer */}
-              <div className="flex items-center justify-between text-[11px] text-slate-500 mt-3 pt-2 border-t border-slate-800/60">
-                <span className="font-mono">
-                  {incident.observation_ids.length} observations · {incident.hypotheses.length} hypotheses
-                </span>
-                <ChevronRight
-                  className={`w-3.5 h-3.5 text-slate-500 transition-transform ${
-                    isSelected ? "text-teal-400 transform translate-x-0.5" : ""
-                  }`}
-                />
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <nav aria-label="Investigations" className="space-y-3">
+      <div className="flex items-center justify-between px-1 pb-1"><h2 className="eyebrow text-slate-500">Findings</h2><span className="text-[10px] font-mono text-slate-500">{String(incidents.length).padStart(2, "0")}</span></div>
+      {incidents.length === 0 ? <div className="rounded-2xl border border-line bg-white p-5"><CheckCircle2 className="w-6 h-6 text-teal-700 mb-4" /><h3 className="text-xs font-semibold leading-6">No significant findings in the supported checks</h3><p className="text-[11px] text-slate-500 leading-6 mt-2">Review the capture scope and retained evidence. This is not a network safety certification.</p></div> : incidents.map((incident, index) => {
+        const selected = incident.id === selectedIncidentId;
+        const Icon = incident.assessment === "suspected_attack" ? ShieldAlert : incident.assessment === "likely_fault" ? TriangleAlert : Circle;
+        return <button key={incident.id} type="button" aria-pressed={selected} onClick={() => onSelectIncident(incident.id)} className={`relative w-full text-left rounded-xl border p-4 transition-colors ${selected ? "border-[#ddbaaa] bg-white shadow-[0_4px_20px_#18233605]" : "border-line/70 bg-white/50 hover:bg-white hover:border-slate-300"}`}>
+          {selected && <span className="absolute -left-px top-6 bottom-6 w-[3px] bg-accent rounded-r" />}
+          <div className="flex items-center justify-between gap-2 mb-3"><span className="text-[9px] font-mono text-slate-500">FINDING {String(index + 1).padStart(2, "0")}</span><Icon className={`w-3.5 h-3.5 ${selected ? "text-accent" : "text-slate-400"}`} /></div>
+          <h3 className="font-display text-sm font-medium leading-6 tracking-tight">{incident.title}</h3>
+          <span className={`inline-flex mt-3 text-[9px] px-2 py-1 rounded border ${assessmentStyle[incident.assessment]}`}>{assessmentLabel[incident.assessment]}</span>
+          <p className="text-[11px] text-slate-500 leading-5 mt-3 line-clamp-2">{incident.summary}</p>
+          <div className="flex items-center justify-between border-t border-line mt-4 pt-3 text-[9px] text-slate-500"><span>{incident.observation_ids.length} observations · {incident.severity} priority</span><ArrowUpRight className={`w-3 h-3 ${selected ? "text-accent" : "text-slate-400"}`} /></div>
+        </button>;
+      })}
+    </nav>
   );
 }

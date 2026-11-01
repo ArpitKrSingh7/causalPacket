@@ -1,0 +1,80 @@
+{
+  "title": "CausalPacket — Fault or Foe?",
+  "speaker": "Arpit Kumar Singh",
+  "target_seconds": 223,
+  "frontend_url": "https://causal-packet.vercel.app",
+  "backend_url": "https://causalpacket.onrender.com",
+  "repository_url": "https://github.com/ArpitKrSingh7/causalPacket",
+  "scenes": [
+    {
+      "id": "intro",
+      "title": "Meet CausalPacket",
+      "seconds": 14,
+      "screen": "Fresh redesigned workspace, logo and artwork.",
+      "say": "Hi, I’m Arpit Kumar Singh, and this is CausalPacket, built for the IIITDM Kancheepuram Cybersecurity Hackathon. Our question is simple: when a network breaks, is it a fault, or something suspicious?"
+    },
+    {
+      "id": "problem",
+      "title": "Why this matters",
+      "seconds": 18,
+      "screen": "Keep the opening workspace visible, then scroll to the sample captures.",
+      "say": "Small offices and student labs often have no network specialist. A packet capture contains the clues, but reading it takes expertise. And a service outage can look surprisingly similar to an attack. We turn that capture into an understandable investigation."
+    },
+    {
+      "id": "approach",
+      "title": "Our approach",
+      "seconds": 18,
+      "screen": "Show the three-step explanation below the capture picker.",
+      "say": "We built our own stateful TCP, DNS, ARP and scan detectors. Scapy decodes packets; our Python code tracks conversations, groups related observations, and compares explanations. The Next.js interface shows what was observed, what remains uncertain, and what to check next."
+    },
+    {
+      "id": "service",
+      "title": "A fault is not automatically an attack",
+      "seconds": 27,
+      "screen": "Analyze Service failure. Show the brief, open a supporting frame, then show the earlier-success comparison in full observations.",
+      "say": "Let’s run a real analysis of an included synthetic capture. Here, twelve connection attempts were explicitly refused. An earlier completed exchange gives us a useful comparison. The report recommends checking the service and its access policy. Clicking a frame opens the actual retained protocol headers. Repeated failure alone is not treated as proof of an attack."
+    },
+    {
+      "id": "mixed",
+      "title": "Keep independent problems visible",
+      "seconds": 22,
+      "screen": "Analyze Scan and independent fault. Keep both finding cards visible.",
+      "say": "This next capture contains two problems: possible scanning across many ports, and a separate unavailable service. CausalPacket keeps them as independent investigations. Authorizing a known scanner changes its interpretation, while the service failure remains. Grouping findings should never hide an unrelated problem."
+    },
+    {
+      "id": "gateway",
+      "title": "Follow packet-backed links",
+      "seconds": 25,
+      "screen": "Analyze Gateway identity investigation. Show its unresolved brief and dark evidence board. Open a connecting frame.",
+      "say": "Now, two MAC addresses claim the same IP, alongside DNS errors and TCP refusals. The evidence board links observations only when the configured rules find the required packet relationships. Close timing by itself is not enough. With no gateway inventory supplied, the assessment stays unresolved. We do not claim that these links prove causation."
+    },
+    {
+      "id": "alibi",
+      "title": "Challenge the explanation",
+      "seconds": 40,
+      "screen": "Open Alibi Test. Explicitly apply sample inventory; pause on suspected attack. Approve the second gateway MAC; pause on unresolved and Evidence retained.",
+      "say": "Here is our Alibi Test. First, I explicitly apply the synthetic sample’s declared gateway inventory. A second, unapproved device claiming the known gateway raises suspicion. Now suppose the operator verifies that this is an authorized backup router. I approve its MAC address. The assessment changes back to unresolved. The packet observations, frame references, and links remain unchanged, and the DNS and TCP failures still need investigation. Context changes the interpretation; it does not rewrite the evidence."
+    },
+    {
+      "id": "lab",
+      "title": "Test the limits of the diagnosis",
+      "seconds": 26,
+      "screen": "Run the real Evidence Lab. Show the scan reply variants, then select zero replies and its unresolved result.",
+      "say": "We also test how the diagnosis reacts when evidence disappears. This lab actually reanalyzes modified synthetic captures. Compare twenty observed replies with no replies: reduced visibility should weaken the conclusion, rather than produce a confident attack label. These are controlled sensitivity experiments, not a claim of production accuracy. The active investigation stays separate."
+    },
+    {
+      "id": "coverage",
+      "title": "Be honest about incomplete input",
+      "seconds": 18,
+      "screen": "Analyze Damaged capture. Show partial coverage. Start a real Markdown report download.",
+      "say": "A damaged capture produces partial coverage and a clear warning. Reports include the supporting frames, possible causes, and next checks, while omitting raw application payloads. Parsing runs with bounded file, packet, time and memory limits. These limits are documented, along with unsupported checks."
+    },
+    {
+      "id": "closing",
+      "title": "Try it and reproduce it",
+      "seconds": 15,
+      "screen": "Show the clearly labeled closing card with deployment and repository URLs.",
+      "say": "The frontend is deployed on Vercel, with FastAPI on Render. Judges can also run everything locally and reproduce the included samples and tests. CausalPacket helps users move from unusual packets to evidence they can investigate. Thank you."
+    }
+  ]
+}

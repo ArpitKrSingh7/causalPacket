@@ -7,7 +7,7 @@ export const assessmentLabel: Record<Assessment, string> = {
 };
 
 export const assessmentStyle: Record<Assessment, string> = {
-  likely_fault: "border-amber-500/40 bg-amber-500/10 text-amber-200",
-  suspected_attack: "border-red-400/40 bg-red-500/10 text-red-200",
-  unresolved: "border-slate-600 bg-slate-800 text-slate-200",
+  likely_fault: "border-amber-500/40 bg-amber-500/10 text-amber-800",
+  suspected_attack: "border-red-400/40 bg-red-500/10 text-red-700",
+  unresolved: "border-slate-300 bg-slate-100 text-ink",
 };

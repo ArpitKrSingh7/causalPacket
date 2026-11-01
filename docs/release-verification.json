@@ -36,6 +36,16 @@
     "configured_origin": "Exact shared origin allowlist tested across CORS and body middleware; invalid origins rejected.",
     "lab_budget": "Default 20 seconds, configurable only from 1 to 60 seconds.",
     "frontend": "Production compilation and existing nine component interactions passed; remote-upload notice added.",
-    "deployment": "Prepared only; actual cloud URLs and runtime behavior have not yet been verified."
+    "deployment": "Public frontend/backend URLs exist. On 2026-11-01, Render preflight for the exact Vercel origin returned HTTP 200 and access-control-allow-origin: https://causal-packet.vercel.app. This is a CORS transport check, not a new browser UI verification."
+  },
+  "ui_redesign": {
+    "checked_at_utc": "2026-11-01T11:24:45.327759+00:00",
+    "design": "Warm canvas, local Manrope/Space Grotesk fonts, generated logo/favicon and packet artwork, finding navigation, dark packet-backed evidence board.",
+    "build": "Direct Node/Webpack production build and strict TypeScript including unused symbols passed.",
+    "component_interactions": "All 9 existing meaningful interaction scenarios passed on redesigned components.",
+    "static_shell": "Generated hero/brand, favicon/icon/Apple metadata, local font preload, light scheme and skip navigation verified in actual prerendered HTML.",
+    "browser_recording": "Chromium launch failed with sandbox_host_linux.cc shutdown Operation not permitted. Recorder failure cleanup verified; no fresh browser-layout/recording pass is claimed.",
+    "recorder": "Node syntax, launcher shell syntax and browser-failure cleanup checked. Full recording remains to run on a machine with Chromium permissions.",
+    "voiceover": "472 words; 223-second target; explicit real analyses, synthetic inputs, Alibi limitations and hosting locations."
   }
 }

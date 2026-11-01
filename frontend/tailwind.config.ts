@@ -5,10 +5,17 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
+        canvas: "#f5f5f2",
+        ink: "#182336",
+        muted: "#f0f2f5",
+        line: "#dfe3e8",
+        accent: "#c64025",
+        cobalt: "#2855d9",
         navy: {
           950: "#070b14",
           900: "#0b1220",
@@ -18,6 +25,7 @@ const config: Config = {
           700: "#243b66",
         },
         slate: {
+          500: "#5d6c81",
           850: "#151e2e",
         },
         evidence: {
@@ -29,6 +37,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          "var(--font-body)",
           "-apple-system",
           "BlinkMacSystemFont",
           '"Segoe UI"',
@@ -37,6 +46,7 @@ const config: Config = {
           "Arial",
           "sans-serif",
         ],
+        display: ["var(--font-display)", "sans-serif"],
         mono: [
           "ui-monospace",
           "SFMono-Regular",

@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { FileSearch } from "lucide-react";
+import { FileText, Fingerprint } from "lucide-react";
+import { Welcome, InvestigationGuide } from "@/components/Welcome";
+import { CaptureOverview } from "@/components/CaptureOverview";
+import { Brand } from "@/components/Brand";
 import { Header } from "@/components/Header";
 import { PreviewBanner } from "@/components/PreviewBanner";
 import { UploadArea } from "@/components/UploadArea";
@@ -424,7 +427,7 @@ export default function InvestigationWorkspace() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-navy-950 text-slate-100 selection:bg-teal-500/20 selection:text-teal-200">
+    <div className="min-h-screen flex flex-col bg-canvas text-ink">
       {/* 1. Header & Live/Preview Mode Switcher */}
       <Header
         isLiveMode={isLiveMode}
@@ -432,7 +435,7 @@ export default function InvestigationWorkspace() {
         healthData={healthData}
         healthLoading={healthLoading}
         healthError={healthError}
-        onRefreshHealth={checkHealth}
+        onRefreshHealth={() => { void checkHealth(); void loadSamples(); }}
       />
 
       {/* 2. Provenance-Based Banner */}
@@ -448,7 +451,7 @@ export default function InvestigationWorkspace() {
       )}
 
       {/* Main Workspace Body */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main id="main-content" className="flex-1 max-w-[1440px] w-full mx-auto px-5 sm:px-8 lg:px-12 py-5 sm:py-7 space-y-7">
         {/* Status Alerts & Notifications */}
         <StatusAlerts
           apiError={apiError}
@@ -458,11 +461,9 @@ export default function InvestigationWorkspace() {
           isLiveMode={isLiveMode}
         />
 
-        {report && <div className="rounded-lg border border-slate-800 bg-navy-900 px-4 py-3 flex flex-wrap gap-2 items-center justify-between text-xs">
-          <span className="min-w-0 break-all text-slate-300">Capture: <strong className="font-mono text-teal-200">{report.source_name}</strong></span>
-          <button type="button" aria-expanded={ingestExpanded} aria-controls="capture-ingestion" onClick={() => setIngestExpanded(!ingestExpanded)} className="rounded border border-slate-600 px-3 py-1.5 text-slate-200 hover:border-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-300">{ingestExpanded ? "Hide capture choices" : "Change capture"}</button>
-        </div>}
-        {isAnalyzing && report && <p className="text-xs text-teal-200" role="status">Analyzing a new capture. The previous report remains visible until it completes.</p>}
+        {!report && <Welcome />}
+        {report && <CaptureOverview report={report} expanded={ingestExpanded} onChange={() => setIngestExpanded(!ingestExpanded)} />}
+        {isAnalyzing && report && <p className="text-xs text-teal-700" role="status">Analyzing a new capture. The previous report remains visible until it completes.</p>}
         {(!report || ingestExpanded) && <div id="capture-ingestion">
         <UploadArea
           isLiveMode={isLiveMode}
@@ -479,8 +480,8 @@ export default function InvestigationWorkspace() {
 
         {report ? (
           <>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-              <aside className="lg:col-span-3">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 xl:gap-7 items-start page-enter">
+              <aside className="lg:col-span-3 lg:sticky lg:top-28 min-w-0">
                 <IncidentList
                   incidents={report.incidents}
                   selectedIncidentId={selectedIncidentId}
@@ -502,8 +503,8 @@ export default function InvestigationWorkspace() {
                   onOpenFrame={handleOpenFrame}
                   onFilter={handleFilterObservationFrames}
                 />}
-                {selectedIncident && <details className="rounded-xl border border-slate-800 bg-navy-900">
-                  <summary className="cursor-pointer p-4 text-sm font-medium text-slate-200">Full observations, competing explanations and next checks</summary>
+                {selectedIncident && <details className="section-disclosure">
+                  <summary><FileText className="h-4 w-4 text-slate-400" />Full observations, competing explanations and next checks</summary>
                   <IncidentDetail
                     incident={selectedIncident}
                     observations={report.observations}
@@ -513,8 +514,8 @@ export default function InvestigationWorkspace() {
                     activeFilteredObservationId={filteredObservationId}
                   />
                 </details>}
-                <details ref={alibiRef} className="rounded-xl border border-teal-500/25 bg-navy-900 scroll-mt-24">
-                  <summary className="cursor-pointer p-4 text-sm font-medium text-teal-200">The Alibi Test — could this be something else?</summary>
+                <details ref={alibiRef} className="section-disclosure scroll-mt-28 !border-[#efc9b5]">
+                  <summary className="!bg-[#fff8f3]"><Fingerprint className="h-4 w-4 text-accent" />The Alibi Test — could this be something else?</summary>
                   <AlibiTest
                     initialContext={report.context}
                     interpretationChanges={report.interpretation_changes}
@@ -531,8 +532,8 @@ export default function InvestigationWorkspace() {
                 </details>
               </div>
             </div>
-            <details className="rounded-xl border border-slate-800 bg-navy-900">
-              <summary className="cursor-pointer p-4 text-sm text-slate-300">Capture coverage: {report.coverage.status} · {report.coverage.packets_decoded} decoded packets · scope and visibility notes</summary>
+            <details className="section-disclosure">
+              <summary>Capture coverage: {report.coverage.status} · {report.coverage.packets_decoded} decoded packets · scope and visibility notes</summary>
               <CoverageSummary coverage={report.coverage} incidentsCount={report.incidents.length} />
             </details>
             <ReportExport
@@ -552,29 +553,7 @@ export default function InvestigationWorkspace() {
             />
           </>
         ) : (
-          /* Honest Empty Workspace State */
-          <div className="bg-navy-900/80 border border-slate-800/90 rounded-xl p-8 sm:p-12 text-center shadow-sm">
-            <div className="max-w-md mx-auto space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center mx-auto text-teal-400 shadow-inner">
-                <FileSearch className="w-6 h-6" />
-              </div>
-              <h3 className="text-base font-semibold text-slate-200">
-                Choose a sample or upload a capture to begin
-              </h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Select one of the synthetic captures from the sample catalog above or upload your own .pcap / .pcapng file to run real evidence-backed analysis.
-              </p>
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={() => handleToggleMode(false)}
-                  className="text-xs text-slate-400 hover:text-teal-300 underline underline-offset-4 transition-colors font-mono"
-                >
-                  Or explore fictional scenario preview fixtures →
-                </button>
-              </div>
-            </div>
-          </div>
+          <InvestigationGuide onPreview={() => handleToggleMode(false)} />
         )}
       </main>
 
@@ -585,8 +564,12 @@ export default function InvestigationWorkspace() {
       />
 
       {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-navy-900/60 py-4 px-4 text-center text-xs text-slate-500 font-mono">
-        CausalPacket · Evidence-First Network Investigation · IIITDM Cybersecurity Hackathon
+      <footer className="border-t border-line py-6 mt-6">
+        <div className="max-w-[1440px] px-5 sm:px-8 lg:px-12 mx-auto flex flex-wrap items-center justify-between gap-4">
+          <Brand compact />
+          <p className="text-[10px] text-slate-500">Evidence-first network investigation · IIITDM Cybersecurity Hackathon</p>
+          <span className="eyebrow text-slate-400 !text-[8px]">A clearer view of your network.</span>
+        </div>
       </footer>
     </div>
   );

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const manrope = localFont({ src: "./fonts/manrope.ttf", variable: "--font-body", display: "swap", weight: "200 800" });
+const spaceGrotesk = localFont({ src: "./fonts/space-grotesk.ttf", variable: "--font-display", display: "swap", weight: "300 700" });
 
 export const metadata: Metadata = {
   title: "CausalPacket — Fault or Foe?",
@@ -13,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-navy-950 text-slate-100 min-h-screen selection:bg-teal-500/30 selection:text-teal-200">
+    <html lang="en" className={`${manrope.variable} ${spaceGrotesk.variable}`}>
+      <body>
         {children}
       </body>
     </html>

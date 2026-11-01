@@ -50,18 +50,18 @@ export function IncidentDetail({
       case "supported":
         return {
           label: "Supported",
-          color: "bg-teal-500/20 text-teal-300 border-teal-500/40",
+          color: "bg-teal-500/20 text-teal-700 border-teal-500/40",
         };
       case "plausible":
         return {
           label: "Plausible",
-          color: "bg-amber-500/20 text-amber-300 border-amber-500/40",
+          color: "bg-amber-500/20 text-amber-800 border-amber-500/40",
         };
       case "insufficient":
       default:
         return {
           label: "Insufficient",
-          color: "bg-slate-700/60 text-slate-300 border-slate-600/60",
+          color: "bg-slate-200/60 text-slate-600 border-slate-300/60",
         };
     }
   };
@@ -80,30 +80,30 @@ export function IncidentDetail({
   };
 
   return (
-    <div className="bg-navy-900 border border-slate-800 rounded-xl p-5 shadow-sm space-y-6">
+    <div className="bg-white p-5 shadow-sm space-y-6">
       {/* Incident Header */}
-      <div className="border-b border-slate-800 pb-4">
+      <div className="border-b border-line pb-4">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">
+          <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-100 border border-line text-slate-600">
             {incident.id}
           </span>
           <span
             className={`text-xs font-mono uppercase px-2 py-0.5 rounded border ${
               incident.assessment === "suspected_attack"
-                ? "bg-red-500/20 text-red-300 border-red-500/40"
+                ? "bg-red-500/20 text-red-700 border-red-500/40"
                 : incident.assessment === "likely_fault"
-                ? "bg-amber-500/20 text-amber-300 border-amber-500/40"
-                : "bg-slate-700/50 text-slate-300 border-slate-600/50"
+                ? "bg-amber-500/20 text-amber-800 border-amber-500/40"
+                : "bg-slate-200/50 text-slate-600 border-slate-300/50"
             }`}
           >
             {incident.assessment.replace("_", " ")}
           </span>
-          <span className="text-xs font-mono uppercase px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400">
+          <span className="text-xs font-mono uppercase px-2 py-0.5 rounded bg-slate-100 border border-line text-slate-500">
             Severity: {incident.severity}
           </span>
         </div>
-        <h2 className="text-lg font-bold text-slate-100">{incident.title}</h2>
-        <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
+        <h2 className="text-lg font-bold text-ink">{incident.title}</h2>
+        <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
           {incident.summary}
         </p>
       </div>
@@ -111,7 +111,7 @@ export function IncidentDetail({
       {/* SECTION 1: What happened (Recorded Observations & Facts) */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-xs font-semibold text-teal-400 uppercase tracking-wider flex items-center gap-1.5">
+          <h3 className="text-xs font-semibold text-teal-700 uppercase tracking-wider flex items-center gap-1.5">
             <FileSearch className="w-4 h-4" />
             1. What happened — Observed Facts
           </h3>
@@ -129,16 +129,16 @@ export function IncidentDetail({
                 key={obs.id}
                 className={`p-3.5 rounded-lg border transition-colors ${
                   isFilterActive
-                    ? "bg-navy-850 border-teal-500/50 ring-1 ring-teal-500/30"
-                    : "bg-navy-950/70 border-slate-800"
+                    ? "bg-slate-50 border-teal-500/50 ring-1 ring-teal-500/30"
+                    : "bg-slate-50/70 border-line"
                 }`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-semibold text-slate-200">
+                    <span className="font-mono text-xs font-semibold text-ink">
                       {obs.title}
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-teal-300 border border-slate-700">
+                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-teal-700 border border-line">
                       {obs.type}
                     </span>
                   </div>
@@ -154,8 +154,8 @@ export function IncidentDetail({
                     }
                     className={`text-[11px] px-2 py-1 rounded flex items-center gap-1 transition-colors self-start sm:self-auto ${
                       isFilterActive
-                        ? "bg-teal-500/20 text-teal-300 border border-teal-500/40"
-                        : "text-slate-400 hover:text-slate-200 bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60"
+                        ? "bg-teal-500/20 text-teal-700 border border-teal-500/40"
+                        : "text-slate-500 hover:text-ink bg-slate-100/80 hover:bg-slate-100 border border-line/60"
                     }`}
                   >
                     <Filter className="w-3 h-3" />
@@ -165,17 +165,17 @@ export function IncidentDetail({
                   </button>
                 </div>
 
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   {obs.description}
                 </p>
 
                 {/* Scope & Entities */}
-                <div className="flex flex-wrap items-center gap-2 mt-2 pt-2 border-t border-slate-800/60 text-[11px]">
+                <div className="flex flex-wrap items-center gap-2 mt-2 pt-2 border-t border-line/60 text-[11px]">
                   <span className="text-slate-500 font-mono">Scope: {obs.scope_id}</span>
                   {obs.entities.map((entity, eIdx) => (
                     <span
                       key={eIdx}
-                      className="px-2 py-0.5 rounded bg-slate-800/90 text-slate-300 border border-slate-700/70 font-mono"
+                      className="px-2 py-0.5 rounded bg-slate-100/90 text-slate-600 border border-line/70 font-mono"
                     >
                       <span className="text-slate-500">{entity.kind}:</span> {entity.value}
                     </span>
@@ -188,10 +188,10 @@ export function IncidentDetail({
                     {obs.metrics.map((metric, mIdx) => (
                       <div
                         key={mIdx}
-                        className="px-2 py-1 rounded bg-navy-900 border border-slate-800 text-slate-300 flex items-center gap-1.5"
+                        className="px-2 py-1 rounded bg-white border border-line text-slate-600 flex items-center gap-1.5"
                       >
-                        <span className="text-slate-400">{metric.label}:</span>
-                        <span className="font-mono font-semibold text-teal-300">
+                        <span className="text-slate-500">{metric.label}:</span>
+                        <span className="font-mono font-semibold text-teal-700">
                           {String(metric.value)}
                           {metric.unit ? ` ${metric.unit}` : ""}
                         </span>
@@ -208,7 +208,7 @@ export function IncidentDetail({
                       key={frameNum}
                       type="button"
                       onClick={() => onOpenFrame(frameNum)}
-                      className="text-xs font-mono px-2 py-0.5 rounded bg-teal-500/15 hover:bg-teal-500/25 border border-teal-500/30 text-teal-300 transition-colors flex items-center gap-1"
+                      className="text-xs font-mono px-2 py-0.5 rounded bg-teal-500/15 hover:bg-teal-500/25 border border-teal-500/30 text-teal-700 transition-colors flex items-center gap-1"
                       title={`Inspect frame #${frameNum} headers`}
                     >
                       <span>#{frameNum}</span>
@@ -224,7 +224,7 @@ export function IncidentDetail({
 
                 {/* Caveats */}
                 {obs.caveats.length > 0 && (
-                  <div className="mt-2 text-[11px] text-amber-300/90 bg-amber-950/30 border border-amber-500/20 rounded p-2">
+                  <div className="mt-2 text-[11px] text-amber-800/90 bg-amber-50/30 border border-amber-500/20 rounded p-2">
                     <span className="font-semibold">Caveat:</span> {obs.caveats.join("; ")}
                   </div>
                 )}
@@ -238,11 +238,11 @@ export function IncidentDetail({
       {incidentEdges.length > 0 && (
         <div className="space-y-3 pt-2">
           <div className="flex items-center justify-between">
-            <h3 className="text-xs font-semibold text-teal-400 uppercase tracking-wider flex items-center gap-1.5">
+            <h3 className="text-xs font-semibold text-teal-700 uppercase tracking-wider flex items-center gap-1.5">
               <Link2 className="w-4 h-4" />
               Why these findings are linked — Grouping Associations
             </h3>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-navy-850 text-slate-400 border border-slate-800">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-50 text-slate-500 border border-line">
               Association · Chronology
             </span>
           </div>
@@ -255,31 +255,31 @@ export function IncidentDetail({
               return (
                 <div
                   key={edge.id}
-                  className="bg-navy-950/80 border border-slate-800/90 rounded-lg p-3.5 space-y-2.5"
+                  className="bg-slate-50/80 border border-line/90 rounded-lg p-3.5 space-y-2.5"
                 >
                   {/* Source -> Target relationship header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/60 pb-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-line/60 pb-2">
                     <div className="flex items-center gap-2 flex-wrap text-xs">
-                      <span className="font-semibold text-slate-200">
+                      <span className="font-semibold text-ink">
                         {srcObs?.title || edge.source_observation_id}
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
-                      <span className="font-semibold text-slate-200">
+                      <ArrowRight className="w-3.5 h-3.5 text-teal-700 flex-shrink-0" />
+                      <span className="font-semibold text-ink">
                         {tgtObs?.title || edge.target_observation_id}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400 self-start sm:self-auto">
-                      <span className="px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/25 text-teal-300">
+                    <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-500 self-start sm:self-auto">
+                      <span className="px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/25 text-teal-700">
                         {formatRelationLabel(edge.relation)}
                       </span>
-                      <span className="text-slate-600">|</span>
+                      <span className="text-slate-400">|</span>
                       <span className="text-slate-500">{edge.rule_id}</span>
                     </div>
                   </div>
 
                   {/* Association reason (non-causal framing) */}
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     {edge.reason}
                   </p>
 
@@ -292,7 +292,7 @@ export function IncidentDetail({
                           key={frameNum}
                           type="button"
                           onClick={() => onOpenFrame(frameNum)}
-                          className="font-mono text-xs px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-teal-300 border border-slate-700 transition-colors flex items-center gap-1"
+                          className="font-mono text-xs px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-teal-700 border border-line transition-colors flex items-center gap-1"
                           title={`Inspect frame #${frameNum} headers`}
                         >
                           <span>#{frameNum}</span>
@@ -310,7 +310,7 @@ export function IncidentDetail({
                               : edge.evidence_frames
                           )
                         }
-                        className="ml-auto text-[11px] text-slate-400 hover:text-teal-300 underline underline-offset-2 transition-colors"
+                        className="ml-auto text-[11px] text-slate-500 hover:text-teal-700 underline underline-offset-2 transition-colors"
                       >
                         {activeFilteredObservationId === edge.id
                           ? "Clear edge filter"
@@ -331,7 +331,7 @@ export function IncidentDetail({
 
       {/* SECTION 2: Why this explanation (Competing Hypotheses) */}
       <div className="space-y-3">
-        <h3 className="text-xs font-semibold text-teal-400 uppercase tracking-wider flex items-center gap-1.5">
+        <h3 className="text-xs font-semibold text-teal-700 uppercase tracking-wider flex items-center gap-1.5">
           <Sparkles className="w-4 h-4" />
           2. Why this explanation — Competing Hypotheses
         </h3>
@@ -343,10 +343,10 @@ export function IncidentDetail({
             return (
               <div
                 key={hypothesis.id}
-                className="bg-navy-950/70 border border-slate-800 rounded-lg p-3.5 space-y-2.5"
+                className="bg-slate-50/70 border border-line rounded-lg p-3.5 space-y-2.5"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
-                  <h4 className="text-sm font-semibold text-slate-200">
+                  <h4 className="text-sm font-semibold text-ink">
                     {hypothesis.title}
                   </h4>
                   <span
@@ -356,17 +356,17 @@ export function IncidentDetail({
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   {hypothesis.explanation}
                 </p>
 
                 {/* Supporting Reasons */}
                 {hypothesis.supporting_reasons.length > 0 && (
                   <div className="space-y-1">
-                    <span className="text-[11px] font-medium text-slate-400 block">
+                    <span className="text-[11px] font-medium text-slate-500 block">
                       Supporting Reasons:
                     </span>
-                    <ul className="list-disc list-inside text-xs text-slate-300 space-y-0.5 pl-1">
+                    <ul className="list-disc list-inside text-xs text-slate-600 space-y-0.5 pl-1">
                       {hypothesis.supporting_reasons.map((reason, idx) => (
                         <li key={idx}>{reason}</li>
                       ))}
@@ -381,7 +381,7 @@ export function IncidentDetail({
 
       {/* SECTION 3: What challenges it */}
       <div className="space-y-3">
-        <h3 className="text-xs font-semibold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+        <h3 className="text-xs font-semibold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
           <AlertCircle className="w-4 h-4" />
           3. What challenges it &amp; Missing Context
         </h3>
@@ -396,18 +396,18 @@ export function IncidentDetail({
             return (
               <div
                 key={hypothesis.id}
-                className="bg-navy-950/70 border border-slate-800 rounded-lg p-3.5 space-y-2.5"
+                className="bg-slate-50/70 border border-line rounded-lg p-3.5 space-y-2.5"
               >
-                <div className="text-xs font-medium text-slate-300">
-                  Regarding: <span className="text-slate-100 font-semibold">{hypothesis.title}</span>
+                <div className="text-xs font-medium text-slate-600">
+                  Regarding: <span className="text-ink font-semibold">{hypothesis.title}</span>
                 </div>
 
                 {hasChallenges && (
                   <div>
-                    <span className="text-[11px] font-medium text-amber-300/90 block mb-1">
+                    <span className="text-[11px] font-medium text-amber-800/90 block mb-1">
                       Challenging Factors:
                     </span>
-                    <ul className="list-disc list-inside text-xs text-slate-300 space-y-0.5 pl-1">
+                    <ul className="list-disc list-inside text-xs text-slate-600 space-y-0.5 pl-1">
                       {hypothesis.challenging_reasons.map((reason, idx) => (
                         <li key={idx}>{reason}</li>
                       ))}
@@ -417,10 +417,10 @@ export function IncidentDetail({
 
                 {hasMissing && (
                   <div>
-                    <span className="text-[11px] font-medium text-slate-400 block mb-1">
+                    <span className="text-[11px] font-medium text-slate-500 block mb-1">
                       Missing Evidence (unestablished in capture):
                     </span>
-                    <ul className="list-disc list-inside text-xs text-slate-400 space-y-0.5 pl-1">
+                    <ul className="list-disc list-inside text-xs text-slate-500 space-y-0.5 pl-1">
                       {hypothesis.missing_evidence.map((item, idx) => (
                         <li key={idx}>{item}</li>
                       ))}
@@ -435,31 +435,31 @@ export function IncidentDetail({
 
       {/* SECTION 4: What to check next & Comparisons */}
       <div className="space-y-3">
-        <h3 className="text-xs font-semibold text-teal-400 uppercase tracking-wider flex items-center gap-1.5">
+        <h3 className="text-xs font-semibold text-teal-700 uppercase tracking-wider flex items-center gap-1.5">
           <Compass className="w-4 h-4" />
           4. What to check next &amp; Observed Comparisons
         </h3>
 
         {/* Action Steps */}
-        <div className="bg-navy-950/70 border border-slate-800 rounded-lg p-3.5 space-y-2">
-          <span className="text-xs font-medium text-slate-300 block">
+        <div className="bg-slate-50/70 border border-line rounded-lg p-3.5 space-y-2">
+          <span className="text-xs font-medium text-slate-600 block">
             Suggested Verification &amp; Troubleshooting:
           </span>
           <div className="space-y-1.5">
             {incident.next_steps.map((step, idx) => (
-              <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                <ArrowRight className="w-3.5 h-3.5 text-teal-400 flex-shrink-0 mt-0.5" />
+              <div key={idx} className="flex items-start gap-2 text-xs text-slate-600">
+                <ArrowRight className="w-3.5 h-3.5 text-teal-700 flex-shrink-0 mt-0.5" />
                 <span>{step}</span>
               </div>
             ))}
           </div>
 
           {incident.limitations.length > 0 && (
-            <div className="mt-3 pt-2.5 border-t border-slate-800/60">
+            <div className="mt-3 pt-2.5 border-t border-line/60">
               <span className="text-[11px] font-medium text-slate-500 block mb-1">
                 Investigation Limitations:
               </span>
-              <ul className="list-disc list-inside text-xs text-slate-400 space-y-0.5 pl-1">
+              <ul className="list-disc list-inside text-xs text-slate-500 space-y-0.5 pl-1">
                 {incident.limitations.map((limit, idx) => (
                   <li key={idx}>{limit}</li>
                 ))}
@@ -471,44 +471,44 @@ export function IncidentDetail({
         {/* Comparisons (if present) */}
         {incident.comparisons.length > 0 && (
           <div className="space-y-2 mt-3">
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block">
               Observed Comparisons ({incident.comparisons.length})
             </span>
 
             {incident.comparisons.map((comp) => (
               <div
                 key={comp.id}
-                className="bg-navy-950/70 border border-slate-800 rounded-lg p-3.5 space-y-2.5"
+                className="bg-slate-50/70 border border-line rounded-lg p-3.5 space-y-2.5"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-slate-200">
+                  <span className="text-xs font-semibold text-ink">
                     {comp.title}
                   </span>
                   <span
                     className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
                       comp.status === "available"
-                        ? "bg-teal-500/20 text-teal-300 border-teal-500/40"
-                        : "bg-slate-800 text-slate-400 border-slate-700"
+                        ? "bg-teal-500/20 text-teal-700 border-teal-500/40"
+                        : "bg-slate-100 text-slate-500 border-line"
                     }`}
                   >
                     {comp.status === "available" ? "Comparator Available" : "No Comparator Observed"}
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-400">{comp.basis}</p>
+                <p className="text-xs text-slate-500">{comp.basis}</p>
 
                 {comp.status === "available" && (
                   <div className="grid grid-cols-2 gap-3 pt-2">
                     {/* Baseline */}
-                    <div className="bg-navy-900 border border-slate-800 rounded p-2.5">
-                      <span className="text-[11px] font-medium text-slate-400 block mb-1">
+                    <div className="bg-white border border-line rounded p-2.5">
+                      <span className="text-[11px] font-medium text-slate-500 block mb-1">
                         {comp.baseline_label}
                       </span>
                       <div className="space-y-1">
                         {comp.baseline_metrics.map((m, idx) => (
                           <div key={idx} className="text-xs flex justify-between font-mono">
                             <span className="text-slate-500">{m.label}</span>
-                            <span className="text-slate-200 font-semibold">
+                            <span className="text-ink font-semibold">
                               {String(m.value)} {m.unit || ""}
                             </span>
                           </div>
@@ -517,15 +517,15 @@ export function IncidentDetail({
                     </div>
 
                     {/* Current */}
-                    <div className="bg-navy-900 border border-slate-800 rounded p-2.5">
-                      <span className="text-[11px] font-medium text-teal-300 block mb-1">
+                    <div className="bg-white border border-line rounded p-2.5">
+                      <span className="text-[11px] font-medium text-teal-700 block mb-1">
                         {comp.current_label}
                       </span>
                       <div className="space-y-1">
                         {comp.current_metrics.map((m, idx) => (
                           <div key={idx} className="text-xs flex justify-between font-mono">
                             <span className="text-slate-500">{m.label}</span>
-                            <span className="text-teal-300 font-semibold">
+                            <span className="text-teal-700 font-semibold">
                               {String(m.value)} {m.unit || ""}
                             </span>
                           </div>
@@ -544,7 +544,7 @@ export function IncidentDetail({
                         key={frameNum}
                         type="button"
                         onClick={() => onOpenFrame(frameNum)}
-                        className="font-mono text-xs px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-teal-300 border border-slate-700 transition-colors flex items-center gap-1"
+                        className="font-mono text-xs px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-teal-700 border border-line transition-colors flex items-center gap-1"
                         title={`Inspect frame #${frameNum} headers`}
                       >
                         <span>#{frameNum}</span>
@@ -556,7 +556,7 @@ export function IncidentDetail({
 
                 {comp.limitations.length > 0 && (
                   <div className="text-[11px] text-slate-500 pt-1">
-                    <span className="font-medium text-slate-400">Comparison limit:</span>{" "}
+                    <span className="font-medium text-slate-500">Comparison limit:</span>{" "}
                     {comp.limitations.join("; ")}
                   </div>
                 )}

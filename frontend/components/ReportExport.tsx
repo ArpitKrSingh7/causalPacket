@@ -182,25 +182,25 @@ export function ReportExport({
   };
 
   return (
-    <div className="bg-navy-900 border border-slate-800 rounded-xl p-3.5 sm:p-4 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs">
+    <div className="bg-white border border-line rounded-2xl p-3.5 sm:p-4 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs">
       {/* Scope and Context Note */}
       <div className="space-y-0.5">
         <div className="flex items-center gap-2">
-          <span className="font-semibold text-slate-200 flex items-center gap-1.5">
-            <Download className="w-3.5 h-3.5 text-teal-400" />
+          <span className="font-semibold text-ink flex items-center gap-1.5">
+            <Download className="w-3.5 h-3.5 text-teal-700" />
             Investigation Report Export
           </span>
           {isFixture ? (
-            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300">
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-800">
               Preview (Export Unavailable)
             </span>
           ) : (
-            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-teal-500/15 border border-teal-500/30 text-teal-300">
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-teal-500/15 border border-teal-500/30 text-teal-700">
               Live Capture Session
             </span>
           )}
         </div>
-        <p className="text-[11px] text-slate-400">
+        <p className="text-[11px] text-slate-500">
           Exports include sanitized IP/MAC header metadata, hypotheses, measurements, and remaining problems. Application payloads are omitted.
         </p>
       </div>
@@ -208,8 +208,8 @@ export function ReportExport({
       {/* Action Buttons & Feedback */}
       <div className="flex items-center flex-wrap gap-2 w-full md:w-auto justify-end">
         {lastDownloaded && (
-          <span className="text-[11px] font-mono text-teal-300 flex items-center gap-1 mr-1 animate-fadeIn">
-            <Check className="w-3 h-3 text-teal-400" />
+          <span className="text-[11px] font-mono text-teal-700 flex items-center gap-1 mr-1 animate-fadeIn">
+            <Check className="w-3 h-3 text-teal-700" />
             Download started: {lastDownloaded}
           </span>
         )}
@@ -226,14 +226,14 @@ export function ReportExport({
           }
           className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-all flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-teal-400 ${
             isFixture
-              ? "bg-slate-800/40 border-slate-800 text-slate-500 cursor-not-allowed"
-              : "bg-navy-850 hover:bg-slate-800 border-slate-700/80 hover:border-teal-500/50 text-slate-200 hover:text-teal-300 shadow-sm"
+              ? "bg-slate-100/40 border-line text-slate-500 cursor-not-allowed"
+              : "bg-slate-50 hover:bg-slate-100 border-line/80 hover:border-teal-500/50 text-ink hover:text-teal-700 shadow-sm"
           } ${downloadingFormat === "markdown" ? "opacity-75" : ""}`}
         >
           {downloadingFormat === "markdown" ? (
-            <Loader2 className="w-3.5 h-3.5 animate-spin text-teal-400" />
+            <Loader2 className="w-3.5 h-3.5 animate-spin text-teal-700" />
           ) : (
-            <FileText className="w-3.5 h-3.5 text-teal-400" />
+            <FileText className="w-3.5 h-3.5 text-teal-700" />
           )}
           <span>Download report (.md)</span>
         </button>
@@ -250,14 +250,14 @@ export function ReportExport({
           }
           className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-all flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-teal-400 ${
             isFixture
-              ? "bg-slate-800/40 border-slate-800 text-slate-500 cursor-not-allowed"
-              : "bg-navy-850 hover:bg-slate-800 border-slate-700/80 hover:border-teal-500/50 text-slate-200 hover:text-teal-300 shadow-sm"
+              ? "bg-slate-100/40 border-line text-slate-500 cursor-not-allowed"
+              : "bg-slate-50 hover:bg-slate-100 border-line/80 hover:border-teal-500/50 text-ink hover:text-teal-700 shadow-sm"
           } ${downloadingFormat === "json" ? "opacity-75" : ""}`}
         >
           {downloadingFormat === "json" ? (
-            <Loader2 className="w-3.5 h-3.5 animate-spin text-teal-400" />
+            <Loader2 className="w-3.5 h-3.5 animate-spin text-teal-700" />
           ) : (
-            <Code2 className="w-3.5 h-3.5 text-teal-400" />
+            <Code2 className="w-3.5 h-3.5 text-teal-700" />
           )}
           <span>Download data (.json)</span>
         </button>

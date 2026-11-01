@@ -1,3 +1,5 @@
+<img src="frontend/public/brand/packet-mark.webp" width="48" height="48" alt="CausalPacket logo">
+
 # CausalPacket · Fault or Foe?
 
 > **The network is broken. Is it a fault, suspicious activity, or too early to tell?**
@@ -7,6 +9,8 @@ causes, the exact supporting packets, and what to check next. Built for the
 **IIITDM Kancheepuram Cybersecurity Hackathon · Network Track · 2026**.
 
 **[▶ Watch the 2:43 captioned demo](docs/demo.mp4)** ·
+[Live app](https://causal-packet.vercel.app/) ·
+[Voice-over script & new-UI recorder](docs/demo-script.md) ·
 [Example investigation](docs/example-investigation.md) ·
 [Evaluation](docs/evaluation.md)
 
@@ -129,6 +133,7 @@ performs no live sniffing, probing, or automatic network repair.
 | Backend | FastAPI, Starlette, Pydantic, pydantic-core, Uvicorn, Scapy, python-multipart, AnyIO |
 | Supporting Python packages | annotated-doc, annotated-types, Click, h11, idna, opentelemetry-api, typing-extensions, typing-inspection |
 | Test tooling | pytest, HTTPX, httpcore, certifi, iniconfig, packaging, pluggy, Pygments; optional React Test Renderer and Playwright verification |
+| Visual assets | Original generated logo/illustration via OpenAI image generation; locally hosted Manrope and Space Grotesk fonts (SIL OFL). [Asset notes](frontend/public/brand/README.md) |
 | Demo tooling | FFmpeg / ffprobe for captions, measured-result slides and video validation; not required to run the app |
 | Frontend | Next.js, React, React DOM, TypeScript, Tailwind CSS, PostCSS, Autoprefixer, Lucide React, @types/node, @types/react, @types/react-dom |
 

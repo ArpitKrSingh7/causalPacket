@@ -60,6 +60,10 @@ case "$CP_COMMAND" in
     require_environment
     exec "$CP_ENV/bin/python" -m scripts.verify_demo "$@"
     ;;
+  record-demo)
+    require_environment
+    exec node scripts/record_demo.cjs "$@"
+    ;;
   package)
     require_environment
     exec "$CP_ENV/bin/python" -m scripts.package_submission "$@"
@@ -79,7 +83,7 @@ case "$CP_COMMAND" in
     exec "$CP_ENV/bin/python" -m scripts.doctor
     ;;
   help|-h|--help)
-    echo "CausalPacket: ./run.sh setup | dev | api | samples | cli CAPTURE [--json|--markdown] | verify-demo | package | check | doctor"
+    echo "CausalPacket: ./run.sh setup | dev | api | samples | cli CAPTURE [--json|--markdown] | verify-demo | record-demo | package | check | doctor"
     echo "setup --backend-only preserves an independently managed frontend installation."
     echo "CAUSALPACKET_PYTHON selects Python 3.12+; CAUSALPACKET_WHEELHOUSE enables offline Python setup."
     ;;

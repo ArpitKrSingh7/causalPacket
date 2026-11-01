@@ -11,10 +11,10 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
   const [detailsOpen, setDetailsOpen] = useState(false);
 
   const statusColor = {
-    complete: "text-teal-400 bg-teal-500/10 border-teal-500/30",
-    partial: "text-amber-400 bg-amber-500/10 border-amber-500/30",
-    limited: "text-red-400 bg-red-500/10 border-red-500/30",
-  }[coverage.status] || "text-slate-400 bg-slate-800 border-slate-700";
+    complete: "text-teal-700 bg-teal-500/10 border-teal-500/30",
+    partial: "text-amber-800 bg-amber-500/10 border-amber-500/30",
+    limited: "text-red-700 bg-red-500/10 border-red-500/30",
+  }[coverage.status] || "text-slate-500 bg-slate-100 border-line";
 
   const StatusIcon = {
     complete: CheckCircle,
@@ -23,16 +23,16 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
   }[coverage.status] || CheckCircle;
 
   return (
-    <div className="bg-navy-900 border border-slate-800 rounded-xl p-4 sm:p-5 shadow-sm space-y-3">
+    <div className="bg-white p-4 sm:p-5 shadow-sm space-y-3">
       {/* 4 Compact Count Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {/* Packets */}
-        <div className="bg-navy-850/80 border border-slate-800 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
+        <div className="bg-slate-50/80 border border-line rounded-lg p-3">
+          <div className="flex items-center justify-between text-slate-500 text-xs mb-1">
             <span className="font-medium">Packets</span>
-            <Activity className="w-3.5 h-3.5 text-teal-400" />
+            <Activity className="w-3.5 h-3.5 text-teal-700" />
           </div>
-          <div className="text-xl font-bold font-mono text-slate-100">
+          <div className="text-xl font-bold font-mono text-ink">
             {coverage.packets_seen.toLocaleString()}
           </div>
           <div className="text-[11px] text-slate-500 font-mono mt-0.5">
@@ -43,12 +43,12 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
         </div>
 
         {/* Duration */}
-        <div className="bg-navy-850/80 border border-slate-800 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
+        <div className="bg-slate-50/80 border border-line rounded-lg p-3">
+          <div className="flex items-center justify-between text-slate-500 text-xs mb-1">
             <span className="font-medium">Capture Duration</span>
-            <Clock className="w-3.5 h-3.5 text-teal-400" />
+            <Clock className="w-3.5 h-3.5 text-teal-700" />
           </div>
-          <div className="text-xl font-bold font-mono text-slate-100">
+          <div className="text-xl font-bold font-mono text-ink">
             {coverage.duration_seconds.toFixed(2)}s
           </div>
           <div className="text-[11px] text-slate-500 font-mono mt-0.5">
@@ -57,12 +57,12 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
         </div>
 
         {/* Incidents Count */}
-        <div className="bg-navy-850/80 border border-slate-800 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
+        <div className="bg-slate-50/80 border border-line rounded-lg p-3">
+          <div className="flex items-center justify-between text-slate-500 text-xs mb-1">
             <span className="font-medium">Correlated Incidents</span>
-            <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
+            <ShieldAlert className="w-3.5 h-3.5 text-amber-800" />
           </div>
-          <div className="text-xl font-bold font-mono text-slate-100">
+          <div className="text-xl font-bold font-mono text-ink">
             {incidentsCount}
           </div>
           <div className="text-[11px] text-slate-500 font-mono mt-0.5">
@@ -71,10 +71,10 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
         </div>
 
         {/* Coverage Status */}
-        <div className="bg-navy-850/80 border border-slate-800 rounded-lg p-3">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
+        <div className="bg-slate-50/80 border border-line rounded-lg p-3">
+          <div className="flex items-center justify-between text-slate-500 text-xs mb-1">
             <span className="font-medium">Capture Coverage</span>
-            <StatusIcon className="w-3.5 h-3.5 text-teal-400" />
+            <StatusIcon className="w-3.5 h-3.5 text-teal-700" />
           </div>
           <div className="flex items-center gap-2 mt-0.5">
             <span
@@ -92,16 +92,16 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
       </div>
 
       {/* Protocols & Quick Details Toggle */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-2 border-t border-slate-800/60 text-xs">
-        <div className="flex items-center flex-wrap gap-2 text-slate-400">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-2 border-t border-line/60 text-xs">
+        <div className="flex items-center flex-wrap gap-2 text-slate-500">
           <span className="text-slate-500 flex items-center gap-1">
-            <Layers className="w-3 h-3 text-slate-400" /> Protocols:
+            <Layers className="w-3 h-3 text-slate-500" /> Protocols:
           </span>
           {coverage.protocols.length > 0 ? (
             coverage.protocols.map((proto) => (
               <span
                 key={proto}
-                className="px-2 py-0.5 rounded bg-slate-800/80 border border-slate-700/60 text-slate-300 font-mono text-[11px]"
+                className="px-2 py-0.5 rounded bg-slate-100/80 border border-line/60 text-slate-600 font-mono text-[11px]"
               >
                 {proto}
               </span>
@@ -119,7 +119,7 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
         <button
           type="button"
           onClick={() => setDetailsOpen(!detailsOpen)}
-          className="text-xs text-teal-400 hover:text-teal-300 flex items-center gap-1 transition-colors font-medium self-end sm:self-auto"
+          className="text-xs text-teal-700 hover:text-teal-700 flex items-center gap-1 transition-colors font-medium self-end sm:self-auto"
         >
           <Info className="w-3.5 h-3.5" />
           <span>{detailsOpen ? "Hide Coverage Notes" : "View Scope & Visibility Notes"}</span>
@@ -129,13 +129,13 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
 
       {/* Expandable Visibility Notes and Limitations */}
       {detailsOpen && (
-        <div className="bg-navy-950/70 border border-slate-800 rounded-lg p-3.5 text-xs space-y-3 mt-2 animate-fadeIn">
+        <div className="bg-slate-50/70 border border-line rounded-lg p-3.5 text-xs space-y-3 mt-2 animate-fadeIn">
           {coverage.visibility_notes && coverage.visibility_notes.length > 0 && (
             <div>
-              <span className="font-semibold text-slate-300 block mb-1">
+              <span className="font-semibold text-slate-600 block mb-1">
                 Visibility Notes:
               </span>
-              <ul className="list-disc list-inside space-y-1 text-slate-400 pl-1">
+              <ul className="list-disc list-inside space-y-1 text-slate-500 pl-1">
                 {coverage.visibility_notes.map((note, idx) => (
                   <li key={idx}>{note}</li>
                 ))}
@@ -145,10 +145,10 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
 
           {coverage.unsupported_checks && coverage.unsupported_checks.length > 0 && (
             <div>
-              <span className="font-semibold text-slate-300 block mb-1">
+              <span className="font-semibold text-slate-600 block mb-1">
                 Unsupported Checks (by design):
               </span>
-              <ul className="list-disc list-inside space-y-1 text-slate-400 pl-1">
+              <ul className="list-disc list-inside space-y-1 text-slate-500 pl-1">
                 {coverage.unsupported_checks.map((check, idx) => (
                   <li key={idx}>{check}</li>
                 ))}
@@ -157,7 +157,7 @@ export function CoverageSummary({ coverage, incidentsCount }: CoverageSummaryPro
           )}
 
           {coverage.limits_reached && coverage.limits_reached.length > 0 && (
-            <div className="p-2.5 rounded bg-amber-950/40 border border-amber-500/30 text-amber-300">
+            <div className="p-2.5 rounded bg-amber-50/40 border border-amber-500/30 text-amber-800">
               <span className="font-semibold block mb-0.5">Limits Reached:</span>
               <ul className="list-disc list-inside space-y-0.5">
                 {coverage.limits_reached.map((limit, idx) => (

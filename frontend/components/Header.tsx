@@ -1,5 +1,6 @@
-import { Server, Wifi, WifiOff, Eye, RefreshCw } from "lucide-react";
+import { Eye, RefreshCw, Radio, ArrowUpRight } from "lucide-react";
 import type { HealthResponse } from "@/lib/types";
+import { Brand } from "./Brand";
 
 interface HeaderProps {
   isLiveMode: boolean;
@@ -10,110 +11,28 @@ interface HeaderProps {
   onRefreshHealth: () => void;
 }
 
-export function Header({
-  isLiveMode,
-  onToggleMode,
-  healthData,
-  healthLoading,
-  healthError,
-  onRefreshHealth,
-}: HeaderProps) {
-  const isOnline = !!healthData && !healthError;
-  const isEngineReady = healthData?.engine_ready === true;
-
+export function Header({ isLiveMode, onToggleMode, healthData, healthLoading, healthError, onRefreshHealth }: HeaderProps) {
+  const online = !!healthData && !healthError;
+  const ready = online && healthData?.engine_ready === true;
   return (
-    <header className="border-b border-slate-800 bg-navy-900/90 backdrop-blur sticky top-0 z-30 px-4 lg:px-8 py-3">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        {/* Brand */}
-        <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-lg bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 font-mono font-bold text-lg">
-            CP
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-base font-semibold text-slate-100 tracking-tight">
-                CausalPacket
-              </h1>
-              <span className="text-xs px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/25 text-teal-300 font-mono">
-                Fault or Foe?
-              </span>
-            </div>
-            <p className="text-xs text-slate-400">
-              Evidence-first packet capture investigator
-            </p>
-          </div>
+    <header className="sticky top-0 z-30 border-b border-line bg-canvas/95 backdrop-blur-xl">
+      <a className="skip-link" href="#main-content">Skip to investigation</a>
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12 min-h-[82px] flex flex-wrap items-center justify-between gap-x-5 gap-y-3 py-4">
+        <div className="flex items-center gap-8">
+          <Brand />
+          <span className="hidden xl:flex border-l border-line pl-7 items-center gap-2 text-xs text-slate-500"><span className="h-1.5 w-1.5 bg-accent rounded-full" />Network investigation studio</span>
         </div>
-
-        {/* Status Indicators & Mode Switcher */}
-        <div className="flex items-center flex-wrap gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
-          {/* Backend Status Pill */}
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-navy-850 border border-slate-800 text-xs">
-            {healthLoading ? (
-              <RefreshCw className="w-3.5 h-3.5 text-slate-400 animate-spin" />
-            ) : isOnline ? (
-              <Wifi className="w-3.5 h-3.5 text-teal-400" />
-            ) : (
-              <WifiOff className="w-3.5 h-3.5 text-amber-400" />
-            )}
-            <span className="text-slate-300 font-mono">
-              {isOnline ? "API Online" : "API Offline"}
-            </span>
-            <span className="text-slate-600">|</span>
-            <span
-              className={`font-mono ${
-                isEngineReady
-                  ? "text-teal-400"
-                  : "text-amber-400/90"
-              }`}
-              title={
-                healthLoading
-                  ? "Checking backend availability"
-                  : !isOnline
-                  ? "Backend could not be reached; start it or check its connection"
-                  : isEngineReady
-                  ? "Engine ready for capture analysis"
-                  : "Backend responded, but analysis is currently unavailable"
-              }
-            >
-              {healthLoading ? "Checking Engine" : !isOnline ? "Engine Unavailable" : isEngineReady ? "Engine Ready" : "Analysis Unavailable"}
-            </span>
-            <button
-              onClick={onRefreshHealth}
-              title="Refresh API health status"
-              className="ml-1 text-slate-400 hover:text-slate-200 transition-colors"
-              aria-label="Refresh health"
-            >
-              <RefreshCw className="w-3 h-3" />
-            </button>
+        <div className="flex items-center flex-wrap gap-3 sm:gap-5">
+          <div className="flex items-center gap-2 text-[11px] text-slate-500" title={healthError || (ready ? "Backend connected and analysis engine ready" : "The backend may need a moment to start")}>
+            <span className={`h-1.5 w-1.5 rounded-full ${healthLoading ? "bg-slate-400" : ready ? "bg-emerald-600" : "bg-amber-600"}`} />
+            <span>{healthLoading ? "Connecting…" : ready ? "Engine online" : online ? "Engine unavailable" : "API offline"}</span>
+            <button type="button" onClick={onRefreshHealth} aria-label="Refresh health" className="p-1 hover:text-ink"><RefreshCw className={`h-3 w-3 ${healthLoading ? "animate-spin" : ""}`} /></button>
           </div>
-
-          {/* Mode Switcher */}
-          <div className="flex items-center rounded-lg bg-navy-850 p-0.5 border border-slate-800">
-            <button
-              type="button"
-              onClick={() => onToggleMode(false)}
-              className={`flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-md transition-all ${
-                !isLiveMode
-                  ? "bg-teal-500/20 text-teal-300 border border-teal-500/40 shadow-sm"
-                  : "text-slate-400 hover:text-slate-200"
-              }`}
-            >
-              <Eye className="w-3.5 h-3.5" />
-              Preview Mode
-            </button>
-            <button
-              type="button"
-              onClick={() => onToggleMode(true)}
-              className={`flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-md transition-all ${
-                isLiveMode
-                  ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 shadow-sm"
-                  : "text-slate-400 hover:text-slate-200"
-              }`}
-            >
-              <Server className="w-3.5 h-3.5" />
-              Live API
-            </button>
+          <div className="flex items-center rounded-lg border border-line p-1 bg-white" aria-label="Workspace mode">
+            <button type="button" onClick={() => onToggleMode(true)} aria-pressed={isLiveMode} className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-semibold transition-colors ${isLiveMode ? "bg-ink text-white" : "text-slate-500 hover:bg-muted"}`}><Radio className="h-3 w-3" />Live API</button>
+            <button type="button" onClick={() => onToggleMode(false)} aria-pressed={!isLiveMode} className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-semibold transition-colors ${!isLiveMode ? "bg-ink text-white" : "text-slate-500 hover:bg-muted"}`}><Eye className="h-3 w-3" />Preview Mode</button>
           </div>
+          <a href="https://github.com/ArpitKrSingh7/causalPacket" target="_blank" rel="noreferrer" className="hidden md:flex items-center gap-1 text-[11px] font-semibold text-slate-500 hover:text-ink">Source <ArrowUpRight className="h-3 w-3" /></a>
         </div>
       </div>
     </header>

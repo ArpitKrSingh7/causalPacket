@@ -150,37 +150,37 @@ export function AlibiTest({
     arpClaimedIp && gatewayIp.trim() === arpClaimedIp;
 
   return (
-    <div className="bg-navy-900 border border-slate-800 rounded-xl p-5 shadow-sm space-y-5">
+    <div className="bg-white p-5 shadow-sm space-y-5">
       {/* Title & Guidance */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-line">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-semibold text-slate-100 flex items-center gap-1.5">
-              <Shield className="w-4 h-4 text-teal-400" />
+            <h3 className="text-sm font-semibold text-ink flex items-center gap-1.5">
+              <Shield className="w-4 h-4 text-teal-700" />
               The Alibi Test
             </h3>
-            <span className="text-xs px-2 py-0.5 rounded bg-teal-500/10 text-teal-300 border border-teal-500/20 font-mono">
+            <span className="text-xs px-2 py-0.5 rounded bg-teal-500/10 text-teal-700 border border-teal-500/20 font-mono">
               Could this be something else?
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
             Test whether declaring authorized infrastructure changes an attack
             hypothesis without altering observed packet facts.
           </p>
         </div>
 
-        <div className="text-[11px] font-mono px-2 py-0.5 rounded border self-start sm:self-auto bg-navy-850 border-slate-800 text-slate-400">
+        <div className="text-[11px] font-mono px-2 py-0.5 rounded border self-start sm:self-auto bg-slate-50 border-line text-slate-500">
           {!isFixture ? "Live Reinterpretation" : "Scripted Scenario Preview"}
         </div>
       </div>
 
       {isHealthyPreview ? (
-        <div className="p-4 rounded-lg bg-navy-950/70 border border-slate-800 text-xs text-slate-400 space-y-2">
-          <div className="flex items-center gap-2 text-slate-300 font-medium">
-            <Info className="w-4 h-4 text-teal-400" />
+        <div className="p-4 rounded-lg bg-slate-50/70 border border-line text-xs text-slate-500 space-y-2">
+          <div className="flex items-center gap-2 text-slate-600 font-medium">
+            <Info className="w-4 h-4 text-teal-700" />
             <span>Alibi test not applicable for this scenario</span>
           </div>
-          <p className="text-slate-400 leading-relaxed">
+          <p className="text-slate-500 leading-relaxed">
             The healthy preview contains completed TCP handshakes and zero
             anomalous observations. Alibi testing applies when conflicting
             gateway claims or scanning patterns require evaluating operator
@@ -191,11 +191,11 @@ export function AlibiTest({
         <>
           {/* Sample Declared Baseline Callout (explicit Apply button) */}
           {hasSampleBaseline && suggestedContext && (
-            <div className="p-3.5 rounded-lg bg-navy-850 border border-teal-500/30 space-y-2.5">
+            <div className="p-3.5 rounded-lg bg-slate-50 border border-teal-500/30 space-y-2.5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
-                  <Database className="w-4 h-4 text-teal-400" />
-                  <span className="text-xs font-semibold text-slate-200">
+                  <Database className="w-4 h-4 text-teal-700" />
+                  <span className="text-xs font-semibold text-ink">
                     Sample Declared Baseline (Known Inventory)
                   </span>
                 </div>
@@ -203,18 +203,18 @@ export function AlibiTest({
                   type="button"
                   onClick={() => handleApply(suggestedContext)}
                   disabled={isReinterpreting}
-                  className="px-3 py-1 rounded bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold text-xs transition-colors shadow-sm disabled:opacity-50 self-start sm:self-auto flex items-center gap-1.5"
+                  className="px-3 py-1 rounded bg-ink hover:bg-ink text-white font-semibold text-xs transition-colors shadow-sm disabled:opacity-50 self-start sm:self-auto flex items-center gap-1.5"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>Apply sample inventory</span>
                 </button>
               </div>
 
-              <div className="text-xs text-slate-300 grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-[11px] bg-navy-950/60 p-2.5 rounded border border-slate-800">
+              <div className="text-xs text-slate-600 grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-[11px] bg-slate-50/60 p-2.5 rounded border border-line">
                 {suggestedContext.gateway_ip && (
                   <div>
                     <span className="text-slate-500">Known Gateway IP: </span>
-                    <span className="text-teal-300 font-semibold">
+                    <span className="text-teal-700 font-semibold">
                       {suggestedContext.gateway_ip}
                     </span>
                   </div>
@@ -222,14 +222,14 @@ export function AlibiTest({
                 {suggestedContext.approved_gateway_macs.length > 0 && (
                   <div>
                     <span className="text-slate-500">Approved MAC(s): </span>
-                    <span className="text-teal-300 font-semibold">
+                    <span className="text-teal-700 font-semibold">
                       {suggestedContext.approved_gateway_macs.join(", ")}
                     </span>
                   </div>
                 )}
               </div>
 
-              <p className="text-[11px] text-slate-400 leading-relaxed">
+              <p className="text-[11px] text-slate-500 leading-relaxed">
                 Applies the author-declared baseline for this sample. Leaves any
                 other claimant unapproved, evaluating whether an unauthorized
                 device claimed the gateway address.
@@ -239,10 +239,10 @@ export function AlibiTest({
 
           {/* Observed Identity Claims & Alibi Flow for ARP */}
           {arpObs && arpClaimedIp && arpObservedMacs.length > 0 && (
-            <div className="p-3.5 rounded-lg bg-navy-950/70 border border-slate-800 space-y-2.5">
+            <div className="p-3.5 rounded-lg bg-slate-50/70 border border-line space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-                  <Radio className="w-3.5 h-3.5 text-teal-400" />
+                <span className="text-xs font-semibold text-ink flex items-center gap-1.5">
+                  <Radio className="w-3.5 h-3.5 text-teal-700" />
                   Observed Identity Claims (ARP)
                 </span>
                 <span className="text-[10px] font-mono text-slate-500">
@@ -259,16 +259,16 @@ export function AlibiTest({
                   return (
                     <div
                       key={mac}
-                      className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2 rounded bg-navy-900 border border-slate-800 text-xs"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2 rounded bg-white border border-line text-xs"
                     >
                       <div className="flex items-center gap-2 font-mono">
-                        <span className="text-slate-400">MAC:</span>
-                        <span className="text-slate-100 font-semibold">{mac}</span>
+                        <span className="text-slate-500">MAC:</span>
+                        <span className="text-ink font-semibold">{mac}</span>
                       </div>
 
                       <div className="flex items-center gap-2 self-start sm:self-auto">
                         {isApproved ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-teal-500/20 text-teal-300 border border-teal-500/40">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-teal-500/20 text-teal-700 border border-teal-500/40">
                             <CheckCircle2 className="w-3 h-3" />
                             Approved Device
                           </span>
@@ -278,7 +278,7 @@ export function AlibiTest({
                             onClick={() => {
                               setGatewayIp(arpClaimedIp);
                             }}
-                            className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-medium transition-colors"
+                            className="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 text-[11px] font-medium transition-colors"
                           >
                             Set Gateway IP to {arpClaimedIp}
                           </button>
@@ -296,7 +296,7 @@ export function AlibiTest({
                               });
                             }}
                             disabled={isReinterpreting}
-                            className="px-2.5 py-1 rounded bg-teal-500/20 hover:bg-teal-500/30 border border-teal-500/40 text-teal-300 text-[11px] font-medium transition-colors flex items-center gap-1 disabled:opacity-50"
+                            className="px-2.5 py-1 rounded bg-teal-500/20 hover:bg-teal-500/30 border border-teal-500/40 text-teal-700 text-[11px] font-medium transition-colors flex items-center gap-1 disabled:opacity-50"
                           >
                             <PlusCircle className="w-3 h-3" />
                             <span>Approve as authorized gateway</span>
@@ -322,7 +322,7 @@ export function AlibiTest({
             <div className="space-y-1.5">
               <label
                 htmlFor="alibi-gateway-ip"
-                className="block text-xs font-medium text-slate-300"
+                className="block text-xs font-medium text-slate-600"
               >
                 Configured Gateway IPv4:
               </label>
@@ -333,7 +333,7 @@ export function AlibiTest({
                 value={gatewayIp}
                 onChange={(e) => setGatewayIp(e.target.value)}
                 disabled={isReinterpreting}
-                className="w-full bg-navy-950 border border-slate-800 rounded-lg px-3 py-2 text-xs font-mono text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-teal-400 disabled:opacity-50"
+                className="w-full bg-slate-50 border border-line rounded-lg px-3 py-2 text-xs font-mono text-ink placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-400 disabled:opacity-50"
               />
               <span className="text-[10px] text-slate-500 block">
                 Required if declaring approved gateway MACs
@@ -344,7 +344,7 @@ export function AlibiTest({
             <div className="space-y-1.5">
               <label
                 htmlFor="alibi-gateway-macs"
-                className="block text-xs font-medium text-slate-300"
+                className="block text-xs font-medium text-slate-600"
               >
                 Approved Gateway MACs:
               </label>
@@ -355,7 +355,7 @@ export function AlibiTest({
                 value={macsInput}
                 onChange={(e) => setMacsInput(e.target.value)}
                 disabled={isReinterpreting}
-                className="w-full bg-navy-950 border border-slate-800 rounded-lg px-3 py-2 text-xs font-mono text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-teal-400 disabled:opacity-50"
+                className="w-full bg-slate-50 border border-line rounded-lg px-3 py-2 text-xs font-mono text-ink placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-400 disabled:opacity-50"
               />
               <span className="text-[10px] text-slate-500 block">
                 Comma-separated hex (e.g. 02:00:00:00:00:02)
@@ -366,7 +366,7 @@ export function AlibiTest({
             <div className="space-y-1.5">
               <label
                 htmlFor="alibi-scanner-ips"
-                className="block text-xs font-medium text-slate-300"
+                className="block text-xs font-medium text-slate-600"
               >
                 Authorized Scanner IPs:
               </label>
@@ -377,7 +377,7 @@ export function AlibiTest({
                 value={scannersInput}
                 onChange={(e) => setScannersInput(e.target.value)}
                 disabled={isReinterpreting}
-                className="w-full bg-navy-950 border border-slate-800 rounded-lg px-3 py-2 text-xs font-mono text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-teal-400 disabled:opacity-50"
+                className="w-full bg-slate-50 border border-line rounded-lg px-3 py-2 text-xs font-mono text-ink placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-400 disabled:opacity-50"
               />
               <span className="text-[10px] text-slate-500 block">
                 Approved testing or vulnerability scanner IPs
@@ -386,7 +386,7 @@ export function AlibiTest({
           </div>
 
           {validationWarning && (
-            <div className="p-2.5 rounded-lg bg-amber-950/40 border border-amber-500/30 text-amber-300 text-xs flex items-center gap-2">
+            <div className="p-2.5 rounded-lg bg-amber-50/40 border border-amber-500/30 text-amber-800 text-xs flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
               <span>{validationWarning}</span>
             </div>
@@ -394,7 +394,7 @@ export function AlibiTest({
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
-            <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
+            <div className="text-[11px] text-slate-500 flex items-center gap-1.5">
               <Info className="w-3.5 h-3.5 text-slate-500 flex-shrink-0" />
               <span>
                 {!isFixture
@@ -408,7 +408,7 @@ export function AlibiTest({
                 type="button"
                 onClick={handleReset}
                 disabled={isReinterpreting}
-                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors flex items-center gap-1.5 disabled:opacity-50"
+                className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium transition-colors flex items-center gap-1.5 disabled:opacity-50"
               >
                 <RotateCcw className="w-3 h-3" />
                 <span>Reset Context</span>
@@ -418,7 +418,7 @@ export function AlibiTest({
                 type="button"
                 onClick={() => handleApply()}
                 disabled={isReinterpreting}
-                className="px-4 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-sm disabled:opacity-50"
+                className="px-4 py-1.5 rounded-lg bg-ink hover:bg-ink text-white font-semibold text-xs transition-colors flex items-center gap-1.5 shadow-sm disabled:opacity-50"
               >
                 {isReinterpreting ? (
                   <>
@@ -445,9 +445,9 @@ export function AlibiTest({
 
       {/* INTERPRETATION CHANGES PANEL (when changes exist) */}
       {interpretationChanges && interpretationChanges.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-slate-800 space-y-3">
+        <div className="mt-4 pt-4 border-t border-line space-y-3">
           <div className="flex items-center justify-between">
-            <h4 className="text-xs font-semibold text-teal-400 uppercase tracking-wider flex items-center gap-1.5">
+            <h4 className="text-xs font-semibold text-teal-700 uppercase tracking-wider flex items-center gap-1.5">
               <RotateCcw className="w-3.5 h-3.5" />
               Interpretation Changes (Operator Context Applied)
             </h4>
@@ -460,49 +460,49 @@ export function AlibiTest({
             {interpretationChanges.map((change, idx) => (
               <div
                 key={idx}
-                className="bg-navy-950/80 border border-teal-500/30 rounded-lg p-4 space-y-3"
+                className="bg-slate-50/80 border border-teal-500/30 rounded-lg p-4 space-y-3"
               >
                 {/* Transition Pill */}
                 <div className="flex items-center gap-2 flex-wrap text-xs">
-                  <span className="font-mono text-slate-400">
+                  <span className="font-mono text-slate-500">
                     Incident {change.incident_id}:
                   </span>
-                  <span className="font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/40 line-through opacity-80">
+                  <span className="font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-700 border border-red-500/40 line-through opacity-80">
                     {getAssessmentLabel(change.previous_assessment)}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-teal-400" />
-                  <span className="font-mono px-2 py-0.5 rounded bg-teal-500/20 text-teal-300 border border-teal-500/40 font-semibold">
+                  <ArrowRight className="w-3.5 h-3.5 text-teal-700" />
+                  <span className="font-mono px-2 py-0.5 rounded bg-teal-500/20 text-teal-700 border border-teal-500/40 font-semibold">
                     {getAssessmentLabel(change.current_assessment)}
                   </span>
                 </div>
 
                 {/* Reason Changed */}
                 <div className="text-xs">
-                  <span className="font-semibold text-slate-300 block mb-0.5">
+                  <span className="font-semibold text-slate-600 block mb-0.5">
                     Why the explanation changed:
                   </span>
-                  <p className="text-slate-300 leading-relaxed bg-navy-900/80 p-2.5 rounded border border-slate-800">
+                  <p className="text-slate-600 leading-relaxed bg-white/80 p-2.5 rounded border border-line">
                     {change.reason_changed}
                   </p>
                 </div>
 
                 {/* Evidence Retained */}
                 <div className="text-xs">
-                  <span className="font-semibold text-slate-400 block mb-0.5">
+                  <span className="font-semibold text-slate-500 block mb-0.5">
                     Evidence Retained (Unaltered Facts):
                   </span>
-                  <p className="text-slate-400 leading-relaxed font-mono text-[11px]">
+                  <p className="text-slate-500 leading-relaxed font-mono text-[11px]">
                     {change.evidence_retained}
                   </p>
                 </div>
 
                 {/* Remaining Problem */}
                 <div className="text-xs">
-                  <span className="font-semibold text-amber-300 block mb-0.5 flex items-center gap-1">
+                  <span className="font-semibold text-amber-800 block mb-0.5 flex items-center gap-1">
                     <AlertTriangle className="w-3.5 h-3.5" />
                     Remaining Problem:
                   </span>
-                  <p className="text-amber-200/90 leading-relaxed bg-amber-950/30 p-2.5 rounded border border-amber-500/30">
+                  <p className="text-amber-800/90 leading-relaxed bg-amber-50/30 p-2.5 rounded border border-amber-500/30">
                     {change.remaining_problem}
                   </p>
                 </div>
