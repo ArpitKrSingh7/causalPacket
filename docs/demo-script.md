@@ -77,4 +77,4 @@ The walkthrough uses the real local API and synthetic captures. Its end card ide
 
 ## Optional: record again later
 
-The completed recording is already available. To record again, first move the previous `.artifacts/demo-new-ui/` output aside. With setup and the optional Playwright/Chromium/FFmpeg tools available, run `./run.sh record-demo` from a normal terminal. It uses the real interface/API and stops only servers it starts.
+The completed recording is already available. To record again, first move the previous `.artifacts/demo-new-ui/` output aside. With setup and the optional Playwright/Chromium/FFmpeg tools available, run `node scripts/record_demo.cjs` from a normal terminal. It uses the real interface/API and stops only servers it starts.

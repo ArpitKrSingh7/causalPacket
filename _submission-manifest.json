@@ -17,11 +17,6 @@
       "sha256": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d"
     },
     {
-      "path": "PLAN.md",
-      "bytes": 2537,
-      "sha256": "30dab8509ad802661a0504828b56b4523ecb5f51f598e1fb3bac0ffa8755ebd5"
-    },
-    {
       "path": "README.md",
       "bytes": 11237,
       "sha256": "57a08e4e4151e9cfe5d37b2809f1e00893ce0d361906672790bd36daa02610ec"
@@ -173,8 +168,8 @@
     },
     {
       "path": "docs/demo-script.md",
-      "bytes": 6566,
-      "sha256": "612783297ca1f9016962c6c904d010568bec33ee480e20b5e6767a6ccf33114a"
+      "bytes": 6574,
+      "sha256": "ff3889d3620a97d5a85f71d0d94f9a2e98d5917bf045575a80e7efe9eabf897c"
     },
     {
       "path": "docs/demo-timings.json",
@@ -333,8 +328,8 @@
     },
     {
       "path": "frontend/app/layout.tsx",
-      "bytes": 811,
-      "sha256": "4815d269eb7c7d979dcaabcd64ebda0561dde3b31c5e49e7a9cd803f12176875"
+      "bytes": 1982,
+      "sha256": "da379ea7c8b75ef92896fa27bc0cb5df0a0d26382d543bf960072d0cbf1e4f71"
     },
     {
       "path": "frontend/app/page.tsx",
@@ -493,8 +488,8 @@
     },
     {
       "path": "frontend/public/brand/README.md",
-      "bytes": 2676,
-      "sha256": "5ff2a2f100794fa1ff0fdc89addf95017c98f0c8df5ef9aed6035c5aad281760"
+      "bytes": 4347,
+      "sha256": "cda23bc3c7edf6793384aafc6fb41ee9a47241ed731af561b37ec18f4dbe94bd"
     },
     {
       "path": "frontend/public/brand/packet-lens.webp",
@@ -505,6 +500,11 @@
       "path": "frontend/public/brand/packet-mark.webp",
       "bytes": 13830,
       "sha256": "9f874c80bfe4d0fe359532fbd594cc18deba6ced82c1806a846d24239f1d97f8"
+    },
+    {
+      "path": "frontend/public/brand/social-preview.jpg",
+      "bytes": 127837,
+      "sha256": "a0186d18660226f3bfba56d8b047e95bad3f00076bd501c70ac145901b6880a7"
     },
     {
       "path": "frontend/public/samples/causalpacket-test-captures.zip",
@@ -543,8 +543,8 @@
     },
     {
       "path": "run.sh",
-      "bytes": 3111,
-      "sha256": "a59d26dd3271a112135a4a98ce2b9991b2e785ef25531b238b8512692558e1eb"
+      "bytes": 3008,
+      "sha256": "bb4bbe64052b006c12cdcd2b70ff4218a66e6cbee17454fc1849ac6168fb32f3"
     },
     {
       "path": "samples/01_healthy.pcap",
@@ -648,8 +648,8 @@
     },
     {
       "path": "scripts/package_submission.py",
-      "bytes": 6132,
-      "sha256": "dc4f5d6d1abf0f77a995e4dda15c34171f12efab4140a32a31831f94b3c688f9"
+      "bytes": 6122,
+      "sha256": "631187184ab8373ed0709d23228f45a6aa76a414bb046f63f7d54c9c2971d906"
     },
     {
       "path": "scripts/prepare_ui_checks.py",

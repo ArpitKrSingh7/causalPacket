@@ -16,3 +16,12 @@ Original logo and illustration generated with the built-in OpenAI image-generati
 **Logo and favicon master**
 
 > Use case: logo-brand. Asset type: original standalone brand symbol for CausalPacket, to become its website logo and favicon. Design one exceptionally simple, bold geometric symbol: a squared packet outline with rounded corners, one clean route entering from the left and branching into two small square terminals on the right. A distinctive orange #ff5b35 symbol, flat vector-like edges, no gradients, no shadows, no thin strokes. Compact nearly square silhouette, centered with modest padding. It must remain legible at 16 pixels. Transparent background. Only one logo symbol, no wordmark, no typography, no mockups, no labels, no grid, no watermark, no shield or padlock. Sophisticated software brand, confident generous geometry.
+
+
+## Social link preview
+
+`social-preview.jpg` is the generated 1200 × 630 Open Graph/Twitter cover. It is served statically by Vercel and does not require the Render API to wake up. Created with the built-in image-generation tool, using the existing packet-lens illustration and packet mark as visual references; FFmpeg resized/encoded the selected output.
+
+Final prompt:
+
+> Use case: ads-marketing. Asset type: production Open Graph social link preview cover for the CausalPacket website, intended at exactly 1200 x 630 pixels, wide 1.91:1 landscape. Create a NEW cover composition using Image 1 as the illustration reference and Image 2 as the existing brand mark. Keep the visual identity: warm ivory #f5f5f2 background, deep ink #182336 typography, vivid orange brand accent and cobalt packet paths. Left half: the original small orange branching packet mark, then a very large clean geometric sans-serif wordmark reading exactly 'CausalPacket'. Below it, medium heading exactly 'Fault or Foe?' and a smaller supporting line exactly 'Follow the evidence.' Bottom-left small website address exactly 'causal-packet.vercel.app'. Right half: a beautiful sculptural frosted-glass packet stack passing through the orange inspection lens from Image 1, artfully framed, sharp and refined. Professional editorial software brand, generous space, precise alignment, readable on a mobile link card. All text and logo must stay inside a generous 9% safe margin. No dashboard screenshot, no fictitious findings, no statistics, no badge claiming security or accuracy, no extra words, no shields, no watermark. The image is decorative branding for a network investigation product.
